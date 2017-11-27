@@ -1,5 +1,5 @@
 <template>
-  <section class="catalog-banner-component">
+  <section class="category-banner-component">
     <div class="container">
       <img src="http://placehold.it/1920x720" alt="">
     </div>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'CatalogList',
+  name: 'CategoryList',
   data() {
     return {
     };
@@ -20,7 +20,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../scss/shareds';
 
-section.catalog-banner-component {
+section.category-banner-component {
   img {
     display: block;
     width: 100%;
