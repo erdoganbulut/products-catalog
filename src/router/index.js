@@ -8,6 +8,10 @@ export default new Router({
   routes: [
     {
       path: '/',
+      redirect: '/tr'
+    },
+    {
+      path: '/:lang',
       name: 'Start',
       component: Start,
     },
