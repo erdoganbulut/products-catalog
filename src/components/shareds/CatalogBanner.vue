@@ -1,0 +1,30 @@
+<template>
+  <section class="catalog-banner-component">
+    <div class="container">
+      <img src="http://placehold.it/1920x720" alt="">
+    </div>
+  </section>
+</template>
+
+<script>
+export default {
+  name: 'CatalogList',
+  data() {
+    return {
+    };
+  },
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss" scoped>
+@import '../../scss/shareds';
+
+section.catalog-banner-component {
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
