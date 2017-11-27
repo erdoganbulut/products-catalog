@@ -1,13 +1,13 @@
 <template>
   <main class="page">
     <header-bar />
-    <catalog-list />
+    <catalog-banner />
   </main>
 </template>
 
 <script>
 import HeaderBar from './shareds/HeaderBar';
-import CatalogList from './shareds/CatalogList';
+import CatalogBanner from './shareds/CatalogBanner';
 
 export default {
   name: 'Catalog',
@@ -17,8 +17,8 @@ export default {
   },
   components: {
     HeaderBar,
-    CatalogList,
-  }
+    CatalogBanner,
+  },
 };
 </script>
 
