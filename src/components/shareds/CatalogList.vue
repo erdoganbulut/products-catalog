@@ -2,26 +2,26 @@
   <section class="catalog-list-component">
     <div class="container">
       <div class="catalog-items">
-        <router-link to="/" class="catalog-item">
-          <span class="catalog-item-inner">
+        <div class="catalog-item">
+          <router-link to="/" class="catalog-item-inner">
             <img src="http://placehold.it/1080x1080" alt="">
-          </span>
-        </router-link>
-        <router-link to="/" class="catalog-item">
-          <span class="catalog-item-inner">
+          </router-link>
+        </div>
+        <div class="catalog-item">
+          <router-link to="/" class="catalog-item-inner">
             <img src="http://placehold.it/1080x1080" alt="">
-          </span>
-        </router-link>
-        <router-link to="/" class="catalog-item">
-          <span class="catalog-item-inner">
+          </router-link>
+        </div>
+        <div class="catalog-item">
+          <router-link to="/" class="catalog-item-inner">
             <img src="http://placehold.it/1080x1080" alt="">
-          </span>
-        </router-link>
-        <router-link to="/" class="catalog-item">
-          <span class="catalog-item-inner">
+          </router-link>
+        </div>
+        <div class="catalog-item">
+          <router-link to="/" class="catalog-item-inner">
             <img src="http://placehold.it/1080x1080" alt="">
-          </span>
-        </router-link>
+          </router-link>
+        </div>
       </div>
     </div>
   </section>
@@ -51,13 +51,13 @@ section.catalog-list-component {
     .catalog-item {
       display: block;
       width: 100%;
-      text-decoration: none;
       padding: 15px;
       @media (min-width: 768px) {
         width: 50%;
       }
       .catalog-item-inner {
         display: block;
+        text-decoration: none;
         img {
           display: block;
           width: 100%;
