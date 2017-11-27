@@ -1,15 +1,21 @@
 <template>
   <main class="page">
+    <header-bar />
   </main>
 </template>
 
 <script>
+import HeaderBar from './shareds/HeaderBar';
+
 export default {
   name: 'Start',
   data() {
     return {
     };
   },
+  components: {
+    HeaderBar,
+  }
 };
 </script>
 
