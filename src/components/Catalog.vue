@@ -1,12 +1,13 @@
 <template>
   <main class="page">
     <header-bar />
-
+    <category-list />
   </main>
 </template>
 
 <script>
 import HeaderBar from './shareds/HeaderBar';
+import CategoryList from './shareds/CategoryList';
 
 export default {
   name: 'Catalog',
@@ -16,6 +17,7 @@ export default {
   },
   components: {
     HeaderBar,
+    CategoryList,
   },
 };
 </script>
