@@ -2,6 +2,9 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 
+// Vuex
+import Vuex from 'vuex';
+
 // Bootstrap and bootstrap-vue
 import BootstrapVue from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -12,6 +15,8 @@ import VueResource from 'vue-resource';
 
 import App from './App';
 import router from './router';
+
+Vue.use(Vuex);
 
 Vue.use(BootstrapVue);
 
