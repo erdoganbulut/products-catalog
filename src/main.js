@@ -5,29 +5,35 @@ import Vue from 'vue';
 // Vuex
 import Vuex from 'vuex';
 
+// Vue resource
+import VueResource from 'vue-resource';
+
 // Bootstrap and bootstrap-vue
 import BootstrapVue from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
-// Vue resource
-import VueResource from 'vue-resource';
-
 import App from './App';
 import router from './router';
 
-Vue.use(Vuex);
+// Store
+import VuexStore from './store';
 
-Vue.use(BootstrapVue);
+Vue.use(Vuex);
 
 Vue.use(VueResource);
 
+Vue.use(BootstrapVue);
+
 Vue.config.productionTip = false;
+
+const store = new Vuex.Store(VuexStore);
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App },
 });
