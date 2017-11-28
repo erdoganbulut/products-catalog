@@ -9,45 +9,40 @@
       <b-collapse is-nav id="nav_collapse">
 
         <b-navbar-nav>
-          <b-nav-item href="#">Start</b-nav-item>
+          <b-nav-item href="#">{{ lang.header_home_url_text }}</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
 
           <b-nav-form>
-            <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+            <b-form-input size="sm" class="mr-sm-2" type="text" :placeholder="lang.header_search_input_text" />
+            <b-button size="sm" class="my-2 my-sm-0" type="submit">{{ lang.header_search_button_text }}</b-button>
           </b-nav-form>
 
-          <b-nav-item-dropdown text="Lang" right>
-            <b-dropdown-item href="#">EN</b-dropdown-item>
-            <b-dropdown-item href="#">ES</b-dropdown-item>
-            <b-dropdown-item href="#">RU</b-dropdown-item>
-            <b-dropdown-item href="#">FA</b-dropdown-item>
-          </b-nav-item-dropdown>
-
-          <b-nav-item-dropdown right>
-            <!-- Using button-content slot -->
-            <template slot="button-content">
-              <em>User</em>
-            </template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Signout</b-dropdown-item>
+          <b-nav-item-dropdown :text="lang.header_language_button_text" right>
+            <b-dropdown-item href="#/tr">{{ lang.header_language_turkish }}</b-dropdown-item>
+            <b-dropdown-item href="#/en">{{ lang.header_language_english }}</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
-
       </b-collapse>
     </b-navbar>
   </header>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'HeaderBar',
   data() {
     return {
     };
+  },
+  computed: {
+    ...mapGetters({
+      lang: 'allLang',
+    }),
   },
 };
 </script>
