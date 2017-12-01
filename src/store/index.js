@@ -1,7 +1,9 @@
-import lang from './modules/lang';
+import moduleLang from './modules/lang';
+import moduleCatalogs from './modules/catalogs';
 
 export default {
   modules: {
-    lang,
+    lang: moduleLang,
+    catalogs: moduleCatalogs,
   },
 };
