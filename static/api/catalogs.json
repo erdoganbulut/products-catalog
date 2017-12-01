@@ -1,0 +1,28 @@
+{
+  "catalogItems": [
+    {
+      "id": "123",
+      "name": "CATALOG1",
+      "url": "catalog1",
+      "photo": "http://placehold.it/540x540"
+    },
+    {
+      "id": "124",
+      "name": "CATALOG2",
+      "url": "catalog2",
+      "photo": "http://placehold.it/720x720"
+    },
+    {
+      "id": "125",
+      "name": "CATALOG3",
+      "url": "catalog3",
+      "photo": "http://placehold.it/640x640"
+    },
+    {
+      "id": "126",
+      "name": "CATALOG4",
+      "url": "catalog4",
+      "photo": "http://placehold.it/840x840"
+    }
+  ]
+}
