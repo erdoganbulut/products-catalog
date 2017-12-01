@@ -5,24 +5,36 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'app',
   data() {
     return {
     };
   },
+  computed: {
+    ...mapGetters({
+      lang: 'lang/lang',
+      langList: 'lang/langList',
+      langListStatus: 'lang/langListStatus',
+    }),
+  },
   methods: {
     setLang() {
-      this.$store.dispatch('setLang', this.$route.params.lang);
+      this.$store.dispatch('lang/setLang', this.$route.params.lang);
+    },
+    getLangList() {
+      this.$store.dispatch('lang/getLangList');
     },
   },
   mounted() {
     this.setLang();
+    if (this.langListStatus !== 'done') this.getLangList();
   },
   watch: {
     '$route'(to, from) {
-      console.log(to, from);
-      this.setLang();
+      this.setLang(to, from);
     },
   },
 };
