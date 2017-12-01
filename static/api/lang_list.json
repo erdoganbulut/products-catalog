@@ -1,0 +1,18 @@
+{
+  "langItems": [
+    {
+      "id": "0",
+      "name": "English",
+      "api": "lang_en.json",
+      "url": "en",
+      "isActive": true
+    },
+    {
+      "id": "1",
+      "name": "Turkish",
+      "api": "lang_tr.json",
+      "url": "tr",
+      "isActive": false
+    }
+  ]
+}
