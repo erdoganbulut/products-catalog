@@ -4,12 +4,12 @@
 
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-      <b-navbar-brand href="#">Logo</b-navbar-brand>
+      <b-navbar-brand :href="'#/' + lang.url">Logo</b-navbar-brand>
 
       <b-collapse is-nav id="nav_collapse">
 
         <b-navbar-nav>
-          <b-nav-item href="#">{{ lang.header_home_url_text }}</b-nav-item>
+          <b-nav-item :href="'#/' + lang.url">{{ lang.header_home_url_text }}</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -21,8 +21,7 @@
           </b-nav-form>
 
           <b-nav-item-dropdown :text="lang.header_language_button_text" right>
-            <b-dropdown-item href="#/tr">{{ lang.header_language_turkish }}</b-dropdown-item>
-            <b-dropdown-item href="#/en">{{ lang.header_language_english }}</b-dropdown-item>
+            <b-dropdown-item v-for="langItem in langList.langItems" :href="'#/' + langItem.url">{{ langItem.name }}</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -41,7 +40,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      lang: 'allLang',
+      lang: 'lang/lang',
+      langList: 'lang/langList',
+      langListStatus: 'lang/langListStatus',
     }),
   },
 };
