@@ -27,10 +27,30 @@ export default {
     getLangList() {
       this.$store.dispatch('lang/getLangList');
     },
+    goToLangStart() {
+      const langListItems = JSON.parse(JSON.stringify(this.langList)).langItems;
+      if (typeof langListItems !== 'undefined') {
+        const activeLangListItem = window.$lodash.find(langListItems, { isActive: true });
+        this.$router.push(`${activeLangListItem.url}`);
+      }
+    },
   },
   mounted() {
     this.setLang();
     if (this.langListStatus !== 'done') this.getLangList();
+
+    if (typeof this.$route.params.lang === 'undefined') {
+      if (this.langListStatus !== 'done') {
+        this.$watch('langListStatus', () => {
+          this.goToLangStart();
+        }, {
+          deep: true,
+          immediate: true,
+        });
+      } else {
+        this.goToLangStart();
+      }
+    }
   },
   watch: {
     '$route'(to, from) {
