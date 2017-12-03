@@ -10,7 +10,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/tr',
+      name: 'StartWithoutLang',
+      component: Start,
     },
     {
       path: '/:lang',
