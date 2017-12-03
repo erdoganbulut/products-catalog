@@ -19,6 +19,9 @@ import router from './router';
 // Store
 import VuexStore from './store';
 
+// lodash
+window.$lodash = require('lodash');
+
 Vue.use(Vuex);
 
 Vue.use(VueResource);
