@@ -2,24 +2,9 @@
   <section class="category-list-component">
     <div class="container">
       <div class="category-items">
-        <div class="category-item">
-          <router-link to="/" class="category-item-inner">
-            <img src="http://placehold.it/1080x1080" alt="">
-          </router-link>
-        </div>
-        <div class="category-item">
-          <router-link to="/" class="category-item-inner">
-            <img src="http://placehold.it/1080x1080" alt="">
-          </router-link>
-        </div>
-        <div class="category-item">
-          <router-link to="/" class="category-item-inner">
-            <img src="http://placehold.it/1080x1080" alt="">
-          </router-link>
-        </div>
-        <div class="category-item">
-          <router-link to="/" class="category-item-inner">
-            <img src="http://placehold.it/1080x1080" alt="">
+        <div class="category-item" v-for="category in categories.categoryItems">
+          <router-link :to="'/' + lang.url + '/catalog/' + $route.params.catalog + '/category/' + category.url" class="category-item-inner">
+            <img :src="category.photo" :alt="category.name">
           </router-link>
         </div>
       </div>
@@ -28,11 +13,29 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'CategoryList',
   data() {
     return {
     };
+  },
+  computed: {
+    ...mapGetters({
+      categories: 'categories/categories',
+      status: 'categories/status',
+      response: 'categories/response',
+      lang: 'lang/lang',
+    }),
+  },
+  methods: {
+    getCategories() {
+      this.$store.dispatch('categories/getCategories');
+    },
+  },
+  mounted() {
+    this.getCategories();
   },
 };
 </script>
