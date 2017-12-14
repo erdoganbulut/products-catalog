@@ -21,7 +21,7 @@
           </b-nav-form>
 
           <b-nav-item-dropdown :text="lang.header_language_button_text" right>
-            <b-dropdown-item v-for="langItem in langList.langItems" :href="'#/' + langItem.url">{{ langItem.name }}</b-dropdown-item>
+            <b-dropdown-item v-for="langItem in langList.langItems" :key="langItem.id" :href="'#/' + langItem.url">{{ langItem.name }}</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
