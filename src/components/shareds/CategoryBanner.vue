@@ -1,7 +1,7 @@
 <template>
   <section class="category-banner-component">
     <div class="container">
-      <img src="http://placehold.it/1920x720" alt="">
+      <img src="http://placehold.it/1920x720?text=CategoryBanner" alt="">
     </div>
   </section>
 </template>
