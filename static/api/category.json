@@ -1,0 +1,64 @@
+{
+  "productItems": [
+    {
+      "id": "123",
+      "sku": "123",
+      "name": "PRODUCT1",
+      "url": "product1",
+      "categoryId": 0,
+      "subCategoryId": 1,
+      "serieId": 1,
+      "functionId": 1,
+      "glassTypeId": 1,
+      "innerPackagingTypeId": 1,
+      "hacim": 100,
+      "temper": true,
+      "colorId": 0
+    },
+    {
+      "id": "124",
+      "sku": "124",
+      "name": "PRODUCT2",
+      "url": "product2",
+      "categoryId": 0,
+      "subCategoryId": 1,
+      "serieId": 2,
+      "functionId": 1,
+      "glassTypeId": 1,
+      "innerPackagingTypeId": 1,
+      "hacim": 100,
+      "temper": true,
+      "colorId": 0
+    },
+    {
+      "id": "125",
+      "sku": "125",
+      "name": "PRODUCT3",
+      "url": "product3",
+      "categoryId": 0,
+      "subCategoryId": 1,
+      "serieId": 3,
+      "functionId": 1,
+      "glassTypeId": 1,
+      "innerPackagingTypeId": 1,
+      "hacim": 100,
+      "temper": true,
+      "colorId": 0
+    },
+    {
+      "id": "126",
+      "sku": "126",
+      "name": "PRODUCT4",
+      "url": "product4",
+      "categoryId": 0,
+      "subCategoryId": 1,
+      "serieId": 4,
+      "functionId": 1,
+      "glassTypeId": 1,
+      "innerPackagingTypeId": 1,
+      "hacim": 100,
+      "temper": true,
+      "colorId": 0
+    }
+  ]
+}
