@@ -7,7 +7,7 @@
             <h3>Serie Name</h3>
           </div>
           <div class="product-items" v-if="status === 'done'">
-            <router-link v-for="product in products.productItems.slice(0, 5)" to="/" class="product-item">
+            <router-link v-for="product in products.productItems.slice(0, 5)" :key="product.id" to="/" class="product-item">
               <span class="product-item--inner">
                 <img src="http://placehold.it/540x540?text=ProductItem" alt="">
               </span>
