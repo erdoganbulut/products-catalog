@@ -1,11 +1,13 @@
 <template>
   <main class="page">
     <header-bar />
+    <product-content />
   </main>
 </template>
 
 <script>
 import HeaderBar from './shareds/HeaderBar';
+import ProductContent from './shareds/ProductContent';
 
 export default {
   name: 'Product',
@@ -15,6 +17,7 @@ export default {
   },
   components: {
     HeaderBar,
+    ProductContent,
   },
 };
 </script>
