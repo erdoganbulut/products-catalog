@@ -42,19 +42,19 @@
                 <td>17 1/4 US oz.</td>
               </tr>
               <tr>
-                <td>Yükseklik</td>
+                <td>Yükseklik:</td>
                 <td>217,5 mm. 8 2/4"</td>
               </tr>
               <tr>
-                <td>Ağız Çapı</td>
+                <td>Ağız Çapı:</td>
                 <td>63,5 mm. 2 2/4"</td>
               </tr>
               <tr>
-                <td>Taban Çapı</td>
+                <td>Taban Çapı:</td>
                 <td>78 mm. 3"</td>
               </tr>
               <tr>
-                <td>Max. Genişlik</td>
+                <td>Max. Genişlik:</td>
                 <td>91 mm. 3 2/4"</td>
               </tr>
             </table>
@@ -62,8 +62,8 @@
         </b-collapse>
       </div>
       <div class="product-share">
-        <h2><a v-b-toggle.collapseTechnical href="javascript:;">SHARE</a></h2>
-        <b-collapse id="collapseTechnical">
+        <h2><a v-b-toggle.collapseSocial href="javascript:;">SHARE</a></h2>
+        <b-collapse id="collapseSocial">
           <div class="product-share-content">
             <a href="javascript:;" class="social-link social-link--facebook"><i class="fa fa-facebook"></i></a>
             <a href="javascript:;" class="social-link social-link--twitter"><i class="fa fa-twitter"></i></a>
@@ -72,7 +72,15 @@
         </b-collapse>
       </div>
       <div class="add-to-favorite">
-        <a href="javascript:;" class="btn"><i class="fa fa-heart-o"></i> ADD TO FAVORITE</a>
+        <a href="javascript:;" class="btn btn-danger btn-block"><i class="fa fa-heart-o"></i> ADD TO FAVORITE</a>
+        <select class="form-control">
+          <option value="-1">New List</option>
+          <option>List 1</option>
+          <option>List 2</option>
+          <option>List 3</option>
+          <option>List 4</option>
+        </select>
+        <input type="text" placeholder="list name" class="form-control" v-if="true">
       </div>
     </div>
   </section>
@@ -111,6 +119,12 @@ export default {
 @import '../../scss/shareds';
 
 section.product-content-component {
-
+  .product-image {
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
 }
 </style>
