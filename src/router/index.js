@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Start from '@/components/Start';
 import Catalog from '@/components/Catalog';
 import Category from '@/components/Category';
+import Product from '@/components/Product';
 
 Vue.use(Router);
 
@@ -27,6 +28,11 @@ export default new Router({
       path: '/:lang/catalog/:catalog/category/:category',
       name: 'Category',
       component: Category,
+    },
+    {
+      path: '/:lang/product/:productid',
+      name: 'Product',
+      component: Product,
     },
   ],
 });
