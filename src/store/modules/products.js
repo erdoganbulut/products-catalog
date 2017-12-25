@@ -7,8 +7,8 @@ const getters = {
 };
 
 const actions = {
-  getCategory({ commit }) {
-    Vue.http.get('./static/api/category.json').then((response) => {
+  getProducts({ commit }) {
+    Vue.http.get('./static/api/products.json').then((response) => {
       const Response = response;
       commit('receiveProducts', Response.body);
       commit('receiveStatus', 'done');
