@@ -1,28 +1,28 @@
 {
   "categoryItems": [
     {
-      "id": "123",
+      "id": "1",
       "name": "CATEGORY1",
       "url": "category1",
       "photo": "http://placehold.it/540x540",
       "banner": "http://1920x720"
     },
     {
-      "id": "124",
+      "id": "2",
       "name": "CATEGORY2",
       "url": "category2",
       "photo": "http://placehold.it/720x720",
       "banner": "http://1920x720"
     },
     {
-      "id": "125",
+      "id": "3",
       "name": "CATEGORY3",
       "url": "category3",
       "photo": "http://placehold.it/640x640",
       "banner": "http://1920x720"
     },
     {
-      "id": "126",
+      "id": "4",
       "name": "CATEGORY4",
       "url": "category4",
       "photo": "http://placehold.it/840x840",
