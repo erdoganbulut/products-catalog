@@ -8,7 +8,7 @@ const getters = {
 
 const actions = {
   getProducts({ commit }) {
-    Vue.http.get('./static/api/products.json').then((response) => {
+    Vue.http.get('http://5a404fa1d033de001230a4a3.mockapi.io/products').then((response) => {
       const Response = response;
       commit('receiveProducts', Response.body);
       commit('receiveStatus', 'done');
