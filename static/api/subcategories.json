@@ -1,0 +1,32 @@
+{
+  "subCategoryItems": [
+    {
+      "id": "123",
+      "name": "SUBCATEGORY1",
+      "url": "subcategory1",
+      "photo": "http://placehold.it/540x540?text=SUBCATEGORY1",
+      "banner": "http://1920x720?text=SUBCATEGORY1"
+    },
+    {
+      "id": "124",
+      "name": "SUBCATEGORY2",
+      "url": "subcategory2",
+      "photo": "http://placehold.it/720x720?text=SUBCATEGORY2",
+      "banner": "http://1920x720?text=SUBCATEGORY2"
+    },
+    {
+      "id": "125",
+      "name": "SUBCATEGORY3",
+      "url": "subcategory3",
+      "photo": "http://placehold.it/640x640?text=SUBCATEGORY3",
+      "banner": "http://1920x720?text=SUBCATEGORY3"
+    },
+    {
+      "id": "126",
+      "name": "SUBCATEGORY4",
+      "url": "subcategory4",
+      "photo": "http://placehold.it/840x840?text=SUBCATEGORY4",
+      "banner": "http://1920x720?text=SUBCATEGORY4"
+    }
+  ]
+}

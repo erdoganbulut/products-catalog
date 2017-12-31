@@ -1,0 +1,28 @@
+{
+  "innerPackageTypeItems": [
+    {
+      "id": "123",
+      "name": "SERI1",
+      "url": "seri1",
+      "photo": "http://placehold.it/540x540"
+    },
+    {
+      "id": "124",
+      "name": "SERI2",
+      "url": "seri2",
+      "photo": "http://placehold.it/720x720"
+    },
+    {
+      "id": "125",
+      "name": "SERI3",
+      "url": "seri3",
+      "photo": "http://placehold.it/640x640"
+    },
+    {
+      "id": "126",
+      "name": "SERI4",
+      "url": "seri4",
+      "photo": "http://placehold.it/840x840"
+    }
+  ]
+}
