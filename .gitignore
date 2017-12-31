@@ -18,3 +18,4 @@ selenium-debug.log
 
 # Custom Ignore
 package-lock.json
+yarn.lock
