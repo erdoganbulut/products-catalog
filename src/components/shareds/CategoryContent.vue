@@ -1,13 +1,45 @@
 <template>
   <section class="category-content-component">
     <div class="container">
+      <div class="filter-items">
+        <div class="filter-item filter-item--horizontal filter-item--categories">
+          <h3>Kategoriler</h3>
+          <div class="filter--inner-items">
+            <label v-for="subCategoryItem in subCategories" :key="subCategoryItem.id" :for="'subCategoryCheck' + subCategoryItem.id">
+              <input type="checkbox" :id="'subCategoryCheck' + subCategoryItem.id" :value="subCategoryItem.id" v-model="subCategoriesCheckeds">
+              <img :src="subCategoryItem.photo" width="150" alt="">
+            </label>
+          </div>
+          {{ subCategoriesCheckeds }}
+        </div>
+        <div class="filter-item filter-item--horizontal filter-item--functions">
+          <h3>Functions</h3>
+          <div class="filter--inner-items">
+            <label v-for="functionItem in functions" :key="functionItem.id" :for="'functionCheck' + functionItem.id">
+              <input type="checkbox" :id="'functionCheck' + functionItem.id" :value="functionItem.id" v-model="functionsCheckeds">
+              <img :src="functionItem.photo" width="150" alt="">
+            </label>
+          </div>
+          {{ functionsCheckeds }}
+        </div>
+        <div class="filter-item filter-item--horizontal filter-item--series">
+          <h3>Series</h3>
+          <div class="filter--inner-items">
+            <label v-for="serieItem in series" :key="serieItem.id" :for="'functionCheck' + serieItem.id">
+              <input type="checkbox" :id="'functionCheck' + serieItem.id" :value="serieItem.id" v-model="seriesCheckeds">
+              <img :src="serieItem.photo" width="150" alt="">
+            </label>
+          </div>
+          {{ seriesCheckeds }}
+        </div>
+      </div>
       <div class="serie-items">
         <div class="serie-item">
           <div class="info-bar">
-            <h3>Serie Name</h3>
+            <h3>çay tabakları bardakları</h3>
           </div>
           <div class="product-items" v-if="status === 'done'">
-            <router-link v-for="product in products.productItems.slice(0, 5)" :key="product.id" to="/" class="product-item">
+            <router-link v-for="product in products.slice(0, 5)" :key="product.id" :to="'/' + lang.url + '/product/' + product.id" class="product-item">
               <span class="product-item--inner">
                 <img src="http://placehold.it/540x540?text=ProductItem" alt="">
               </span>
@@ -16,74 +48,12 @@
         </div>
         <div class="serie-item">
           <div class="info-bar">
-            <h3>Serie Name</h3>
+            <h3>kadehler</h3>
           </div>
-          <div class="product-items">
-            <router-link to="/" class="product-item">
+          <div class="product-items" v-if="status === 'done'">
+            <router-link v-for="product in products.slice(0, 5)" :key="product.id" :to="'/' + lang.url + '/product/' + product.id" class="product-item">
               <span class="product-item--inner">
                 <img src="http://placehold.it/540x540?text=ProductItem" alt="">
-              </span>
-            </router-link>
-            <router-link to="/" class="product-item">
-              <span class="product-item--inner">
-                <img src="http://placehold.it/540x540?text=ProductItem" alt="">
-              </span>
-            </router-link>
-            <router-link to="/" class="product-item">
-              <span class="product-item--inner">
-                <img src="http://placehold.it/540x540?text=ProductItem" alt="">
-              </span>
-            </router-link>
-            <router-link to="/" class="product-item">
-              <span class="product-item--inner">
-                <img src="http://placehold.it/540x540?text=ProductItem" alt="">
-              </span>
-            </router-link>
-            <router-link to="/" class="product-item">
-              <span class="product-item--inner">
-                <img src="http://placehold.it/540x540?text=ProductItem" alt="">
-              </span>
-            </router-link>
-            <router-link to="/" class="product-item product--more-products">
-              <span class="product-item--inner">
-                <img src="http://placehold.it/540x540?text=15MoreProducts" alt="">
-              </span>
-            </router-link>
-          </div>
-        </div>
-        <div class="serie-item">
-          <div class="info-bar">
-            <h3>Serie Name</h3>
-          </div>
-          <div class="product-items">
-            <router-link to="/" class="product-item">
-              <span class="product-item--inner">
-                <img src="http://placehold.it/540x540?text=ProductItem" alt="">
-              </span>
-            </router-link>
-            <router-link to="/" class="product-item">
-              <span class="product-item--inner">
-                <img src="http://placehold.it/540x540?text=ProductItem" alt="">
-              </span>
-            </router-link>
-            <router-link to="/" class="product-item">
-              <span class="product-item--inner">
-                <img src="http://placehold.it/540x540?text=ProductItem" alt="">
-              </span>
-            </router-link>
-            <router-link to="/" class="product-item">
-              <span class="product-item--inner">
-                <img src="http://placehold.it/540x540?text=ProductItem" alt="">
-              </span>
-            </router-link>
-            <router-link to="/" class="product-item">
-              <span class="product-item--inner">
-                <img src="http://placehold.it/540x540?text=ProductItem" alt="">
-              </span>
-            </router-link>
-            <router-link to="/" class="product-item product--more-products">
-              <span class="product-item--inner">
-                <img src="http://placehold.it/540x540?text=15MoreProducts" alt="">
               </span>
             </router-link>
           </div>
@@ -94,29 +64,66 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
   name: 'CategoryContent',
   data() {
     return {
+      selectedCategory: {},
+      subCategoriesCheckeds: [],
+      functionsCheckeds: [],
+      seriesCheckeds: [],
     };
   },
   computed: {
     ...mapGetters({
-      products: 'category/products',
-      status: 'category/status',
-      response: 'category/response',
+      products: 'products/products',
+      status: 'products/status',
+      response: 'products/response',
+      categories: 'categories/categories',
       lang: 'lang/lang',
+      subCategories: 'subCategories/subCategories',
+      functions: 'functions/functions',
+      series: 'series/series',
     }),
   },
   methods: {
-    getCategory() {
-      this.$store.dispatch('category/getCategory');
+    ...mapMutations({
+      receiveFunctions: 'functions/receiveFunctions',
+    }),
+    ...mapActions({
+      getSubCategories: 'subCategories/getSubCategories',
+      getFunctions: 'functions/getFunctions',
+      getSeries: 'series/getSeries',
+      getCategories: 'categories/getCategories',
+    }),
+    getProducts() {
+      this.$store.dispatch('products/getProducts');
+    },
+    makeFilter() {
+
     },
   },
   mounted() {
-    this.getCategory();
+    this.getCategories();
+    this.getProducts();
+    this.getFunctions();
+    console.log(this.$route.query.id);
+  },
+  watch: {
+    categories() {
+      if(typeof this.categories.categoryItems !== 'undefined') {
+        this.selectedCategory = JSON.parse(JSON.stringify(window.$lodash.find(this.categories.categoryItems, { url: this.$route.params.category })));
+        this.getSubCategories(this.selectedCategory.id);
+      }
+    },
+    subCategoriesCheckeds() {
+      this.receiveFunctions();
+    },
+    functionsCheckeds() {
+      this.getSeries();
+    },
   },
 };
 </script>
