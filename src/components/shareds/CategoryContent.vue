@@ -109,12 +109,13 @@ export default {
     this.getCategories();
     this.getProducts();
     this.getFunctions();
-    console.log(this.$route.query.id);
   },
   watch: {
     categories() {
-      if(typeof this.categories.categoryItems !== 'undefined') {
-        this.selectedCategory = JSON.parse(JSON.stringify(window.$lodash.find(this.categories.categoryItems, { url: this.$route.params.category })));
+      if (typeof this.categories.categoryItems !== 'undefined') {
+        this.selectedCategory = JSON.parse(JSON.stringify(
+          window.$lodash.find(
+            this.categories.categoryItems, { url: this.$route.params.category })));
         this.getSubCategories(this.selectedCategory.id);
       }
     },

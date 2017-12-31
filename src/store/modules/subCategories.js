@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 const subCatFilter2CatId = (arr, categoryId) => {
   let Arr = JSON.parse(JSON.stringify(arr));
-  Arr = window.$lodash.filter(Arr, { categorieId: parseInt(categoryId) });
+  Arr = window.$lodash.filter(Arr, { categorieId: parseInt(categoryId, 10) });
   return Arr;
 };
 
@@ -14,7 +14,6 @@ const getters = {
 
 const actions = {
   getSubCategories({ commit }, categoryId) {
-    console.log(categoryId)
     Vue.http.get('http://5a404fa1d033de001230a4a3.mockapi.io/subcategories').then((response) => {
       const Response = response;
       commit('receiveSubCategories', subCatFilter2CatId(Response.body, categoryId));

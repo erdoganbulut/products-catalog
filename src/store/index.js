@@ -4,7 +4,7 @@ import moduleCategories from './modules/categories';
 import moduleProducts from './modules/products';
 import moduleSubCategories from './modules/subCategories';
 import moduleFunctions from './modules/functions';
-import series from './modules/series';
+import moduleSeries from './modules/series';
 
 export default {
   modules: {
@@ -14,6 +14,6 @@ export default {
     products: moduleProducts,
     subCategories: moduleSubCategories,
     functions: moduleFunctions,
-    series: series,
+    series: moduleSeries,
   },
 };

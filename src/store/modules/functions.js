@@ -3,7 +3,7 @@ import Vue from 'vue';
 const filterFunctions2selectedSubCats = (arr, subCats) => {
   let Arr = JSON.parse(JSON.stringify(arr));
   Arr = window.$lodash.filter(Arr, (o) => {
-    return subCats.indexOf(o.subCategoryId.toString()) >= 0
+    return subCats.indexOf(o.subCategoryId.toString()) >= 0;
   });
   return Arr;
 };

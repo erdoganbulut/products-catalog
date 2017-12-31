@@ -1,17 +1,22 @@
 <template>
   <div id="app">
+    <header-bar />
     <router-view/>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import HeaderBar from './components/shareds/HeaderBar';
 
 export default {
   name: 'app',
   data() {
     return {
     };
+  },
+  components: {
+    HeaderBar,
   },
   computed: {
     ...mapGetters({
