@@ -2,12 +2,14 @@
   <div id="app">
     <header-bar />
     <router-view/>
+    <footer-bar />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import HeaderBar from './components/shareds/HeaderBar';
+import FooterBar from './components/shareds/FooterBar';
 
 export default {
   name: 'app',
@@ -17,6 +19,7 @@ export default {
   },
   components: {
     HeaderBar,
+    FooterBar,
   },
   computed: {
     ...mapGetters({

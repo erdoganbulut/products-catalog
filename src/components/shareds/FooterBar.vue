@@ -33,5 +33,12 @@ footer {
   background: #000;
   font-size: 12px;
   font-weight: $fontWeightMedium;
+  color: #ffffff;
+  text-align: center;
+  padding: 12px;
+  p {
+    line-height: 20px;
+    margin: 0;
+  }
 }
 </style>
