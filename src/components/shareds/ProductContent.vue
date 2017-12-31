@@ -97,19 +97,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      products: 'category/products',
-      status: 'category/status',
-      response: 'category/response',
       lang: 'lang/lang',
     }),
-  },
-  methods: {
-    getCategory() {
-      this.$store.dispatch('category/getCategory');
-    },
-  },
-  mounted() {
-    this.getCategory();
   },
 };
 </script>
