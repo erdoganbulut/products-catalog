@@ -1,41 +1,155 @@
 <template>
-  <header>
-    <b-navbar toggleable="md">
-
-      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-
-      <b-navbar-brand :href="'#/' + lang.url">Logo</b-navbar-brand>
-
-      <b-collapse is-nav id="nav_collapse">
-
-        <b-navbar-nav>
-          <b-nav-item :href="'#/' + lang.url">{{ lang.header_home_url_text }}</b-nav-item>
-        </b-navbar-nav>
-
-        <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
-
-          <b-nav-form>
-            <b-form-input size="sm" class="mr-sm-2" type="text" :placeholder="lang.header_search_input_text" />
-            <b-button size="sm" class="my-2 my-sm-0" type="submit">{{ lang.header_search_button_text }}</b-button>
-          </b-nav-form>
-
-          <b-nav-item-dropdown :text="lang.header_language_button_text" right>
-            <b-dropdown-item v-for="langItem in langList.langItems" :key="langItem.id" :href="'#/' + langItem.url">{{ langItem.name }}</b-dropdown-item>
-          </b-nav-item-dropdown>
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
+  <header v-bind:class="{'is-nav--open': isNavOpen}">
+    <div class="header--inner">
+      <router-link to="/" class="logo">
+        <img src="../../assets/logo.svg" alt="Logo" class="logo-normal">
+        <img src="../../assets/logo-w.svg" alt="Logo" class="logo-nav">
+      </router-link>
+      <a href="javascript:;" class="toggle-navigation" v-bind:class="{'active': isNavOpen}" v-on:click="isNavOpen = !isNavOpen">
+        <svg>
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconHamburger"></use>
+        </svg>
+        <svg>
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconClose"></use>
+        </svg>
+      </a>
+    </div>
+    <nav>
+      <div class="lists-outer" v-bind:class="[`level-${navLevel}`]">
+        <ul>
+          <li class="item-type--title">
+            <span>MENU</span>
+          </li>
+          <li>
+            <router-link to="/" v-on:click.native="handleClickRouterLink()">
+              <span>PROFIL</span>
+            </router-link>
+            <span class="item--icon">
+              <svg width="26" height="26">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconProfile"></use>
+              </svg>
+            </span>
+          </li>
+          <li v-for="catalog in menu" :key="'catalog' + catalog.id">
+            <a href="javascript:;" v-on:click="rightToMenu(2, catalog)">
+              <span>{{ catalog.name }}</span>
+            </a>
+            <span class="item--icon">
+              <svg width="7" height="13">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconRight"></use>
+              </svg>
+            </span>
+          </li>
+          <li>
+            <router-link to="/" v-on:click.native="handleClickRouterLink()">
+              <span>HAKKIMIZDA</span>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/" v-on:click.native="handleClickRouterLink()">
+              <span>İLETİŞİM</span>
+            </router-link>
+          </li>
+          <li class="item-type--social">
+            <a href="/" target="_blank">
+              <svg width="20" height="20">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconFacebook"></use>
+              </svg>
+            </a>
+            <a href="/" target="_blank">
+              <svg width="22" height="18">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconTwitter"></use>
+              </svg>
+            </a>
+            <a href="/" target="_blank">
+              <svg width="22" height="16">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconYoutube"></use>
+              </svg>
+            </a>
+            <a href="/" target="_blank">
+              <svg width="20" height="20">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconInstagram"></use>
+              </svg>
+            </a>
+          </li>
+        </ul>
+        <ul>
+          <li class="item-type--back">
+            <span class="item--icon">
+              <svg width="7" height="13">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconLeft"></use>
+              </svg>
+            </span>
+            <a href="javascript:;" v-on:click="leftToMenu()">{{ levelTwoContent.name }}</a>
+          </li>
+          <li>
+            <router-link :to="'/' + lang.url + '/catalog/' + levelTwoContent.url" v-on:click.native="handleClickRouterLink()">
+              <span>TÜMÜNÜ GÖR</span>
+            </router-link>
+            <span class="item--icon">
+              <svg width="14" height="13">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconDoubleRight"></use>
+              </svg>
+            </span>
+          </li>
+          <li v-for="category in levelTwoContent.items" :key="'category' + category.id">
+            <a href="javascript:;" v-on:click="rightToMenu(3, category)">
+              <span>{{ category.name }}</span>
+            </a>
+            <span class="item--icon">
+              <svg width="7" height="13">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconRight"></use>
+              </svg>
+            </span>
+          </li>
+        </ul>
+        <ul>
+          <li class="item-type--back">
+            <span class="item--icon">
+              <svg width="7" height="13">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconLeft"></use>
+              </svg>
+            </span>
+            <a href="javascript:;" v-on:click="leftToMenu()">{{ levelThreeContent.name }}</a>
+          </li>
+          <li>
+            <router-link :to="'/' + lang.url + '/catalog/' + levelThreeContent.url + '/category/' + levelThreeContent.url" v-on:click.native="handleClickRouterLink()">
+              <span>TÜMÜNÜ GÖR</span>
+            </router-link>
+            <span class="item--icon">
+              <svg width="14" height="13">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconDoubleRight"></use>
+              </svg>
+            </span>
+          </li>
+          <li v-for="subCategory in levelThreeContent.items" :key="'subCategory' + subCategory.id">
+            <router-link :to="'/' + lang.url + '/catalog/' + levelTwoContent.url + '/category/' + levelThreeContent.url + '?sub[' + subCategory.id + ']'" v-on:click.native="handleClickRouterLink()">
+              <span>{{ subCategory.name }}</span>
+            </router-link>
+            <span class="item--icon">
+              <svg width="7" height="13">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconRight"></use>
+              </svg>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </header>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'HeaderBar',
   data() {
     return {
+      isNavOpen: false,
+      navLevel: 0,
+      menu: [],
+      levelTwoContent: [],
+      levelThreeContent: [],
     };
   },
   computed: {
@@ -43,7 +157,76 @@ export default {
       lang: 'lang/lang',
       langList: 'lang/langList',
       langListStatus: 'lang/langListStatus',
+      categories: 'categories/categories',
+      categoriesStatus: 'categories/status',
+      catalogs: 'catalogs/catalogs',
+      catalogsStatus: 'catalogs/status',
+      subCategories: 'subCategories/subCategories',
+      subCategoriesStatus: 'subCategories/status',
     }),
+  },
+  methods: {
+    ...mapActions({
+      getSubCategories: 'subCategories/getSubCategories',
+      getCategories: 'categories/getCategories',
+      getCatalogs: 'catalogs/getCatalog',
+    }),
+    rightToMenu(level, content) {
+      this.navLevel += 1;
+      if (level === 2) this.levelTwoContent = content;
+      else this.levelThreeContent = content;
+    },
+    leftToMenu() {
+      this.navLevel -= 1;
+    },
+    fillMenuData() {
+      if (this.categoriesStatus === 'done' && this.catalogsStatus === 'done' && this.subCategoriesStatus === 'done') {
+        const menu = JSON.parse(JSON.stringify(this.menu));
+        window.$lodash.forEach(this.catalogs, (val) => {
+          menu.push(val);
+        });
+        window.$lodash.forEach(this.categories, (val) => {
+          window.$lodash.forEach(menu, (valCatalog, indexCatalog) => {
+            if (valCatalog.id === val.catalogId) {
+              if (typeof menu[indexCatalog].items === 'undefined') menu[indexCatalog].items = [];
+              menu[indexCatalog].items.push(val);
+            }
+          });
+        });
+        window.$lodash.forEach(this.subCategories, (val) => {
+          window.$lodash.forEach(menu, (valCatalog, indexCatalog) => {
+            window.$lodash.forEach(menu[indexCatalog].items, (valCategory, indexCategory) => {
+              if (valCategory.id.toString() === val.categorieId.toString()) {
+                if (typeof menu[indexCatalog].items[indexCategory].items === 'undefined') menu[indexCatalog].items[indexCategory].items = [];
+                menu[indexCatalog].items[indexCategory].items.push(val);
+              }
+            });
+          });
+        });
+        this.menu = menu;
+      }
+    },
+    handleClickRouterLink() {
+      this.navLevel = 0;
+      this.isNavOpen = false;
+    },
+  },
+  watch: {
+    categoriesStatus() {
+      this.fillMenuData();
+    },
+    catalogsStatus() {
+      this.fillMenuData();
+    },
+    subCategoriesStatus() {
+      this.fillMenuData();
+    },
+  },
+  mounted() {
+    this.getCatalogs();
+    this.getCategories();
+    this.getSubCategories();
+    this.fillMenuData();
   },
 };
 </script>
@@ -51,4 +234,202 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import '../../scss/shareds';
+
+header {
+  padding-left: 15px;
+  transition-delay: 0.25s;
+  .header--inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 20px 35px 20px 20px;
+    .logo {
+      display: block;
+      position: relative;
+      img {
+        display: block;
+        height: 24px;
+        width: auto;
+        opacity: 1;
+        transition: 0.25s;
+        &.logo-normal {
+          transition-delay: 0.25s;
+        }
+        &.logo-nav {
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 0;
+          transition-delay: 0s;
+        }
+      }
+    }
+    .toggle-navigation {
+      display: block;
+      position: relative;
+      color: #000;
+      width: 24px;
+      height: 24px;
+      svg {
+        position: absolute;
+        transform-origin: left center;
+        transition: 0.25s;
+        &:first-child {
+          top: 7.5px;
+          left: 6px;
+          height: 9px;
+          width: 12px;
+          opacity: 1;
+          transition-delay: 0.25s;
+          transform: scale(1);
+        }
+        &:last-child {
+          top: 6px;
+          left: 6px;
+          height: 12px;
+          width: 13px;
+          opacity: 0;
+          transition-delay: 0s;
+          transform: scale(0);
+        }
+      }
+      &.active {
+        svg {
+          &:first-child {
+            opacity: 0;
+            transition-delay: 0s;
+            transform: scale(0);
+          }
+          &:last-child {
+            opacity: 1;
+            transition-delay: 0.25s;
+            transform: scale(1);
+          }
+        }
+      }
+    }
+  }
+  nav {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    left: 0px;
+    right: 0;
+    background: rgba(56, 56, 56, 1);
+    transition: 0.25s;
+    transition-delay: 0.25s;
+    top: 64px;
+    border-left: solid 15px rgba(56, 56, 56, 1);
+    color: #fff;
+    font-size: 12px;
+    overflow: hidden;
+    a {
+      color: inherit;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      li {
+        line-height: 20px;
+        position: relative;
+        border-bottom: solid 1px rgba(75, 75, 75, 1);
+        &:nth-child(odd) {
+          background: rgba(43, 43, 43, 1);
+        }
+        &.item-type--title,
+        a {
+          display: block;
+          padding: 12px 20px;
+          position: relative;
+          z-index: 1;
+        }
+        &.item-type--social {
+          display: flex;
+          a {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 25%;
+            height: 44px;
+            border-right: solid 1px rgba(75, 75, 75, 1);
+            &:last-child {
+              border-right: none;
+            }
+          }
+        }
+        .item--icon {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          position: absolute;
+          width: 44px;
+          right: 20px;
+          top: 0;
+          bottom: 0;
+          svg {
+            display: block;
+          }
+        }
+        &.item-type--back {
+          padding-left: 20px;
+          .item--icon {
+            width: 20px;
+            right: auto;
+            left: 20px;
+            justify-content: flex-start;
+          }
+        }
+      }
+    }
+    .lists-outer {
+      display: flex;
+      transition: 0.5s;
+      @for $i from 1 through 3 {
+        &.level-#{$i} {
+          transform: translateX($i * -100%);
+        }
+      }
+      ul {
+        background: rgba(34, 34, 34, 1);
+        min-height: 100vh;
+        display: block;
+        width: 100%;
+        flex-shrink: 0;
+      }
+    }
+  }
+  &.is-nav--open {
+    background: rgba(56, 56, 56, 1);
+    nav {
+      opacity: 1;
+      visibility: visible;
+    }
+    .header--inner {
+      background: rgba(34, 34, 34, 1);
+      .logo {
+        img {
+          &.logo-normal {
+            opacity: 0;
+            transition-delay: 0s;
+          }
+          &.logo-nav {
+            opacity: 1;
+            transition-delay: 0.25s;
+          }
+        }
+      }
+      .toggle-navigation {
+        color: #fff;
+      }
+    }
+  }
+}
 </style>
