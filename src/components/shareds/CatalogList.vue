@@ -2,7 +2,7 @@
   <section class="catalog-list-component">
     <div class="container">
       <div class="catalog-items">
-        <div class="catalog-item" v-for="catalog in catalogs.catalogItems">
+        <div class="catalog-item" v-for="catalog in catalogs">
           <router-link :to="'/' + lang.url + '/catalog/' + catalog.url" class="catalog-item-inner">
             <img :src="catalog.photo" :alt="catalog.name">
           </router-link>

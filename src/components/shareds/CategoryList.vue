@@ -2,7 +2,7 @@
   <section class="category-list-component">
     <div class="container">
       <div class="category-items">
-        <div class="category-item" v-for="category in categories.categoryItems">
+        <div class="category-item" v-for="category in categories">
           <router-link :to="'/' + lang.url + '/catalog/' + $route.params.catalog + '/category/' + category.url" class="category-item-inner">
             <img :src="category.photo" :alt="category.name">
           </router-link>
