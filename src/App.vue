@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <icons />
     <header-bar />
     <router-view/>
     <footer-bar />
@@ -10,6 +11,7 @@
 import { mapGetters } from 'vuex';
 import HeaderBar from './components/shareds/HeaderBar';
 import FooterBar from './components/shareds/FooterBar';
+import Icons from './components/shareds/Icons';
 
 export default {
   name: 'app',
@@ -18,6 +20,7 @@ export default {
     };
   },
   components: {
+    Icons,
     HeaderBar,
     FooterBar,
   },
