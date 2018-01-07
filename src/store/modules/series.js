@@ -7,8 +7,8 @@ const getters = {
 };
 
 const actions = {
-  getSeries({ commit }) {
-    Vue.http.get('http://5a404fa1d033de001230a4a3.mockapi.io/series').then((response) => {
+  getSeries({ commit }, subCategoryId) {
+    Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/en/${subCategoryId}/series`).then((response) => {
       const Response = response;
       commit('receiveSeries', Response.body);
       commit('receiveStatus', 'done');

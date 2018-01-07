@@ -1,13 +1,5 @@
 import Vue from 'vue';
 
-const filterFunctions2selectedSubCats = (arr, subCats) => {
-  let Arr = JSON.parse(JSON.stringify(arr));
-  Arr = window.$lodash.filter(Arr, (o) => {
-    return subCats.indexOf(o.subCategoryId.toString()) >= 0;
-  });
-  return Arr;
-};
-
 const getters = {
   functions: state => state.functions,
   functionsAll: state => state.functionsAll,
@@ -16,15 +8,17 @@ const getters = {
 };
 
 const actions = {
-  getFunctions({ commit }) {
-    Vue.http.get('http://5a404fa1d033de001230a4a3.mockapi.io/functions').then((response) => {
+  getFunctions({ commit }, subCategoryId) {
+    Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/en/${subCategoryId}/functions`).then((response) => {
       const Response = response;
       commit('receiveFunctionsAll', Response.body);
+      commit('receiveFunctions', Response.body);
       commit('receiveStatus', 'done');
       commit('receiveResponse', Response);
     }, (response) => {
       const Response = response;
       commit('receiveFunctionsAll', {});
+      commit('receiveFunctions', {});
       commit('receiveStatus', 'error');
       commit('receiveResponse', Response);
     });
@@ -42,8 +36,8 @@ const mutations = {
   receiveFunctionsAll(State, functionsAll) {
     state.functionsAll = functionsAll;
   },
-  receiveFunctions(State, subCats) {
-    state.functions = filterFunctions2selectedSubCats(state.functionsAll, subCats);
+  receiveFunctions(State, functions) {
+    state.functions = functions;
   },
   receiveStatus(State, status) {
     state.status = status;

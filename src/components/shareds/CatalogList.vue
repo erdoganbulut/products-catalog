@@ -17,12 +17,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'CatalogList',
   data() {
     return {
+      selectedCatalogId: '',
     };
   },
   computed: {
@@ -34,9 +35,9 @@ export default {
     }),
   },
   methods: {
-    getCatalog() {
-      this.$store.dispatch('catalogs/getCatalog');
-    },
+    ...mapActions({
+      getCatalog: 'catalogs/getCatalog',
+    }),
   },
   mounted() {
     this.getCatalog();

@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <icons />
-    <header-bar />
     <router-view/>
     <footer-bar />
   </div>

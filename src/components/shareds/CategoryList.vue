@@ -2,7 +2,7 @@
   <section class="category-list-component">
     <div class="container">
       <div class="category-items">
-        <div class="category-item" v-for="category in categories">
+        <div class="category-item" v-for="category in categories" :key="'cat' + category.id">
           <router-link :to="'/' + lang.url + '/catalog/' + $route.params.catalog + '/category/' + category.url" class="category-item-inner">
             <img :src="category.photo" :alt="category.name">
           </router-link>
@@ -13,12 +13,14 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'CategoryList',
   data() {
     return {
+      selectedCatalog: '',
+      isCategories: false,
     };
   },
   computed: {
@@ -26,16 +28,36 @@ export default {
       categories: 'categories/categories',
       status: 'categories/status',
       response: 'categories/response',
+      catalogStatus: 'catalogs/status',
+      catalogs: 'catalogs/catalogs',
       lang: 'lang/lang',
     }),
   },
   methods: {
-    getCategories() {
-      this.$store.dispatch('categories/getCategories');
+    ...mapActions({
+      getCategories: 'categories/getCategories',
+      getCatalog: 'catalogs/getCatalog',
+    }),
+    getCategoriesIsDoneCatalog() {
+      if (!this.isCategories) {
+        if (this.catalogStatus === 'done') {
+          this.selectedCatalog = JSON.parse(JSON.stringify(
+                                    window.$lodash.find(
+                                      this.catalogs, { url: this.$route.params.catalog })));
+          this.getCategories(this.selectedCatalog.id);
+          this.isCategories = true;
+        }
+      }
     },
   },
   mounted() {
-    this.getCategories();
+    if (this.catalogStatus !== 'done') this.getCatalog();
+    else this.getCategoriesIsDoneCatalog();
+  },
+  watch: {
+    catalogStatus() {
+      this.getCategoriesIsDoneCatalog();
+    },
   },
 };
 </script>

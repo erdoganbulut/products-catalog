@@ -30,7 +30,7 @@
               </svg>
             </span>
           </li>
-          <li v-for="catalog in menu" :key="'catalog' + catalog.id">
+          <li v-for="catalog in menu" :key="'headercatalog' + catalog.id">
             <a href="javascript:;" v-on:click="rightToMenu(2, catalog)">
               <span>{{ catalog.name }}</span>
             </a>
@@ -92,7 +92,7 @@
               </svg>
             </span>
           </li>
-          <li v-for="category in levelTwoContent.items" :key="'category' + category.id">
+          <li v-for="category in levelTwoContent.items" :key="'headercategory' + category.id">
             <a href="javascript:;" v-on:click="rightToMenu(3, category)">
               <span>{{ category.name }}</span>
             </a>
@@ -122,7 +122,7 @@
               </svg>
             </span>
           </li>
-          <li v-for="subCategory in levelThreeContent.items" :key="'subCategory' + subCategory.id">
+          <li v-for="subCategory in levelThreeContent.items" :key="'headersubCategory' + subCategory.id">
             <router-link :to="'/' + lang.url + '/catalog/' + levelTwoContent.url + '/category/' + levelThreeContent.url + '?sub[' + subCategory.id + ']'" v-on:click.native="handleClickRouterLink()">
               <span>{{ subCategory.name }}</span>
             </router-link>

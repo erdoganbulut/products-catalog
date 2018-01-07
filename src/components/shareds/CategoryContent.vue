@@ -3,21 +3,20 @@
     <div class="container">
       <div class="filter-items">
         <div class="filter-item filter-item--horizontal filter-item--categories">
-          <h3>Kategoriler</h3>
+          <h3>(Sub)Kategoriler</h3>
           <div class="filter--inner-items">
-            <label v-for="subCategoryItem in subCategories" :key="subCategoryItem.id" :for="'subCategoryCheck' + subCategoryItem.id">
-              <input type="checkbox" :id="'subCategoryCheck' + subCategoryItem.id" :value="subCategoryItem.id" v-model="subCategoriesCheckeds">
-              <img :src="subCategoryItem.photo" width="150" alt="">
-            </label>
+            <select name="" id="" v-model="subCategoriesCheckeds">
+              <option v-for="subCategory in subCategories" :key="'sub' + subCategory.id" :value="subCategory.id">{{ subCategory.name }}</option>
+            </select>
           </div>
           {{ subCategoriesCheckeds }}
         </div>
         <div class="filter-item filter-item--horizontal filter-item--functions">
           <h3>Functions</h3>
           <div class="filter--inner-items">
-            <label v-for="functionItem in functions" :key="functionItem.id" :for="'functionCheck' + functionItem.id">
+            <label v-for="functionItem in functions" :key="'func' + functionItem.id" :for="'functionCheck' + functionItem.id">
               <input type="checkbox" :id="'functionCheck' + functionItem.id" :value="functionItem.id" v-model="functionsCheckeds">
-              <img :src="functionItem.photo" width="150" alt="">
+              <img :src="'http://placehold.it/256x256?text=' + functionItem.name" width="150" alt="">
             </label>
           </div>
           {{ functionsCheckeds }}
@@ -25,9 +24,9 @@
         <div class="filter-item filter-item--horizontal filter-item--series">
           <h3>Series</h3>
           <div class="filter--inner-items">
-            <label v-for="serieItem in series" :key="serieItem.id" :for="'functionCheck' + serieItem.id">
+            <label v-for="serieItem in series" :key="'serie' + serieItem.id" :for="'functionCheck' + serieItem.id">
               <input type="checkbox" :id="'functionCheck' + serieItem.id" :value="serieItem.id" v-model="seriesCheckeds">
-              <img :src="serieItem.photo" width="150" alt="">
+              <img :src="'http://placehold.it/256x256?text=' + serieItem.name" width="150" alt="">
             </label>
           </div>
           {{ seriesCheckeds }}
@@ -36,24 +35,12 @@
       <div class="serie-items">
         <div class="serie-item">
           <div class="info-bar">
-            <h3>çay tabakları bardakları</h3>
+            <h3>ürünler ({{ products.length }})</h3>
           </div>
           <div class="product-items" v-if="status === 'done'">
-            <router-link v-for="product in products.slice(0, 5)" :key="product.id" :to="'/' + lang.url + '/product/' + product.id" class="product-item">
+            <router-link v-for="product in products" :key="product.id" :to="'/' + lang.url + '/product/' + product.id" class="product-item">
               <span class="product-item--inner">
-                <img src="http://placehold.it/540x540?text=ProductItem" alt="">
-              </span>
-            </router-link>
-          </div>
-        </div>
-        <div class="serie-item">
-          <div class="info-bar">
-            <h3>kadehler</h3>
-          </div>
-          <div class="product-items" v-if="status === 'done'">
-            <router-link v-for="product in products.slice(0, 5)" :key="product.id" :to="'/' + lang.url + '/product/' + product.id" class="product-item">
-              <span class="product-item--inner">
-                <img src="http://placehold.it/540x540?text=ProductItem" alt="">
+                <img :src="'http://placehold.it/540x540?text=' + product.name" alt="">
               </span>
             </router-link>
           </div>
@@ -70,8 +57,10 @@ export default {
   name: 'CategoryContent',
   data() {
     return {
-      selectedCategory: {},
-      subCategoriesCheckeds: [],
+      selectedCatalog: '',
+      selectedCategory: '',
+      isCategories: false,
+      subCategoriesCheckeds: '',
       functionsCheckeds: [],
       seriesCheckeds: [],
     };
@@ -81,7 +70,10 @@ export default {
       products: 'products/products',
       status: 'products/status',
       response: 'products/response',
+      catalogStatus: 'catalogs/status',
+      catalogs: 'catalogs/catalogs',
       categories: 'categories/categories',
+      categoriesSstatus: 'categories/status',
       lang: 'lang/lang',
       subCategories: 'subCategories/subCategories',
       functions: 'functions/functions',
@@ -91,39 +83,73 @@ export default {
   methods: {
     ...mapMutations({
       receiveFunctions: 'functions/receiveFunctions',
+      receiveStatusCategories: 'categories/receiveStatus',
+      receiveProductsFilter: 'products/receiveProductsFilter',
     }),
     ...mapActions({
       getSubCategories: 'subCategories/getSubCategories',
       getFunctions: 'functions/getFunctions',
       getSeries: 'series/getSeries',
       getCategories: 'categories/getCategories',
+      getProducts: 'products/getProducts',
+      getCatalog: 'catalogs/getCatalog',
     }),
-    getProducts() {
-      this.$store.dispatch('products/getProducts');
-    },
     makeFilter() {
 
     },
-  },
-  mounted() {
-    this.getCategories();
-    this.getProducts();
-    this.getFunctions();
-  },
-  watch: {
-    categories() {
-      if (typeof this.categories.categoryItems !== 'undefined') {
-        this.selectedCategory = JSON.parse(JSON.stringify(
-          window.$lodash.find(
-            this.categories.categoryItems, { url: this.$route.params.category })));
-        this.getSubCategories(this.selectedCategory.id);
+    getCategoriesIsDoneCatalog() {
+      if (!this.isCategories) {
+        if (this.catalogStatus === 'done') {
+          this.selectedCatalog = JSON.parse(JSON.stringify(
+                                    window.$lodash.find(
+                                      this.catalogs, { url: this.$route.params.catalog })));
+          this.receiveStatusCategories('on-request');
+          this.getCategories(this.selectedCatalog.id);
+          this.isCategories = true;
+        }
       }
     },
+    getProductsIsDoneCategories() {
+      if (this.isCategories) {
+        if (this.categoriesSstatus === 'done' && this.categories.length > 0) {
+          this.selectedCategory = JSON.parse(JSON.stringify(
+                                    window.$lodash.find(
+                                      this.categories, { url: this.$route.params.category })));
+          this.getProducts(this.selectedCategory.id);
+          this.getSubCategories(this.selectedCategory.id);
+        }
+      }
+    },
+    filterProducts() {
+      const filter = {
+        subCategory: this.subCategoriesCheckeds,
+        functions: this.functionsCheckeds,
+        series: this.seriesCheckeds,
+      }
+      this.receiveProductsFilter(filter);
+    },
+  },
+  mounted() {
+    if (this.catalogStatus !== 'done') this.getCatalog();
+    else this.getCategoriesIsDoneCatalog();
+  },
+  watch: {
+    catalogStatus() {
+      this.getCategoriesIsDoneCatalog();
+    },
+    categories() {
+      this.getProductsIsDoneCategories();
+    },
     subCategoriesCheckeds() {
-      this.receiveFunctions();
+      this.getFunctions(this.subCategoriesCheckeds);
+      this.getSeries(this.subCategoriesCheckeds);
+      this.filterProducts();
     },
     functionsCheckeds() {
-      this.getSeries();
+      this.filterProducts();
+    },
+    seriesCheckeds() {
+      this.filterProducts();
     },
   },
 };
