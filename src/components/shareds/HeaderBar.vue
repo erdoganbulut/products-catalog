@@ -113,7 +113,7 @@
             <a href="javascript:;" v-on:click="leftToMenu()">{{ levelThreeContent.name }}</a>
           </li>
           <li>
-            <router-link :to="'/' + lang.url + '/catalog/' + levelThreeContent.url + '/category/' + levelThreeContent.url" v-on:click.native="handleClickRouterLink()">
+            <router-link :to="'/' + lang.url + '/catalog/' + levelTwoContent.url + '/category/' + levelThreeContent.url" v-on:click.native="handleClickRouterLink()">
               <span>TÜMÜNÜ GÖR</span>
             </router-link>
             <span class="item--icon">
@@ -157,19 +157,13 @@ export default {
       lang: 'lang/lang',
       langList: 'lang/langList',
       langListStatus: 'lang/langListStatus',
-      categories: 'categories/categories',
-      categoriesStatus: 'categories/status',
-      catalogs: 'catalogs/catalogs',
-      catalogsStatus: 'catalogs/status',
-      subCategories: 'subCategories/subCategories',
-      subCategoriesStatus: 'subCategories/status',
+      menu4Api: 'menu/menu',
+      menuStatus: 'menu/status',
     }),
   },
   methods: {
     ...mapActions({
-      getSubCategories: 'subCategories/getSubCategories',
-      getCategories: 'categories/getCategories',
-      getCatalogs: 'catalogs/getCatalog',
+      getMenu: 'menu/getMenu',
     }),
     rightToMenu(level, content) {
       this.navLevel += 1;
@@ -180,23 +174,24 @@ export default {
       this.navLevel -= 1;
     },
     fillMenuData() {
-      if (this.categoriesStatus === 'done' && this.catalogsStatus === 'done' && this.subCategoriesStatus === 'done') {
-        const menu = JSON.parse(JSON.stringify(this.menu));
-        window.$lodash.forEach(this.catalogs, (val) => {
+      if (this.menuStatus === 'done') {
+        let menu = JSON.parse(JSON.stringify(this.menu));
+        menu = [];
+        window.$lodash.forEach(this.menu4Api.catalogs, (val) => {
           menu.push(val);
         });
-        window.$lodash.forEach(this.categories, (val) => {
+        window.$lodash.forEach(this.menu4Api.category, (val) => {
           window.$lodash.forEach(menu, (valCatalog, indexCatalog) => {
-            if (valCatalog.id === val.catalogId) {
+            if (valCatalog.id === val.catalog) {
               if (typeof menu[indexCatalog].items === 'undefined') menu[indexCatalog].items = [];
               menu[indexCatalog].items.push(val);
             }
           });
         });
-        window.$lodash.forEach(this.subCategories, (val) => {
+        window.$lodash.forEach(this.menu4Api.subcategories, (val) => {
           window.$lodash.forEach(menu, (valCatalog, indexCatalog) => {
             window.$lodash.forEach(menu[indexCatalog].items, (valCategory, indexCategory) => {
-              if (valCategory.id.toString() === val.categorieId.toString()) {
+              if (valCategory.id.toString() === val.category.toString()) {
                 if (typeof menu[indexCatalog].items[indexCategory].items === 'undefined') menu[indexCatalog].items[indexCategory].items = [];
                 menu[indexCatalog].items[indexCategory].items.push(val);
               }
@@ -212,20 +207,12 @@ export default {
     },
   },
   watch: {
-    categoriesStatus() {
-      this.fillMenuData();
-    },
-    catalogsStatus() {
-      this.fillMenuData();
-    },
-    subCategoriesStatus() {
+    menu4Api() {
       this.fillMenuData();
     },
   },
   mounted() {
-    this.getCatalogs();
-    this.getCategories();
-    this.getSubCategories();
+    this.getMenu();
     this.fillMenuData();
   },
 };
@@ -324,6 +311,7 @@ header {
     color: #fff;
     font-size: 12px;
     overflow: hidden;
+    z-index: 1;
     a {
       color: inherit;
       &:hover {
