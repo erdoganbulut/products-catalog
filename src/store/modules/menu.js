@@ -7,7 +7,7 @@ const getters = {
 };
 
 const actions = {
-  getCatalog({ commit }) {
+  getMenu({ commit }) {
     Vue.http.get('http://bline.digital/pasabahce2018/Backend/public/api/tr/menuItems').then((response) => {
       const Response = response;
       commit('receiveMenu', Response.body);
