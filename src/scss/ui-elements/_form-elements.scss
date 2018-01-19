@@ -1,0 +1,16 @@
+.ui-select {
+  appearance: none;
+  box-shadow: none;
+  background: #ffffff;
+  background-image: url('./assets/arrow-bottom.png');
+  background-repeat: no-repeat;
+  background-size: 12px 12px;
+  background-position: right 10px center;
+  border-radius: 2px;
+  border: solid 1px #CED1D2;
+  font-size: 12px;
+  font-weight: 300;
+  option {
+    background: #fff;
+  }
+}
