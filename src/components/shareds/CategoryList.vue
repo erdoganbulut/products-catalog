@@ -5,6 +5,12 @@
         <div class="category-item" v-for="category in categories" :key="'cat' + category.id">
           <router-link :to="'/' + lang.url + '/catalog/' + $route.params.catalog + '/category/' + category.url" class="category-item-inner">
             <img :src="category.photo" :alt="category.name">
+            <span class="overlay">
+              <span class="overlay-inner">
+                <span class="title">{{ category.name }}</span>
+                <span class="desc">Ürünleri Gör</span>
+              </span>
+            </span>
           </router-link>
         </div>
       </div>
@@ -72,17 +78,41 @@ section.category-list-component {
     flex-wrap: wrap;
     align-items: center;
     margin: 0 -15px; // container paddings use item padding
-    padding: 15px 0;
+    //padding: 15px 0;
     .category-item {
       display: block;
       width: 100%;
-      padding: 15px;
+      padding: 1px 0;
       @media (min-width: 768px) {
         width: 50%;
       }
       .category-item-inner {
         display: block;
         text-decoration: none;
+        position: relative;
+        .overlay {
+          position: absolute;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: flex-end;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: 0;
+          background: rgba(0, 0, 0, 0.5);
+          span {
+            display: block;
+            width: 100%;
+            color: #fff;
+            &.overlay-inner {
+              padding: 20px 40px;
+            }
+          }
+          .title {
+            font-size: 24px;
+            font-weight: 500;
+          }
+        }
         img {
           display: block;
           width: 100%;
