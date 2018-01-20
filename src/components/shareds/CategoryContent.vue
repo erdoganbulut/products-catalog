@@ -30,33 +30,39 @@
       <div class="filter-item filter-item--horizontal filter-item--functions" v-if="functions.length > 0">
         <h3>FONKSİYONLAR</h3>
         <div class="filter--inner-items">
-          <label v-for="functionItem in functions" :key="'func' + functionItem.id" :for="'functionCheck' + functionItem.id">
+          <div class="filter--inner-item" v-for="functionItem in functions" :key="'func' + functionItem.id">
             <input type="checkbox" :id="'functionCheck' + functionItem.id" :value="functionItem.id" v-model="functionsCheckeds">
-            <img :src="functionItem.photo" width="150" alt="">
-          </label>
+            <label :for="'functionCheck' + functionItem.id">
+              <img :src="functionItem.photo" alt="">
+            </label>
+          </div>
         </div>
       </div>
       <div class="filter-item filter-item--horizontal filter-item--series" v-if="series.length > 0">
         <h3>SERİLER</h3>
         <div class="filter--inner-items">
-          <label v-for="serieItem in series" :key="'serie' + serieItem.id" :for="'functionCheck' + serieItem.id">
+          <div class="filter--inner-item" v-for="serieItem in series" :key="'func' + serieItem.id">
             <input type="checkbox" :id="'functionCheck' + serieItem.id" :value="serieItem.id" v-model="seriesCheckeds">
-            <img :src="serieItem.photo" width="150" alt="">
-          </label>
+            <label :for="'functionCheck' + serieItem.id">
+              <img :src="serieItem.photo" alt="">
+            </label>
+          </div>
         </div>
       </div>
     </div>
     <div class="serie-items">
-      <div class="serie-item">
+      <div class="serie-item" v-for="(pSerie, index) in productsGrouped4Series" :key="'pSerie' + index">
         <div class="info-bar">
-          <h3>ürünler ({{ products.length }})</h3>
+          <h3>{{ pSerie.name }}</h3>
         </div>
         <div class="product-items" v-if="status === 'done'">
-          <router-link v-for="product in products" :key="product.id" :to="'/' + lang.url + '/product/' + product.id" class="product-item">
+          <router-link v-for="product in pSerie.items.slice(0, pSerie.max)" :key="product.id" :to="'/' + lang.url + '/product/' + product.id" class="product-item">
             <span class="product-item--inner">
-              <img :src="'http://placehold.it/540x540?text=' + product.name" alt="">
+              <img :src="product.photo" alt="">
+              <span class="product-item--info"><span v-html="product.sku"></span><br><span v-html="product.name"></span></span>
             </span>
           </router-link>
+          <a class="product-item is-more-items-text" href="javascript:;" v-if="pSerie.items.length > pSerie.max" v-on:click="pSerie.max = pSerie.items.length"><span>+{{ pSerie.items.length - pSerie.max }}<br>ÜRÜN</span></a>
         </div>
       </div>
     </div>
@@ -77,6 +83,7 @@ export default {
       functionsCheckeds: [],
       seriesCheckeds: [],
       isOpenFilterItems: false,
+      productsGrouped4Series: [],
     };
   },
   computed: {
@@ -142,10 +149,26 @@ export default {
       };
       this.receiveProductsFilter(filter);
     },
+    fillProductsGrouped4Series() {
+      const productsGrouped4Series = [];
+      window.$lodash.forEach(window.$lodash.groupBy(this.products, 'series.name'), (val, key) => {
+        productsGrouped4Series.push({ name: key, items: val, max: 5 });
+      });
+      this.productsGrouped4Series = productsGrouped4Series;
+    },
   },
   mounted() {
+    this.selectedCatalog = '';
+    this.selectedCategory = '';
+    this.isCategories = false;
+    this.subCategoriesCheckeds = '';
+    this.functionsCheckeds = [];
+    this.seriesCheckeds = [];
+    this.isOpenFilterItems = false;
+    this.productsGrouped4Series = [];
     if (this.catalogStatus !== 'done') this.getCatalog();
     else this.getCategoriesIsDoneCatalog();
+    this.fillProductsGrouped4Series();
   },
   watch: {
     catalogStatus() {
@@ -165,6 +188,9 @@ export default {
     seriesCheckeds() {
       this.filterProducts();
     },
+    products() {
+      this.fillProductsGrouped4Series();
+    }
   },
 };
 </script>
@@ -249,17 +275,52 @@ section.category-content-component {
       }
       &.filter-item--functions,
       &.filter-item--series {
-
+        .filter--inner-items {
+          display: block;
+          overflow: auto;
+          white-space: nowrap;
+          .filter--inner-item {
+            display: inline-block;
+            width: 40%;
+            position: relative;
+          }
+          input {
+            display: none;
+            &:checked {
+              + label {
+                &:after {
+                  background: transparent;
+                }
+              }
+            }
+          }
+          label {
+            display: block;
+            position: relative;
+            &:after {
+              display: block;
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: rgba(0, 0, 0, 0.5);
+            }
+            img {
+              display: block;
+              width: 100%;
+            }
+          }
+        }
       }
     }
   }
   .serie-items {
-    padding: 10px 0;
     .serie-item {
-      padding: 10px 0;
       .info-bar {
         display: block;
-        background:red;
+        background:#C31B2E;
         color: #fff;
         padding: 10px 20px;
         text-align: center;
@@ -272,11 +333,30 @@ section.category-content-component {
       .product-items {
         display: flex;
         flex-wrap: wrap;
-        padding: 5px 0;
         .product-item {
           display: block;
           width: 50%;
-          padding: 5px;
+          padding: 20px 5px;
+          color: inherit;
+          text-decoration: none;
+          border-top: solid 1px #D8D8D8;
+          &.is-more-items-text {
+            font-size: 24px;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+          }
+          &:nth-child(odd) {
+            border-right: solid 1px #D8D8D8;
+          }
+          &:nth-child(1) {
+            border-top: none;
+          }
+          &:nth-child(2) {
+            border-top: none;
+          }
           @media (min-width: 768px) {
             width: 25%;
           }
@@ -290,6 +370,14 @@ section.category-content-component {
               display: block;
               width: 100%;
               height: auto;
+              margin-bottom: 30px;
+            }
+            .product-item--info {
+              display: block;
+              margin: 0;
+              font-size: 12px;
+              color: inherit;
+              text-align: center;
             }
           }
         }
