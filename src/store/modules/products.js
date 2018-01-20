@@ -59,7 +59,6 @@ const mutations = {
     state.products = products;
   },
   receiveProductsFilter(State, filter) {
-    console.log(filter);
     state.products = filterProducts(state.productsAll, filter);
   },
   receiveStatus(State, status) {
