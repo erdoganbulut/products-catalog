@@ -56,7 +56,7 @@
           <h3>{{ pSerie.name }}</h3>
         </div>
         <div class="product-items" v-if="status === 'done'">
-          <router-link v-for="product in pSerie.items.slice(0, pSerie.max)" :key="product.id" :to="'/' + lang.url + '/product/' + product.id" class="product-item">
+          <router-link v-for="product in pSerie.items.slice(0, pSerie.max)" :key="product.id" :to="'/' + lang.url + '/product/' + product.slug" class="product-item">
             <span class="product-item--inner">
               <img :src="product.photo" alt="">
               <span class="product-item--info"><span v-html="product.sku"></span><br><span v-html="product.name"></span></span>
