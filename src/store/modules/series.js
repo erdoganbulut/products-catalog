@@ -20,6 +20,9 @@ const actions = {
       commit('receiveResponse', Response);
     });
   },
+  resetSeries({ commit }) {
+    commit('receiveReset');
+  },
 };
 
 const state = {
@@ -37,6 +40,11 @@ const mutations = {
   },
   receiveResponse(State, response) {
     state.response = response;
+  },
+  receiveReset(State) {
+    state.series = {};
+    state.status = 'non-request';
+    state.response = {};
   },
 };
 

@@ -110,7 +110,9 @@ export default {
     ...mapActions({
       getSubCategories: 'subCategories/getSubCategories',
       getFunctions: 'functions/getFunctions',
+      resetFunctions: 'functions/resetFunctions',
       getSeries: 'series/getSeries',
+      resetSeries: 'series/resetSeries',
       getCategories: 'categories/getCategories',
       getProducts: 'products/getProducts',
       getCatalog: 'catalogs/getCatalog',
@@ -158,14 +160,8 @@ export default {
     },
   },
   mounted() {
-    this.selectedCatalog = '';
-    this.selectedCategory = '';
-    this.isCategories = false;
-    this.subCategoriesCheckeds = '';
-    this.functionsCheckeds = [];
-    this.seriesCheckeds = [];
-    this.isOpenFilterItems = false;
-    this.productsGrouped4Series = [];
+    this.resetFunctions();
+    this.resetSeries();
     if (this.catalogStatus !== 'done') this.getCatalog();
     else this.getCategoriesIsDoneCatalog();
     this.fillProductsGrouped4Series();
