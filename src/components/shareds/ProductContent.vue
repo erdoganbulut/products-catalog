@@ -1,27 +1,21 @@
 <template>
-  <section class="product-content-component">
+  <section class="product-content-component" v-if="productStatus === 'done'">
     <div class="container">
       <div class="product-image">
-        <img src="http://placehold.it/1080x1080" alt="">
+        <img :src="product.photo" alt="">
       </div>
       <div class="product-top-info">
         <h1>
-          <span class="product-serie-name">ALLEGRA</span>
-          <span class="product-code">440065</span> -
-          <span class="product-name">KIRMIZI ŞARAP</span>
+          <span class="product-serie-name">{{ product.series.name }}</span>
+          <span class="product-code">{{ product.sku }}</span> -
+          <span class="product-name">{{ product.name }}</span>
         </h1>
         <div class="package-info">
-          <p>SKU / PACKING <span>1022061</span></p>
-          <div class="package-icons">
-            <img src="http://placehold.it/16x16" alt="">
-            <img src="http://placehold.it/16x16" alt="">
-          </div>
+          <p>SKU / PACKING <span>{{ product.sku }}</span></p>
+          <p class="package-inner-outer-text">{{ product.innercode.code }}-{{ product.outercode.code }}</p>
         </div>
         <div class="product-icons">
-          <img src="http://placehold.it/70x35" alt="">
-          <img src="http://placehold.it/50x35" alt="">
-          <img src="http://placehold.it/35x35" alt="">
-          <img src="http://placehold.it/20x35" alt="">
+          <img v-for="(icon, index) in product.icons" :key="'productIcons' + index" height="35" :src="icon" alt="">
         </div>
       </div>
       <div class="technical-detail">
@@ -31,31 +25,31 @@
             <table>
               <tr>
                 <td>Hacim:</td>
-                <td>~490 cc.</td>
+                <td>{{ product.volume[0] }} cc.</td>
               </tr>
               <tr>
                 <td>Hacim US:</td>
-                <td>16 1/4 US oz.</td>
+                <td>{{ parseFloat(product.volume[0] / 29.5735296875).toFixed(2) }} US oz.</td>
               </tr>
               <tr>
                 <td>Hacim UK:</td>
-                <td>17 1/4 US oz.</td>
+                <td>{{ parseFloat(product.volume[0] / 28.4130625).toFixed(2) }} oz.</td>
               </tr>
               <tr>
                 <td>Yükseklik:</td>
-                <td>217,5 mm. 8 2/4"</td>
+                <td>{{ product.height[0] }} mm.</td>
               </tr>
               <tr>
                 <td>Ağız Çapı:</td>
-                <td>63,5 mm. 2 2/4"</td>
+                <td>{{ product.edag[0] }} mm.</td>
               </tr>
               <tr>
                 <td>Taban Çapı:</td>
-                <td>78 mm. 3"</td>
+                <td>{{ product.base[0] }} mm.</td>
               </tr>
               <tr>
                 <td>Max. Genişlik:</td>
-                <td>91 mm. 3 2/4"</td>
+                <td>{{ product.width[0] }} mm.</td>
               </tr>
             </table>
           </div>
@@ -87,7 +81,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'ProductContent',
@@ -98,7 +92,20 @@ export default {
   computed: {
     ...mapGetters({
       lang: 'lang/lang',
+      product: 'product/product',
+      productStatus: 'product/status',
     }),
+  },
+  methods: {
+    ...mapActions({
+      getProduct: 'product/getProduct',
+    }),
+  },
+  mounted() {
+    const params = {
+      slug: this.$route.params.productslug,
+    };
+    this.getProduct(params);
   },
 };
 </script>
@@ -108,11 +115,26 @@ export default {
 @import '../../scss/shareds';
 
 section.product-content-component {
+  padding: 0 15px;
   .product-image {
+    padding: 15px 0;
+    border-bottom: 1px solid #D8D8D8;
     img {
       display: block;
       width: 100%;
       height: auto;
+    }
+  }
+  .product-top-info {
+    padding: 15px 0;
+    h1 {
+      font-size: 14px;
+      color: #B40023;
+      span {
+        &.product-serie-name {
+          display: block;
+        }
+      }
     }
   }
 }
