@@ -1,7 +1,7 @@
 <template>
   <header v-bind:class="{'is-nav--open': isNavOpen}">
     <div class="header--inner">
-      <router-link to="/" class="logo">
+      <router-link :to="'/' + lang.url + '/'" class="logo">
         <img src="../../assets/logo.svg" alt="Logo" class="logo-normal">
         <img src="../../assets/logo-w.svg" alt="Logo" class="logo-nav">
       </router-link>

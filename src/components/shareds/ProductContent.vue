@@ -19,49 +19,67 @@
         </div>
       </div>
       <div class="technical-detail">
-        <h2><a v-b-toggle.collapseTechnical href="javascript:;">TECHNICAL DETAILS</a></h2>
-        <b-collapse id="collapseTechnical">
-          <div class="technical-detail-content">
-            <table>
-              <tr>
-                <td>Hacim:</td>
-                <td>{{ product.volume[0] }} cc.</td>
-              </tr>
-              <tr>
-                <td>Hacim US:</td>
-                <td>{{ parseFloat(product.volume[0] / 29.5735296875).toFixed(2) }} US oz.</td>
-              </tr>
-              <tr>
-                <td>Hacim UK:</td>
-                <td>{{ parseFloat(product.volume[0] / 28.4130625).toFixed(2) }} oz.</td>
-              </tr>
-              <tr>
-                <td>Yükseklik:</td>
-                <td>{{ product.height[0] }} mm.</td>
-              </tr>
-              <tr>
-                <td>Ağız Çapı:</td>
-                <td>{{ product.edag[0] }} mm.</td>
-              </tr>
-              <tr>
-                <td>Taban Çapı:</td>
-                <td>{{ product.base[0] }} mm.</td>
-              </tr>
-              <tr>
-                <td>Max. Genişlik:</td>
-                <td>{{ product.width[0] }} mm.</td>
-              </tr>
-            </table>
+        <h2>
+          <a v-b-toggle.collapseTechnical href="javascript:;">
+            TECHNICAL DETAILS
+            <svg>
+              <use xlink:href="#svgIconMinus" transform="translate(1)" fill="#C31B2E"/>
+            </svg>
+          </a>
+        </h2>
+        <b-collapse class="ui-collapse" id="collapseTechnical">
+          <div class="ui-collapse--inner">
+            <div class="technical-detail-content">
+              <table>
+                <tr>
+                  <td>Hacim:</td>
+                  <td>&nbsp;&nbsp;&nbsp;{{ product.volume[0] }} cc.</td>
+                </tr>
+                <tr>
+                  <td>Hacim US:</td>
+                  <td>&nbsp;&nbsp;&nbsp;{{ parseFloat(product.volume[0] / 29.5735296875).toFixed(2) }} US oz.</td>
+                </tr>
+                <tr>
+                  <td>Hacim UK:</td>
+                  <td>&nbsp;&nbsp;&nbsp;{{ parseFloat(product.volume[0] / 28.4130625).toFixed(2) }} oz.</td>
+                </tr>
+                <tr>
+                  <td>Yükseklik:</td>
+                  <td>&nbsp;&nbsp;&nbsp;{{ product.height[0] }} mm.</td>
+                </tr>
+                <tr>
+                  <td>Ağız Çapı:</td>
+                  <td>&nbsp;&nbsp;&nbsp;{{ product.edag[0] }} mm.</td>
+                </tr>
+                <tr>
+                  <td>Taban Çapı:</td>
+                  <td>&nbsp;&nbsp;&nbsp;{{ product.base[0] }} mm.</td>
+                </tr>
+                <tr>
+                  <td>Max. Genişlik:</td>
+                  <td>&nbsp;&nbsp;&nbsp;{{ product.width[0] }} mm.</td>
+                </tr>
+              </table>
+            </div>
           </div>
         </b-collapse>
       </div>
       <div class="product-share">
-        <h2><a v-b-toggle.collapseSocial href="javascript:;">SHARE</a></h2>
-        <b-collapse id="collapseSocial">
-          <div class="product-share-content">
-            <a href="javascript:;" class="social-link social-link--facebook"><i class="fa fa-facebook"></i></a>
-            <a href="javascript:;" class="social-link social-link--twitter"><i class="fa fa-twitter"></i></a>
-            <a href="javascript:;" class="social-link social-link-mail"><i class="fa fa-envelope-o"></i></a>
+        <h2>
+          <a v-b-toggle.collapseSocial href="javascript:;">
+            SHARE
+            <svg>
+              <use xlink:href="#svgIconMinus" transform="translate(1)" fill="#C31B2E"/>
+            </svg>
+          </a>
+        </h2>
+        <b-collapse class="ui-collapse" id="collapseSocial">
+          <div class="ui-collapse--inner">
+            <div class="product-share-content">
+              <a href="javascript:;" class="social-link social-link--facebook"><i class="fa fa-facebook"></i></a>
+              <a href="javascript:;" class="social-link social-link--twitter"><i class="fa fa-twitter"></i></a>
+              <a href="javascript:;" class="social-link social-link-mail"><i class="fa fa-envelope-o"></i></a>
+            </div>
           </div>
         </b-collapse>
       </div>
@@ -130,12 +148,52 @@ section.product-content-component {
     h1 {
       font-size: 14px;
       color: #B40023;
+      margin: 0;
       span {
         &.product-serie-name {
           display: block;
         }
       }
     }
+  }
+  .package-info {
+    padding: 15px 0;
+    p {
+      margin: 0;
+      font-size: 12px;
+    }
+  }
+  .technical-detail,
+  .product-share {
+    padding-bottom: 20px;
+    h2 {
+      font-size: 12px;
+      color: #B40023;
+      margin: 0;
+      a {
+        display: block;
+        position: relative;
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px solid #D8D8D8;
+        padding: 5px 0;
+        svg {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          margin-top: -1px;
+          display: block;
+          height: 2px;
+          width: 10px;
+        }
+      }
+    }
+    .ui-collapse {
+      font-size: 12px;
+    }
+  }
+  .add-to-favorite {
+    display: none;
   }
 }
 </style>

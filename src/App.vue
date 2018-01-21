@@ -2,13 +2,7 @@
   <div id="app">
     <icons />
     <header-bar />
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Library</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Data</li>
-      </ol>
-    </nav>
+    <breadcrumb />
     <router-view/>
     <footer-bar />
   </div>
@@ -18,6 +12,7 @@
 import { mapGetters } from 'vuex';
 import HeaderBar from './components/shareds/HeaderBar';
 import FooterBar from './components/shareds/FooterBar';
+import Breadcrumb from './components/shareds/Breadcrumb';
 import Icons from './components/shareds/Icons';
 
 export default {
@@ -30,6 +25,7 @@ export default {
     Icons,
     HeaderBar,
     FooterBar,
+    Breadcrumb,
   },
   computed: {
     ...mapGetters({

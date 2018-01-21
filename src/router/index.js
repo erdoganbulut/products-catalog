@@ -18,21 +18,33 @@ export default new Router({
       path: '/:lang',
       name: 'Start',
       component: Start,
+      meta: {
+        page: 'start',
+      },
     },
     {
       path: '/:lang/catalog/:catalog',
       name: 'Catalog',
       component: Catalog,
+      meta: {
+        page: 'catalog',
+      },
     },
     {
       path: '/:lang/catalog/:catalog/category/:category',
       name: 'Category',
       component: Category,
+      meta: {
+        page: 'category',
+      },
     },
     {
       path: '/:lang/product/:productslug',
       name: 'Product',
       component: Product,
+      meta: {
+        page: 'product',
+      },
     },
   ],
 });

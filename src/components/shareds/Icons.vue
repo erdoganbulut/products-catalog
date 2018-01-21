@@ -11,6 +11,7 @@
     <svg id="svgIconHamburger" width="14" height="9" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8.077H6.538M13 4.538H1M13 1H3.77"/></g></svg>
     <symbol id="svgIconClose" width="14" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M1 0l12 12M13 0L1 12"/></g></symbol>
     <symbol id="svgIconFilter" viewBox="0 0 512 512"><path fill="currentColor" d="M191.8 480.6V306.3L14.5 42.8C7.3 34.5 10.4 11.7 31.4 11h449.2c12.2 0 27.7 14.4 16.9 31.8L320.2 306.3v108.2c0 6.4-3 12.4-8.1 16.3l-87.6 66.1c-5 5.6-30.1 9.3-32.7-16.3zM69.8 51.8l159.4 236.9c2.3 3.4 3.5 7.3 3.5 11.4v139.6l46.8-35.3V300.1c0-4.1 1.2-8 3.5-11.4L442.2 51.8H69.8z"/></symbol>
+    <symbol id="svgIconMinus" viewBox="0 0 12 2"><path d="M10 1.5a.5.5 0 0 0 0-1v1zM0 .5a.5.5 0 0 0 0 1v-1zm10 0H0v1h10v-1z"/></symbol>
   </section>
 </template>
 
