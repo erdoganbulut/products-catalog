@@ -6,6 +6,7 @@ import moduleSubCategories from './modules/subCategories';
 import moduleFunctions from './modules/functions';
 import moduleSeries from './modules/series';
 import moduleMenu from './modules/menu';
+import moduleProductDetail from './modules/productDetail';
 
 export default {
   modules: {
@@ -17,5 +18,6 @@ export default {
     functions: moduleFunctions,
     series: moduleSeries,
     menu: moduleMenu,
+    product: moduleProductDetail,
   },
 };
