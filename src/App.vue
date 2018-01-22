@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     setLang() {
-      this.$store.dispatch('lang/setLang', this.$route.params.lang);
+      if (typeof this.$route.params.lang !== 'undefined') this.$store.dispatch('lang/setLang', this.$route.params.lang);
     },
     getLangList() {
       this.$store.dispatch('lang/getLangList');
