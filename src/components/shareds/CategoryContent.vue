@@ -335,7 +335,7 @@ section.category-content-component {
           padding: 20px 5px;
           color: inherit;
           text-decoration: none;
-          border-top: solid 1px #D8D8D8;
+          border-bottom: solid 1px #D8D8D8;
           &.is-more-items-text {
             font-size: 24px;
             text-align: center;
@@ -348,10 +348,10 @@ section.category-content-component {
             border-right: solid 1px #D8D8D8;
           }
           &:nth-child(1) {
-            border-top: none;
+            border-top: solid 1px #D8D8D8;
           }
           &:nth-child(2) {
-            border-top: none;
+            border-top: solid 1px #D8D8D8;
           }
           @media (min-width: 768px) {
             width: 25%;
