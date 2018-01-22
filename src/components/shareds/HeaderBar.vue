@@ -21,7 +21,7 @@
             <span>MENU</span>
           </li>
           <li>
-            <router-link to="/" v-on:click.native="handleClickRouterLink()">
+            <router-link :to="'/' + lang.url" v-on:click.native="handleClickRouterLink()">
               <span>PROFIL</span>
             </router-link>
             <span class="item--icon">
@@ -41,12 +41,12 @@
             </span>
           </li>
           <li>
-            <router-link to="/" v-on:click.native="handleClickRouterLink()">
+            <router-link :to="'/' + lang.url" v-on:click.native="handleClickRouterLink()">
               <span>HAKKIMIZDA</span>
             </router-link>
           </li>
           <li>
-            <router-link to="/" v-on:click.native="handleClickRouterLink()">
+            <router-link :to="'/' + lang.url" v-on:click.native="handleClickRouterLink()">
               <span>İLETİŞİM</span>
             </router-link>
           </li>
