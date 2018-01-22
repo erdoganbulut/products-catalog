@@ -163,6 +163,11 @@ section.product-content-component {
       font-size: 12px;
     }
   }
+  .product-icons {
+    img {
+      margin-right: 10px;
+    }
+  }
   .technical-detail,
   .product-share {
     padding-bottom: 20px;
