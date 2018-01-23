@@ -7,6 +7,7 @@ import moduleFunctions from './modules/functions';
 import moduleSeries from './modules/series';
 import moduleMenu from './modules/menu';
 import moduleProductDetail from './modules/productDetail';
+import moduleAuth from './modules/auth';
 
 export default {
   modules: {
@@ -19,5 +20,6 @@ export default {
     series: moduleSeries,
     menu: moduleMenu,
     product: moduleProductDetail,
+    auth: moduleAuth,
   },
 };
