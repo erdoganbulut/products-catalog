@@ -152,10 +152,11 @@ export default {
       this.receiveProductsFilter(filter);
     },
     fillProductsGrouped4Series() {
-      const productsGrouped4Series = [];
+      let productsGrouped4Series = [];
       window.$lodash.forEach(window.$lodash.groupBy(this.products, 'series.name'), (val, key) => {
         productsGrouped4Series.push({ name: key, items: val, max: 5 });
       });
+      productsGrouped4Series = window.$lodash.orderBy(productsGrouped4Series, ['name']);
       this.productsGrouped4Series = productsGrouped4Series;
     },
   },
@@ -186,7 +187,7 @@ export default {
     },
     products() {
       this.fillProductsGrouped4Series();
-    }
+    },
   },
 };
 </script>
