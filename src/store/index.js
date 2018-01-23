@@ -8,6 +8,7 @@ import moduleSeries from './modules/series';
 import moduleMenu from './modules/menu';
 import moduleProductDetail from './modules/productDetail';
 import moduleAuth from './modules/auth';
+import moduleList from './modules/list';
 
 export default {
   modules: {
@@ -21,5 +22,6 @@ export default {
     menu: moduleMenu,
     product: moduleProductDetail,
     auth: moduleAuth,
+    list: moduleList,
   },
 };
