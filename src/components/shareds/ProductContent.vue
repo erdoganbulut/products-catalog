@@ -160,7 +160,6 @@ export default {
   },
   watch: {
     accesstoken() {
-      console.log('burada');
       if (this.accesstoken.length > 0) this.getLists(this.accesstoken);
     },
   },
