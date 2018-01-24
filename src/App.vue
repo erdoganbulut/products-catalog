@@ -19,10 +19,6 @@ export default {
   name: 'app',
   data() {
     return {
-      tokenparams: {
-        username: 'cengiz@bline.com.tr',
-        password: 'kingkong'
-      }
     };
   },
   components: {
@@ -36,13 +32,10 @@ export default {
       lang: 'lang/lang',
       langList: 'lang/langList',
       langListStatus: 'lang/langListStatus',
-      tokenResponse: 'auth/response',
     }),
   },
   methods: {
-    ...mapActions({
-      getToken: 'auth/getToken',
-    }),
+    ...mapActions({}),
     setLang() {
       if (typeof this.$route.params.lang !== 'undefined') this.$store.dispatch('lang/setLang', this.$route.params.lang);
     },
@@ -58,7 +51,6 @@ export default {
     },
   },
   mounted() {
-    this.getToken(this.tokenparams);
     this.setLang();
     if (this.langListStatus !== 'done') this.getLangList();
 
