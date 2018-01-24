@@ -18,6 +18,10 @@
         <li class="breadcrumb-item"><a href="javascript:;">{{ product.series.name }}</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
       </ol>
+      <ol class="breadcrumb" v-if="$route.meta.page === 'user'">
+        <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">Katalog Seçimi</router-link></li>
+        <li class="breadcrumb-item active" aria-current="page">Profil</li>
+      </ol>
     </nav>
   </section>
 </template>

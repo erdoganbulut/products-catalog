@@ -34,6 +34,11 @@ export default {
       authResponse: 'auth/response',
     }),
   },
+  mounted() {
+    if (this.authStatus === 'done') {
+      this.$router.push('/en/user');
+    }
+  },
   methods: {
     ...mapActions({
       getToken: 'auth/getToken',
@@ -45,7 +50,7 @@ export default {
   watch: {
     authStatus() {
       if (this.authStatus === 'done') {
-        this.$router.push('/en');
+        this.$router.push('/en/user');
       } else if(this.authStatus === 'error') {
         this.error = this.authResponse.body.message;
       } else {

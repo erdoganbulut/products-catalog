@@ -5,6 +5,7 @@ import Catalog from '@/components/Catalog';
 import Category from '@/components/Category';
 import Product from '@/components/Product';
 import Login from '@/components/Login';
+import User from '@/components/User';
 
 Vue.use(Router);
 
@@ -53,6 +54,14 @@ export default new Router({
       component: Login,
       meta: {
         page: 'login',
+      },
+    },
+    {
+      path: '/:lang/user',
+      name: 'User',
+      component: User,
+      meta: {
+        page: 'user',
       },
     },
   ],
