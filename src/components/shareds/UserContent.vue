@@ -1,7 +1,9 @@
 <template>
   <section class="user-content-component">
     <div class="container">
-      <div v-for="(list, index) in lists" :key="'listitem' + index">{{ list.name }} <a href="javascript:;" v-on:click="handleDuplicate(index)">çoğalt</a></div>
+      Hoşgeldin {{ user.name }}
+      <div v-for="(list, index) in lists" :key="'listitem' + index">{{ list.name }} <a href="javascript:;" v-on:click="handleDuplicate(index)">çoğalt</a><router-link :to="`/${lang.url}/list/update/${index}`">düzenle</router-link></div>
+      <p><router-link :to="`/${lang.url}/list/add`">yeni liste</router-link></p>
     </div>
   </section>
 </template>
@@ -26,12 +28,14 @@ export default {
       langList: 'lang/langList',
       langListStatus: 'lang/langListStatus',
       accesstoken: 'auth/accesstoken',
+      user: 'auth/user',
       lists: 'list/lists',
       listsStatus: 'list/status',
     }),
   },
   methods: {
     ...mapActions({
+      getUser: 'auth/getUser',
       getProduct: 'product/getProduct',
       getLists: 'list/getLists',
       addList: 'list/addList',
@@ -46,11 +50,17 @@ export default {
     },
   },
   mounted() {
-    if (this.accesstoken.length > 0) this.getLists(this.accesstoken);
+    if (this.accesstoken.length > 0) {
+      this.getLists(this.accesstoken);
+      this.getUser(this.accesstoken);
+    }
   },
   watch: {
     accesstoken() {
-      if (this.accesstoken.length > 0) this.getLists(this.accesstoken);
+      if (this.accesstoken.length > 0) {
+        this.getLists(this.accesstoken);
+        this.getUser(this.accesstoken);
+      }
     },
     authStatus() {
       if (this.authStatus === 'done') {

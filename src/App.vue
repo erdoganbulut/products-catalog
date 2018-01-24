@@ -32,10 +32,13 @@ export default {
       lang: 'lang/lang',
       langList: 'lang/langList',
       langListStatus: 'lang/langListStatus',
+      accesstoken: 'auth/accesstoken',
     }),
   },
   methods: {
-    ...mapActions({}),
+    ...mapActions({
+      getUser: 'auth/getUser'
+    }),
     setLang() {
       if (typeof this.$route.params.lang !== 'undefined') this.$store.dispatch('lang/setLang', this.$route.params.lang);
     },
@@ -51,6 +54,7 @@ export default {
     },
   },
   mounted() {
+    if (this.accesstoken.length > 0) this.getUser(this.accesstoken);
     this.setLang();
     if (this.langListStatus !== 'done') this.getLangList();
 
@@ -70,6 +74,9 @@ export default {
   watch: {
     '$route'(to, from) {
       this.setLang(to, from);
+    },
+    accesstoken() {
+      if (this.accesstoken.length > 0) this.getUser(this.accesstoken);
     },
   },
 };

@@ -83,8 +83,8 @@
           </div>
         </b-collapse>
       </div>
-      <div class="add-to-favorite">
-        <a href="javascript:;" v-on:click="handleAdd2Fav()" class="btn btn-danger btn-block"><i class="fa fa-heart-o"></i> ADD TO FAVORITE</a>
+      <div class="add-to-favorite" v-if="typeof user.id !== 'undefined'">
+        <a href="javascript:;" v-on:click="handleAdd2Fav()" class="btn btn-danger btn-block"><i class="fa fa-heart-o"></i> {{ lang.product_add2shortList }}</a>
         <select class="form-control ui-select" v-model="selectedList">
           <option v-if="lists.length > 0" v-for="(list, index) in lists" :key="'listp' + index" :value="index">{{list.name}}</option>
           <option value="-1">Create List</option>
@@ -114,6 +114,7 @@ export default {
       accesstoken: 'auth/accesstoken',
       lists: 'list/lists',
       listsStatus: 'list/status',
+      user: 'auth/user',
     }),
   },
   methods: {
