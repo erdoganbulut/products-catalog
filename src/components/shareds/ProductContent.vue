@@ -132,6 +132,7 @@ export default {
           name: this.createListName,
           status: 'waiting for repoend',
           currency: 'USD',
+          description: '',
           email: 'amg2255@gmail.com',
           details: [
             {

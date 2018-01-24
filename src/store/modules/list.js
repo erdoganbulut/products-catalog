@@ -46,6 +46,19 @@ const actions = {
       commit('receiveResponse', Response);
     });
   },
+  deleteList({ commit, dispatch }, params) {
+    Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/api/deleteList', params.deleteList, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
+      const Response = response;
+      dispatch('getLists', params.accesstoken);
+      commit('receiveStatus', 'done');
+      commit('receiveResponse', Response);
+    }, (response) => {
+      const Response = response;
+      dispatch('getLists', params.accesstoken);
+      commit('receiveStatus', 'error');
+      commit('receiveResponse', Response);
+    });
+  },
 };
 
 const state = {

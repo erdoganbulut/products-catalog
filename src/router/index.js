@@ -6,6 +6,8 @@ import Category from '@/components/Category';
 import Product from '@/components/Product';
 import Login from '@/components/Login';
 import User from '@/components/User';
+import ListAdd from '@/components/ListAdd';
+import ListUpdate from '@/components/ListUpdate';
 
 Vue.use(Router);
 
@@ -62,6 +64,22 @@ export default new Router({
       component: User,
       meta: {
         page: 'user',
+      },
+    },
+    {
+      path: '/:lang/list/add',
+      name: 'ListAdd',
+      component: ListAdd,
+      meta: {
+        page: 'listadd',
+      },
+    },
+    {
+      path: '/:lang/list/update/:listindex',
+      name: 'ListUpdate',
+      component: ListUpdate,
+      meta: {
+        page: 'ListUpdate',
       },
     },
   ],
