@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <icons />
+    <p>
+      {{tokenResponse}}
+    </p>
     <header-bar />
     <breadcrumb />
     <router-view/>
@@ -9,7 +12,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import HeaderBar from './components/shareds/HeaderBar';
 import FooterBar from './components/shareds/FooterBar';
 import Breadcrumb from './components/shareds/Breadcrumb';
@@ -19,6 +22,10 @@ export default {
   name: 'app',
   data() {
     return {
+      tokenparams: {
+        username: 'cengiz@bline.com.tr',
+        password: 'kingkong'
+      }
     };
   },
   components: {
@@ -32,9 +39,13 @@ export default {
       lang: 'lang/lang',
       langList: 'lang/langList',
       langListStatus: 'lang/langListStatus',
+      tokenResponse: 'auth/response',
     }),
   },
   methods: {
+    ...mapActions({
+      getToken: 'auth/getToken',
+    }),
     setLang() {
       if (typeof this.$route.params.lang !== 'undefined') this.$store.dispatch('lang/setLang', this.$route.params.lang);
     },
@@ -50,6 +61,7 @@ export default {
     },
   },
   mounted() {
+    this.getToken(this.tokenparams);
     this.setLang();
     if (this.langListStatus !== 'done') this.getLangList();
 

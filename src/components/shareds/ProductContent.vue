@@ -84,15 +84,12 @@
         </b-collapse>
       </div>
       <div class="add-to-favorite">
-        <a href="javascript:;" class="btn btn-danger btn-block"><i class="fa fa-heart-o"></i> ADD TO FAVORITE</a>
-        <select class="form-control">
-          <option value="-1">New List</option>
-          <option>List 1</option>
-          <option>List 2</option>
-          <option>List 3</option>
-          <option>List 4</option>
+        <a href="javascript:;" v-on:click="handleAdd2Fav()" class="btn btn-danger btn-block"><i class="fa fa-heart-o"></i> ADD TO FAVORITE</a>
+        <select class="form-control ui-select" v-model="selectedList">
+          <option v-if="lists.length > 0" v-for="(list, index) in lists" :key="'listp' + index" :value="index">{{list.name}}</option>
+          <option value="-1">Create List</option>
         </select>
-        <input type="text" placeholder="list name" class="form-control" v-if="true">
+        <input v-model="createListName" v-if="selectedList === '-1'" type="text" placeholder="list name" class="form-control">
       </div>
     </div>
   </section>
@@ -105,6 +102,8 @@ export default {
   name: 'ProductContent',
   data() {
     return {
+      selectedList: '',
+      createListName: '',
     };
   },
   computed: {
@@ -112,18 +111,58 @@ export default {
       lang: 'lang/lang',
       product: 'product/product',
       productStatus: 'product/status',
+      accesstoken: 'auth/accesstoken',
+      lists: 'list/lists',
+      listsStatus: 'list/status',
     }),
   },
   methods: {
     ...mapActions({
       getProduct: 'product/getProduct',
+      getLists: 'list/getLists',
+      addList: 'list/addList',
+      updateList: 'list/updateList',
     }),
+    handleAdd2Fav() {
+      const params = {
+        accesstoken: this.accesstoken,
+      };
+      if (this.selectedList === '-1') {
+        params.newList = {
+          name: this.createListName,
+          status: 'waiting for repoend',
+          currency: 'USD',
+          email: 'amg2255@gmail.com',
+          details: [
+            {
+              productid: parseInt(this.product.id, 10),
+              quantity: 1,
+            },
+          ],
+        };
+        this.addList(params);
+        this.selectedList = `${this.lists.length}`;
+      } else {
+        params.updateList = this.lists[parseInt(this.selectedList, 10)];
+        params.updateList.currency = "EUR";
+        params.updateList.email = "asasa@asasa.com";
+        params.updateList.details.push({ productid: parseInt(this.product.id, 10), quantity: 1, });
+        this.updateList(params);
+      }
+    },
   },
   mounted() {
+    if (this.accesstoken.length > 0) this.getLists(this.accesstoken);
     const params = {
       slug: this.$route.params.productslug,
     };
     this.getProduct(params);
+  },
+  watch: {
+    accesstoken() {
+      console.log('burada');
+      if (this.accesstoken.length > 0) this.getLists(this.accesstoken);
+    },
   },
 };
 </script>
@@ -198,7 +237,7 @@ section.product-content-component {
     }
   }
   .add-to-favorite {
-    display: none;
+
   }
 }
 </style>
