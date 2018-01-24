@@ -1,9 +1,6 @@
 <template>
   <div id="app">
     <icons />
-    <p>
-      {{tokenResponse}}
-    </p>
     <header-bar />
     <breadcrumb />
     <router-view/>
