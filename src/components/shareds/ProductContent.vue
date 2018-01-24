@@ -135,7 +135,7 @@ export default {
           email: 'amg2255@gmail.com',
           details: [
             {
-              productid: parseInt(this.product.id, 10),
+              product: parseInt(this.product.id, 10),
               quantity: 1,
             },
           ],
@@ -146,7 +146,7 @@ export default {
         params.updateList = this.lists[parseInt(this.selectedList, 10)];
         params.updateList.currency = "EUR";
         params.updateList.email = "asasa@asasa.com";
-        params.updateList.details.push({ productid: parseInt(this.product.id, 10), quantity: 1, });
+        params.updateList.details.push({ product: parseInt(this.product.id, 10), quantity: 1, });
         this.updateList(params);
       }
     },

@@ -34,7 +34,6 @@ const actions = {
     });
   },
   updateList({ commit, dispatch }, params) {
-    console.log(JSON.parse(JSON.stringify(params)));
     Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/api/updatelist', params.updateList, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
       const Response = response;
       dispatch('getLists', params.accesstoken);
