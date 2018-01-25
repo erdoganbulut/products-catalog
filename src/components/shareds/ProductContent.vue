@@ -33,15 +33,15 @@
               <table>
                 <tr>
                   <td>{{ lang.product_volume }}:</td>
-                  <td>&nbsp;&nbsp;&nbsp;{{ product.volume[0] }} cc.</td>
+                  <td>&nbsp;&nbsp;&nbsp;<span v-for="(vol, index) in product.volume" :key="'vol' + index">{{ vol }} / </span> cc.</td>
                 </tr>
                 <tr>
                   <td>{{ lang.product_volumeUS }}:</td>
-                  <td>&nbsp;&nbsp;&nbsp;{{ parseFloat(product.volume[0] / 29.5735296875).toFixed(2) }} US oz.</td>
+                  <td>&nbsp;&nbsp;&nbsp;<span v-for="(vol, index) in product.volume" :key="'volus' + index">{{ parseFloat(vol / 29.5735296875).toFixed(2) }} / </span> US oz.</td>
                 </tr>
                 <tr>
                   <td>{{ lang.product_volumeUK }}:</td>
-                  <td>&nbsp;&nbsp;&nbsp;{{ parseFloat(product.volume[0] / 28.4130625).toFixed(2) }} oz.</td>
+                  <td>&nbsp;&nbsp;&nbsp;<span v-for="(vol, index) in product.volume" :key="'voluk' + index">{{ parseFloat(vol / 28.4130625).toFixed(2) }} / </span> oz.</td>
                 </tr>
                 <tr>
                   <td>{{ lang.product_yukseklik }}:</td>
