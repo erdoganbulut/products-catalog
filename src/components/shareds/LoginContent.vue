@@ -2,9 +2,10 @@
   <section class="login-content-component">
     <div class="container">
       <form v-on:submit.prevent="onSubmit">
-        <input type="email" class="form-control" v-model="tokenparams.username" placeholder="E-posta Adresi">
-        <input type="password" class="form-control" v-model="tokenparams.password" placeholder="Şifre">
-        <button type="submit" class="btn btn-primary">Gönder</button>
+        <input type="email" class="form-control" v-model="tokenparams.username" :placeholder="lang.login_email">
+        <input type="password" class="form-control" v-model="tokenparams.password"
+        :placeholder="lang.login_password">
+        <button type="submit" class="btn btn-primary">{{ lang.login_sign_in }}</button>
         <p v-if="error !== ''">{{ error }}</p>
       </form>
     </div>

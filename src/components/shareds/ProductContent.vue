@@ -11,7 +11,7 @@
           <span class="product-name">{{ product.name }}</span>
         </h1>
         <div class="package-info">
-          <p>SKU / PACKING <span>{{ product.sku }}</span></p>
+          <p>{{ lang.product_sku_paketleme }} <span>{{ product.sku }}</span></p>
           <p class="package-inner-outer-text">{{ product.innercode.code }}-{{ product.outercode.code }}</p>
         </div>
         <div class="product-icons">
@@ -21,7 +21,7 @@
       <div class="technical-detail">
         <h2>
           <a v-b-toggle.collapseTechnical href="javascript:;">
-            TECHNICAL DETAILS
+            {{ lang.product_technical }}
             <svg>
               <use xlink:href="#svgIconMinus" transform="translate(1)" fill="#C31B2E"/>
             </svg>
@@ -32,31 +32,31 @@
             <div class="technical-detail-content">
               <table>
                 <tr>
-                  <td>Hacim:</td>
+                  <td>{{ lang.product_volume }}:</td>
                   <td>&nbsp;&nbsp;&nbsp;{{ product.volume[0] }} cc.</td>
                 </tr>
                 <tr>
-                  <td>Hacim US:</td>
+                  <td>{{ lang.product_volumeUS }}:</td>
                   <td>&nbsp;&nbsp;&nbsp;{{ parseFloat(product.volume[0] / 29.5735296875).toFixed(2) }} US oz.</td>
                 </tr>
                 <tr>
-                  <td>Hacim UK:</td>
+                  <td>{{ lang.product_volumeUK }}:</td>
                   <td>&nbsp;&nbsp;&nbsp;{{ parseFloat(product.volume[0] / 28.4130625).toFixed(2) }} oz.</td>
                 </tr>
                 <tr>
-                  <td>Yükseklik:</td>
+                  <td>{{ lang.product_yukseklik }}:</td>
                   <td>&nbsp;&nbsp;&nbsp;{{ product.height[0] }} mm.</td>
                 </tr>
                 <tr>
-                  <td>Ağız Çapı:</td>
+                  <td>{{ lang.product_agiz_capi }}:</td>
                   <td>&nbsp;&nbsp;&nbsp;{{ product.edag[0] }} mm.</td>
                 </tr>
                 <tr>
-                  <td>Taban Çapı:</td>
+                  <td>{{ lang.product_taban_capi }}:</td>
                   <td>&nbsp;&nbsp;&nbsp;{{ product.base[0] }} mm.</td>
                 </tr>
                 <tr>
-                  <td>Max. Genişlik:</td>
+                  <td>{{ lang.product_maxwidth }}:</td>
                   <td>&nbsp;&nbsp;&nbsp;{{ product.width[0] }} mm.</td>
                 </tr>
               </table>
@@ -67,7 +67,7 @@
       <div class="product-share">
         <h2>
           <a v-b-toggle.collapseSocial href="javascript:;">
-            SHARE
+            {{ lang.product_share }}
             <svg>
               <use xlink:href="#svgIconMinus" transform="translate(1)" fill="#C31B2E"/>
             </svg>
@@ -87,7 +87,7 @@
         <a href="javascript:;" v-on:click="handleAdd2Fav()" class="btn btn-danger btn-block"><i class="fa fa-heart-o"></i> {{ lang.product_add2shortList }}</a>
         <select class="form-control ui-select" v-model="selectedList">
           <option v-if="lists.length > 0" v-for="(list, index) in lists" :key="'listp' + index" :value="index">{{list.name}}</option>
-          <option value="-1">Create List</option>
+          <option value="-1">{{ lang.product_create_list }}</option>
         </select>
         <input v-model="createListName" v-if="selectedList === '-1'" type="text" placeholder="list name" class="form-control">
       </div>

@@ -3,27 +3,27 @@
     <div class="container">
       <button v-on:click="handleClickDelete">sil</button>
       <form v-on:submit.prevent="handleSubmit">
-        <label>name</label>
+        <label>{{ lang.shortlist_ad }}</label>
         <input class="form-control" type="text" v-model="newList.name">
-        <label>description</label>
+        <label>{{ lang.shortlist_aciklama }}</label>
         <textarea class="form-control" v-model="newList.description"></textarea>
-        <label>email</label>
+        <label>{{ lang.shortlist_email }}</label>
         <input class="form-control" type="text" v-model="newList.email">
-        <label>status</label>
+        <label>{{ lang.shortlist_durum }}</label>
         <select class="form-control" v-model="newList.status">
-          <option value="Teklif Aşamasında">Teklif Aşamasında</option>
-          <option value="Dönüş Bekleniyor">Dönüş Bekleniyor</option>
-          <option value="Onaylandı">Onaylandı</option>
+          <option value="lang.shortlist_teklif">{{ lang.shortlist_teklif }}</option>
+          <option value="lang.shortlist_donus">{{ lang.shortlist_donus }}</option>
+          <option value="lang.shortlist_onay">{{ lang.shortlist_onay }}</option>
         </select>
-        <label>para birimi</label>
+        <label>{{ lang.shortlist_para_birimi }}</label>
         <select class="form-control" v-model="newList.currency">
           <option>TRY</option>
           <option>USD</option>
           <option>EUR</option>
         </select>
-        <label>is show price</label>
-        <input type="checkbox" v-model="newList.showprice"> Parayı göster
-        <button type="submit">Gönder</button>
+        <label>{{ lang.shortlist_fiyat_goster }}</label>
+        <input type="checkbox" v-model="newList.showprice"> {{ lang.shortlist_fiyat_goster }}
+        <button type="submit">{{ lang.shortlist_guncelle }}</button>
       </form>
     </div>
   </section>

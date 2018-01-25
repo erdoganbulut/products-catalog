@@ -1,17 +1,17 @@
 <template>
   <section class="category-content-component">
     <div class="filter-control-bar">
-      <span class="product-amount--text">{{ products.length }} ÜRÜN</span>
+      <span class="product-amount--text">{{ products.length }} {{ lang.products_product }}</span>
       <a href="javascript:;" class="open-filter-btn" v-on:click="isOpenFilterItems = !isOpenFilterItems">
         <svg>
           <use xlink:href="#svgIconFilter" />
         </svg>
-        <span>FİLTRE</span>
+        <span>{{ lang.filtre_baslik }}</span>
       </a>
     </div>
     <div class="filter-items" v-show="isOpenFilterItems">
       <div class="filter--title-bar">
-        <h2>FİLTRELEME</h2>
+        <h2>{{ lang.filtre_baslik_2 }}</h2>
         <a href="javascript:;" class="close-filter-btn" v-on:click="isOpenFilterItems = !isOpenFilterItems">
           <svg>
             <use xlink:href="#svgIconClose" />
@@ -19,16 +19,16 @@
         </a>
       </div>
       <div class="filter-item filter-item--horizontal filter-item--categories">
-        <h3>KATEGORİLER</h3>
+        <h3>{{ lang.filtre_kategoriler }}</h3>
         <div class="filter--inner-items">
           <select class="form-control ui-select" name="" id="" v-model="subCategoriesCheckeds">
-            <option value="" disabled selected>Kategori Seçin</option>
+            <option value="" disabled selected>{{ lang.filtre_kategori_sec }}</option>
             <option v-for="subCategory in subCategories" :key="'sub' + subCategory.id" :value="subCategory.id">{{ subCategory.name }}</option>
           </select>
         </div>
       </div>
       <div class="filter-item filter-item--horizontal filter-item--functions" v-if="functions.length > 0">
-        <h3>FONKSİYONLAR</h3>
+        <h3>{{ lang.filtre_fonksiyonlar }}</h3>
         <div class="filter--inner-items">
           <div class="filter--inner-item" v-for="functionItem in functions" :key="'func' + functionItem.id">
             <input type="checkbox" :id="'functionCheck' + functionItem.id" :value="functionItem.id" v-model="functionsCheckeds">
@@ -39,7 +39,7 @@
         </div>
       </div>
       <div class="filter-item filter-item--horizontal filter-item--series" v-if="series.length > 0">
-        <h3>SERİLER</h3>
+        <h3>{{ lang.filtre_seriler }}</h3>
         <div class="filter--inner-items">
           <div class="filter--inner-item" v-for="serieItem in series" :key="'func' + serieItem.id">
             <input type="checkbox" :id="'functionCheck' + serieItem.id" :value="serieItem.id" v-model="seriesCheckeds">
@@ -62,7 +62,7 @@
               <span class="product-item--info"><span v-html="product.sku"></span><br><span v-html="product.name"></span></span>
             </span>
           </router-link>
-          <a class="product-item is-more-items-text" href="javascript:;" v-if="pSerie.items.length > pSerie.max" v-on:click="pSerie.max = pSerie.items.length"><span>+{{ pSerie.items.length - pSerie.max }}<br>ÜRÜN</span></a>
+          <a class="product-item is-more-items-text" href="javascript:;" v-if="pSerie.items.length > pSerie.max" v-on:click="pSerie.max = pSerie.items.length"><span>+{{ pSerie.items.length - pSerie.max }}<br>{{ lang.products_product }}</span></a>
         </div>
       </div>
     </div>

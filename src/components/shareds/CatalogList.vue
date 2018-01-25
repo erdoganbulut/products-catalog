@@ -7,7 +7,7 @@
           <span class="overlay">
             <span class="overlay-inner">
               <span class="title">{{ catalog.name }}</span>
-              <span class="desc">Kataloğu aç</span>
+              <span class="desc">{{ lang.home_katalogac }}</span>
             </span>
           </span>
         </router-link>

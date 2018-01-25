@@ -2,25 +2,25 @@
   <section class="breadcrumb-component">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb" v-if="$route.meta.page === 'start'">
-        <li class="breadcrumb-item active" aria-current="page">Katalog Seçimi</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ lang.bread_katalogsecim }}</li>
       </ol>
       <ol class="breadcrumb" v-if="$route.meta.page === 'catalog'">
-        <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">Katalog Seçimi</router-link></li>
+        <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">{{ lang.bread_katalogsecim }}</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">{{ $route.params.catalog }}</li>
       </ol>
       <ol class="breadcrumb" v-if="$route.meta.page === 'category'">
-        <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">Katalog Seçimi</router-link></li>
+        <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">{{ lang.bread_katalogsecim }}</router-link></li>
         <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/' + $route.params.catalog">{{ $route.params.catalog }}</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">{{ $route.params.category }}</li>
       </ol>
       <ol class="breadcrumb" v-if="$route.meta.page === 'product'">
-        <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">Katalog Seçimi</router-link></li>
+        <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">{{ lang.bread_katalogsecim }}</router-link></li>
         <li class="breadcrumb-item"><a href="javascript:;" v-if="typeof product.series !== 'undefined'">{{ product.series.name }}</a></li>
         <li class="breadcrumb-item active" aria-current="page" v-if="typeof product.name !== 'undefined'">{{ product.name }}</li>
       </ol>
       <ol class="breadcrumb" v-if="$route.meta.page === 'user'">
-        <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">Katalog Seçimi</router-link></li>
-        <li class="breadcrumb-item active" aria-current="page">Profil</li>
+        <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">{{ lang.bread_katalogsecim }}</router-link></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ lang.bread_profil }}</li>
       </ol>
     </nav>
   </section>

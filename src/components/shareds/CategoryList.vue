@@ -8,7 +8,7 @@
             <span class="overlay">
               <span class="overlay-inner">
                 <span class="title">{{ category.name }}</span>
-                <span class="desc">Ürünleri Gör</span>
+                <span class="desc">{{ lang.see_products }}</span>
               </span>
             </span>
           </router-link>

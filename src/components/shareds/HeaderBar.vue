@@ -22,7 +22,7 @@
           </li>
           <li>
             <router-link :to="'/' + lang.url" v-on:click.native="handleClickRouterLink()">
-              <span>PROFIL</span>
+              <span>{{ lang.menu_profil }}</span>
             </router-link>
             <span class="item--icon">
               <svg width="26" height="26">
@@ -42,33 +42,33 @@
           </li>
           <li>
             <router-link :to="'/' + lang.url" v-on:click.native="handleClickRouterLink()">
-              <span>HAKKIMIZDA</span>
+              <span>{{ lang.menu_hakkimizda }}</span>
             </router-link>
           </li>
           <li>
             <router-link :to="'/' + lang.url" v-on:click.native="handleClickRouterLink()">
-              <span>İLETİŞİM</span>
+              <span>{{ lang.menu_iletisim }}</span>
             </router-link>
           </li>
           <li class="item-type--social">
             <a href="/" target="_blank">
               <svg width="20" height="20">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconFacebook"></use>
+                <use xmlns:xlink="https://www.facebook.com/Pasabahce/" xlink:href="#svgIconFacebook"></use>
               </svg>
             </a>
             <a href="/" target="_blank">
               <svg width="22" height="18">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconTwitter"></use>
+                <use xmlns:xlink="https://twitter.com/pasabahce" xlink:href="#svgIconTwitter"></use>
               </svg>
             </a>
             <a href="/" target="_blank">
               <svg width="22" height="16">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconYoutube"></use>
+                <use xmlns:xlink="https://www.youtube.com/channel/UCv92-wt46VpQlsjcOo9NNog" xlink:href="#svgIconYoutube"></use>
               </svg>
             </a>
             <a href="/" target="_blank">
               <svg width="20" height="20">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconInstagram"></use>
+                <use xmlns:xlink="https://www.instagram.com/pasabahce/" xlink:href="#svgIconInstagram"></use>
               </svg>
             </a>
           </li>
@@ -84,7 +84,7 @@
           </li>
           <li>
             <router-link :to="'/' + lang.url + '/catalog/' + levelTwoContent.url" v-on:click.native="handleClickRouterLink()">
-              <span>TÜMÜNÜ GÖR</span>
+              <span>{{ lang.menu_hepsini_gor }}</span>
             </router-link>
             <span class="item--icon">
               <svg width="14" height="13">
@@ -114,7 +114,7 @@
           </li>
           <li>
             <router-link :to="'/' + lang.url + '/catalog/' + levelTwoContent.url + '/category/' + levelThreeContent.url" v-on:click.native="handleClickRouterLink()">
-              <span>TÜMÜNÜ GÖR</span>
+              <span>{{ lang.menu_hepsini_gor }}</span>
             </router-link>
             <span class="item--icon">
               <svg width="14" height="13">
