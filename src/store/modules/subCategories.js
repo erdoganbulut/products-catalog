@@ -7,8 +7,8 @@ const getters = {
 };
 
 const actions = {
-  getSubCategories({ commit }, categoryId) {
-    Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/en/${categoryId}/subCategories`).then((response) => {
+  getSubCategories({ commit, rootState }, categoryId) {
+    Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/${rootState.lang.lang.url}/${categoryId}/subCategories`).then((response) => {
       const Response = response;
       if (typeof val !== 'undefined') Response.body = window.$lodash.filter(JSON.parse(JSON.stringify(Response.body)), { categorieId: parseInt(val, 10) });
       commit('receiveSubCategories', Response.body);

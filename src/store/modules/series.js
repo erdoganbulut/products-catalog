@@ -7,8 +7,8 @@ const getters = {
 };
 
 const actions = {
-  getSeries({ commit }, subCategoryId) {
-    Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/en/${subCategoryId}/series`).then((response) => {
+  getSeries({ commit, rootState }, subCategoryId) {
+    Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/${rootState.lang.lang.url}/${subCategoryId}/series`).then((response) => {
       const Response = response;
       commit('receiveSeries', Response.body);
       commit('receiveStatus', 'done');

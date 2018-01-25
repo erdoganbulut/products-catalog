@@ -1,10 +1,11 @@
 <template>
   <div id="app">
     <icons />
-    <header-bar />
-    <breadcrumb />
-    <router-view/>
-    <footer-bar />
+    <p v-if="typeof lang.url === 'undefined' && langListStatus !== 'non-request'">Dil hatası!</p>
+    <header-bar v-if="typeof lang.url !== 'undefined'" />
+    <breadcrumb v-if="typeof lang.url !== 'undefined'" />
+    <router-view v-if="typeof lang.url !== 'undefined'" />
+    <footer-bar v-if="typeof lang.url !== 'undefined'" />
   </div>
 </template>
 

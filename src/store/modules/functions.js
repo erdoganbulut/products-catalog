@@ -8,8 +8,8 @@ const getters = {
 };
 
 const actions = {
-  getFunctions({ commit }, subCategoryId) {
-    Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/en/${subCategoryId}/functions`).then((response) => {
+  getFunctions({ commit, rootState }, subCategoryId) {
+    Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/${rootState.lang.lang.url}/${subCategoryId}/functions`).then((response) => {
       const Response = response;
       commit('receiveFunctionsAll', Response.body);
       commit('receiveFunctions', Response.body);

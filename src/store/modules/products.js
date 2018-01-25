@@ -27,8 +27,8 @@ const getters = {
 };
 
 const actions = {
-  getProducts({ commit }, catId) {
-    Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/en/${catId}/allproducts`).then((response) => {
+  getProducts({ commit, rootState }, catId) {
+    Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/${rootState.lang.lang.url}/${catId}/allproducts`).then((response) => {
       const Response = response;
       commit('receiveProductsAll', Response.body);
       commit('receiveProducts', Response.body);

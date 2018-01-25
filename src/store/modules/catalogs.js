@@ -7,8 +7,8 @@ const getters = {
 };
 
 const actions = {
-  getCatalog({ commit }) {
-    Vue.http.get('http://bline.digital/pasabahce2018/Backend/public/api/en/Catalogs').then((response) => {
+  getCatalog({ commit, rootState }) {
+    Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/${rootState.lang.lang.url}/Catalogs`).then((response) => {
       const Response = response;
       commit('receiveCatalogs', Response.body);
       commit('receiveStatus', 'done');
