@@ -9,6 +9,7 @@ import moduleMenu from './modules/menu';
 import moduleProductDetail from './modules/productDetail';
 import moduleAuth from './modules/auth';
 import moduleList from './modules/list';
+import moduleInners from './modules/inners';
 
 export default {
   modules: {
@@ -23,5 +24,6 @@ export default {
     product: moduleProductDetail,
     auth: moduleAuth,
     list: moduleList,
+    inners: moduleInners,
   },
 };

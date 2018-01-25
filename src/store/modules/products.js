@@ -4,6 +4,8 @@ const filterProducts = (arr, filter) => {
   let Arr = JSON.parse(JSON.stringify(arr));
   const Filter = JSON.parse(JSON.stringify(filter));
 
+  console.log(Filter);
+
   if (Filter.subCategory !== '') Arr = window.$lodash.filter(Arr, { category: parseInt(Filter.subCategory, 10) });
   if (Filter.functions.length > 0) {
     Arr = window.$lodash.filter(Arr, (o) => {
@@ -13,6 +15,47 @@ const filterProducts = (arr, filter) => {
   if (Filter.series.length > 0) {
     Arr = window.$lodash.filter(Arr, (o) => {
       return Filter.series.indexOf(o.series.id) > -1;
+    });
+  }
+  if (Filter.selectedInner !== '') {
+    Arr = window.$lodash.filter(Arr, (o) => {
+      return o.innercode.id.toString() === Filter.selectedInner.toString();
+    });
+  }
+  if (Filter.hacimMin !== '') {
+    let hacim = '';
+    if (Filter.hacimType === 'us') {
+      hacim = parseInt(Filter.hacimMin * 29.5735296875, 10);
+    } else if (Filter.hacimType === 'uk') {
+      hacim = parseInt(Filter.hacimMin * 28.4130625, 10);
+    } else {
+      hacim = Filter.hacimMin;
+    }
+    Arr = window.$lodash.filter(Arr, (o) => {
+      return o.volume[0] >= hacim;
+    });
+  }
+  if (Filter.hacimMax !== '') {
+    let hacim = '';
+    if (Filter.hacimType === 'us') {
+      hacim = parseInt(Filter.hacimMax * 29.5735296875, 10);
+    } else if (Filter.hacimType === 'uk') {
+      hacim = parseInt(Filter.hacimMax * 28.4130625, 10);
+    } else {
+      hacim = Filter.hacimMax;
+    }
+    Arr = window.$lodash.filter(Arr, (o) => {
+      return o.volume[0] <= hacim;
+    });
+  }
+  if (Filter.temper !== '') {
+    Arr = window.$lodash.filter(Arr, (o) => {
+      return o.tempered.toString() === Filter.temper.toString();
+    });
+  }
+  if (Filter.standart !== '') {
+    Arr = window.$lodash.filter(Arr, (o) => {
+      return o.standard.toString() === Filter.standart.toString();
     });
   }
 

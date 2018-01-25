@@ -1,5 +1,5 @@
 <template>
-  <section class="category-content-component">
+  <section class="category-content-component" v-bind:class="{'is--filter': isOpenFilterItems}">
     <div class="filter-control-bar">
       <span class="product-amount--text">{{ products.length }} {{ lang.products_product }}</span>
       <a href="javascript:;" class="open-filter-btn" v-on:click="isOpenFilterItems = !isOpenFilterItems">
@@ -9,7 +9,7 @@
         <span>{{ lang.filtre_baslik }}</span>
       </a>
     </div>
-    <div class="filter-items" v-show="isOpenFilterItems">
+    <div class="filter-items" v-show="isOpenFilterItems" v-bind:class="{'active': isOpenFilterItems}">
       <div class="filter--title-bar">
         <h2>{{ lang.filtre_baslik_2 }}</h2>
         <a href="javascript:;" class="close-filter-btn" v-on:click="isOpenFilterItems = !isOpenFilterItems">
@@ -21,10 +21,13 @@
       <div class="filter-item filter-item--horizontal filter-item--categories">
         <h3>{{ lang.filtre_kategoriler }}</h3>
         <div class="filter--inner-items">
-          <select class="form-control ui-select" name="" id="" v-model="subCategoriesCheckeds">
-            <option value="" disabled selected>{{ lang.filtre_kategori_sec }}</option>
-            <option v-for="subCategory in subCategories" :key="'sub' + subCategory.id" :value="subCategory.id">{{ subCategory.name }}</option>
-          </select>
+          <div class="filter--inner-item" v-for="categoryItem in subCategories" :key="'fsubcat' + categoryItem.id">
+            <input type="radio" name="selectedSubCategoryRadio" :id="'functionCheck' + categoryItem.id" :value="categoryItem.id" v-model="subCategoriesCheckeds">
+            <label :for="'functionCheck' + categoryItem.id">
+              <img :src="categoryItem.photo" alt="">
+              <span>{{ categoryItem.name }}</span>
+            </label>
+          </div>
         </div>
       </div>
       <div class="filter-item filter-item--horizontal filter-item--functions" v-if="functions.length > 0">
@@ -34,6 +37,7 @@
             <input type="checkbox" :id="'functionCheck' + functionItem.id" :value="functionItem.id" v-model="functionsCheckeds">
             <label :for="'functionCheck' + functionItem.id">
               <img :src="functionItem.photo" alt="">
+              <span>{{ functionItem.name }}</span>
             </label>
           </div>
         </div>
@@ -45,12 +49,54 @@
             <input type="checkbox" :id="'functionCheck' + serieItem.id" :value="serieItem.id" v-model="seriesCheckeds">
             <label :for="'functionCheck' + serieItem.id">
               <img :src="serieItem.photo" alt="">
+              <span>{{ serieItem.name }}</span>
             </label>
           </div>
         </div>
       </div>
+      <div class="filter-item filter-item--horizontal filter-item--other">
+        <h3>DİĞER</h3>
+        <div class="other-item" v-if="inners.length > 0">
+          <h4>İNNER TYPE</h4>
+          <select class="form-control ui-select" v-model="selectedInner">
+            <option v-for="(inner, index) in inners" :key="'finner' + index" :value="inner.id">{{ inner.name }}</option>
+          </select>
+        </div>
+        <div class="other-item">
+          <h4>HACİM</h4>
+          <div class="multiple-form-items">
+            <input type="text" class="form-control" v-model="hacimMin">
+            <input type="text" class="form-control" v-model="hacimMax">
+            <select class="form-control ui-select" v-model="hacimType">
+              <option>cc</option>
+              <option>uk</option>
+              <option>us</option>
+            </select>
+          </div>
+        </div>
+        <div class="other-item">
+          <h4>TEMPER</h4>
+          <div class="multiple-form-items">
+            <input id="temperYes" name="temper" v-model="temper" type="radio" value="1" class="form-control">
+            <label for="temperYes">Evet</label>
+            <input id="temperNo" name="temper" v-model="temper" type="radio" value="0" class="form-control">
+            <label for="temperNo">Hayır</label>
+          </div>
+        </div>
+        <div class="other-item">
+          <h4>STANDART</h4>
+          <div class="multiple-form-items">
+            <input id="standartNo" name="standart" v-model="standart" type="radio" value="0" class="form-control">
+            <label for="standartNo">0</label>
+            <input id="standartYes" name="standart" v-model="standart" type="radio" value="1" class="form-control">
+            <label for="standartYes">1</label>
+          </div>
+        </div>
+      </div>
+      <a href="javascript:;" v-on:click="isOpenFilterItems = !isOpenFilterItems">({{ products.length }} adet) ürün göster</a>
     </div>
     <div class="serie-items">
+      <p v-if="products.length < 1">Ürün Yok</p>
       <div class="serie-item" v-for="(pSerie, index) in productsGrouped4Series" :key="'pSerie' + index">
         <div class="info-bar">
           <h3>{{ pSerie.name }}</h3>
@@ -84,6 +130,12 @@ export default {
       seriesCheckeds: [],
       isOpenFilterItems: false,
       productsGrouped4Series: [],
+      selectedInner: '',
+      hacimMin: '',
+      hacimMax: '',
+      hacimType: 'cc',
+      temper: '',
+      standart: '',
     };
   },
   computed: {
@@ -99,6 +151,7 @@ export default {
       subCategories: 'subCategories/subCategories',
       functions: 'functions/functions',
       series: 'series/series',
+      inners: 'inners/inners',
     }),
   },
   methods: {
@@ -116,6 +169,7 @@ export default {
       getCategories: 'categories/getCategories',
       getProducts: 'products/getProducts',
       getCatalog: 'catalogs/getCatalog',
+      getInners: 'inners/getInners',
     }),
     makeFilter() {
 
@@ -148,6 +202,12 @@ export default {
         subCategory: this.subCategoriesCheckeds,
         functions: this.functionsCheckeds,
         series: this.seriesCheckeds,
+        selectedInner: this.selectedInner,
+        hacimMin: this.hacimMin,
+        hacimMax: this.hacimMax,
+        hacimType: this.hacimType,
+        temper: this.temper,
+        standart: this.standart,
       };
       this.receiveProductsFilter(filter);
     },
@@ -177,6 +237,7 @@ export default {
     subCategoriesCheckeds() {
       this.getFunctions(this.subCategoriesCheckeds);
       this.getSeries(this.subCategoriesCheckeds);
+      this.getInners(this.subCategoriesCheckeds);
       this.filterProducts();
     },
     functionsCheckeds() {
@@ -188,6 +249,24 @@ export default {
     products() {
       this.fillProductsGrouped4Series();
     },
+    selectedInner() {
+      this.filterProducts();
+    },
+    hacimMin() {
+      this.filterProducts();
+    },
+    hacimMax() {
+      this.filterProducts();
+    },
+    hacimType() {
+      this.filterProducts();
+    },
+    temper() {
+      this.filterProducts();
+    },
+    standart() {
+      this.filterProducts();
+    },
   },
 };
 </script>
@@ -197,6 +276,10 @@ export default {
 @import '../../scss/shareds';
 
 section.category-content-component {
+  &.is--filter {
+    height: 0;
+    overflow: hidden;
+  }
   .filter-control-bar {
     display: flex;
     flex-wrap: wrap;
@@ -231,11 +314,18 @@ section.category-content-component {
     }
   }
   .filter-items {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #222;
+    overflow: auto;
     .filter--title-bar {
       position: relative;
       padding: 12px;
       background: #222;
-      margin-bottom: 1px;
+      border-bottom: 1px solid #fff;
       h2 {
         font-size: 12px;
         font-weight: 300;
@@ -271,15 +361,18 @@ section.category-content-component {
         border-bottom: solid 1px #fff;
       }
       &.filter-item--functions,
+      &.filter-item--categories,
       &.filter-item--series {
         .filter--inner-items {
-          display: block;
+          display: flex;
           overflow: auto;
-          white-space: nowrap;
           .filter--inner-item {
-            display: inline-block;
-            width: 40%;
+            flex: 1;
+            display: block;
+            min-width: 150px;
+            max-width: 150px;
             position: relative;
+            margin-right: 10px;
           }
           input {
             display: none;
@@ -294,6 +387,8 @@ section.category-content-component {
           label {
             display: block;
             position: relative;
+            height: 100%;
+            margin-bottom: 0;
             &:after {
               display: block;
               content: '';
@@ -307,6 +402,12 @@ section.category-content-component {
             img {
               display: block;
               width: 100%;
+            }
+            span {
+              display: block;
+              width: 100%;
+              white-space: pre-wrap;
+              font-size: 0.75rem;
             }
           }
         }
