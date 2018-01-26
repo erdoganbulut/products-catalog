@@ -136,6 +136,8 @@ export default {
       hacimType: 'cc',
       temper: '',
       standart: '',
+      pageQuery: '',
+      firstLoadedSubCats: false,
     };
   },
   computed: {
@@ -149,6 +151,7 @@ export default {
       categoriesSstatus: 'categories/status',
       lang: 'lang/lang',
       subCategories: 'subCategories/subCategories',
+      subCategoriesStatus: 'subCategories/status',
       functions: 'functions/functions',
       series: 'series/series',
       inners: 'inners/inners',
@@ -186,13 +189,14 @@ export default {
         }
       }
     },
-    getProductsIsDoneCategories() {
+    async getProductsIsDoneCategories() {
       if (this.isCategories) {
         if (this.categoriesSstatus === 'done' && this.categories.length > 0) {
           this.selectedCategory = JSON.parse(JSON.stringify(
                                     window.$lodash.find(
                                       this.categories, { url: this.$route.params.category })));
-          this.getProducts(this.selectedCategory.id);
+          await this.getProducts(this.selectedCategory.id);
+          await this.filterProducts();
           this.getSubCategories(this.selectedCategory.id);
         }
       }
@@ -219,8 +223,21 @@ export default {
       productsGrouped4Series = window.$lodash.orderBy(productsGrouped4Series, ['name']);
       this.productsGrouped4Series = productsGrouped4Series;
     },
+    autoSelect2SubCat4Query() {
+      if (this.subCategoriesStatus === 'done' && this.status === 'done') {
+        this.subCategoriesCheckeds = this.pageQuery.sub;
+        this.firstLoadedSubCats = true;
+        this.filterProducts();
+      }
+    },
   },
   mounted() {
+    if (window.$lodash.isEmpty(this.$route.query)) {
+      this.pageQuery = '';
+      this.firstLoadedSubCats = true;
+    } else {
+      this.pageQuery = this.$route.query;
+    }
     this.resetFunctions();
     this.resetSeries();
     if (this.catalogStatus !== 'done') this.getCatalog();
@@ -266,6 +283,12 @@ export default {
     },
     standart() {
       this.filterProducts();
+    },
+    status() {
+      this.autoSelect2SubCat4Query();
+    },
+    subCategories() {
+      this.autoSelect2SubCat4Query();
     },
   },
 };

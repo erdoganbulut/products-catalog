@@ -4,9 +4,9 @@ const filterProducts = (arr, filter) => {
   let Arr = JSON.parse(JSON.stringify(arr));
   const Filter = JSON.parse(JSON.stringify(filter));
 
-  console.log(Filter);
-
-  if (Filter.subCategory !== '') Arr = window.$lodash.filter(Arr, { category: parseInt(Filter.subCategory, 10) });
+  if (Filter.subCategory !== '' && typeof Filter.subCategory !== 'undefined') {
+    Arr = window.$lodash.filter(Arr, { category: parseInt(Filter.subCategory, 10) });
+  }
   if (Filter.functions.length > 0) {
     Arr = window.$lodash.filter(Arr, (o) => {
       return Filter.functions.indexOf(o.functions.id) > -1;
@@ -70,8 +70,9 @@ const getters = {
 };
 
 const actions = {
-  getProducts({ commit, rootState }, catId) {
-    Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/${rootState.lang.lang.url}/${catId}/allproducts`).then((response) => {
+  async getProducts({ commit, rootState }, catId) {
+    commit('receiveStatus', 'on-request');
+    await Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/${rootState.lang.lang.url}/${catId}/allproducts`).then((response) => {
       const Response = response;
       commit('receiveProductsAll', Response.body);
       commit('receiveProducts', Response.body);

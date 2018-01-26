@@ -128,7 +128,7 @@
             </span>
           </li>
           <li v-for="subCategory in levelThreeContent.items" :key="'headersubCategory' + subCategory.id">
-            <router-link :to="'/' + lang.url + '/catalog/' + levelTwoContent.url + '/category/' + levelThreeContent.url + '?sub[' + subCategory.id + ']'" v-on:click.native="handleClickRouterLink()">
+            <router-link :to="`/${lang.url}/catalog/${levelTwoContent.url}/category/${levelThreeContent.url}?sub=${subCategory.id}`" v-on:click.native="handleClickRouterLink()">
               <span>{{ subCategory.name }}</span>
             </router-link>
             <span class="item--icon">
