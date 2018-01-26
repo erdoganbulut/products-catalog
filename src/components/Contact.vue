@@ -2,6 +2,9 @@
   <main class="page">
     <section class="static-page-component">
       <div class="container">
+        <div class="page--image">
+          <img src="../assets/statics/sisecam_b.jpg" alt="">
+        </div>
         <div class="page--content">
           <h1 v-html="lang.contact_title"></h1>
           <div class="content" v-html="lang.contact_content">
