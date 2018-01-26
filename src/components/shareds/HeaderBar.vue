@@ -262,6 +262,9 @@ header {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
+      .ui-dropdown {
+        margin-right: 10px;
+      }
     }
     .toggle-navigation {
       display: block;
