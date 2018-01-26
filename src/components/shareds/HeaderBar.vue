@@ -6,9 +6,8 @@
         <img src="../../assets/logo-w.svg" alt="Logo" class="logo-nav">
       </router-link>
       <div class="right-outer">
-        <b-dropdown id="ddown1" text="TR" class="ui-dropdown ui-dropdown--sm">
-          <b-dropdown-item>TR</b-dropdown-item>
-          <b-dropdown-item>EN</b-dropdown-item>
+        <b-dropdown id="ddown1" :text="lang.url" class="ui-dropdown ui-dropdown--sm">
+          <b-dropdown-item v-for="(langItem, index) in langList.langItems" :key="'langlistItem' + index" :href="`#/${langItem.url}`">{{ langItem.name }}</b-dropdown-item>
         </b-dropdown>
         <a href="javascript:;" class="toggle-navigation" v-bind:class="{'active': isNavOpen}" v-on:click="isNavOpen = !isNavOpen">
           <svg>
