@@ -10,7 +10,7 @@
       </ol>
       <ol class="breadcrumb" v-if="$route.meta.page === 'category'">
         <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">{{ lang.bread_katalogsecim }}</router-link></li>
-        <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/' + $route.params.catalog">{{ $route.params.catalog }}</router-link></li>
+        <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/catalog/' + $route.params.catalog">{{ $route.params.catalog }}</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">{{ $route.params.category }}</li>
       </ol>
       <ol class="breadcrumb" v-if="$route.meta.page === 'product'">

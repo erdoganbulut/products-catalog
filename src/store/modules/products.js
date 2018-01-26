@@ -4,6 +4,15 @@ const filterProducts = (arr, filter) => {
   let Arr = JSON.parse(JSON.stringify(arr));
   const Filter = JSON.parse(JSON.stringify(filter));
 
+  if (Filter.searchText !== '' && typeof Filter.searchText !== 'undefined') {
+    const newArr = [];
+    window.$lodash.forEach(Arr, (val) => {
+      const item = JSON.stringify(val).toUpperCase().toLowerCase();
+      if (item.indexOf(Filter.searchText.toUpperCase().toLowerCase()) > -1) newArr.push(val);
+    });
+    console.log(newArr);
+    Arr = newArr;
+  }
   if (Filter.subCategory !== '' && typeof Filter.subCategory !== 'undefined') {
     Arr = window.$lodash.filter(Arr, { category: parseInt(Filter.subCategory, 10) });
   }

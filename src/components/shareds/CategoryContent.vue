@@ -18,6 +18,12 @@
           </svg>
         </a>
       </div>
+      <div class="filter-item filter-item--horizontal filter-item--search">
+        <h3>{{ lang.filtre_search }}</h3>
+        <div class="filter--inner-items">
+          <input v-model="searchText" class="form-control" type="text" name="" placeholder="Arama" id="">
+        </div>
+      </div>
       <div class="filter-item filter-item--horizontal filter-item--categories">
         <h3>{{ lang.filtre_kategoriler }}</h3>
         <div class="filter--inner-items">
@@ -155,6 +161,7 @@ export default {
       pageQuery: '',
       firstLoadedSubCats: false,
       selectedSubCatName: '',
+      searchText: '',
     };
   },
   computed: {
@@ -231,6 +238,7 @@ export default {
         temper: this.temper,
         standart: this.standart,
         limited: this.limited,
+        searchText: this.searchText,
       };
       this.receiveProductsFilter(filter);
     },
@@ -311,6 +319,9 @@ export default {
       this.filterProducts();
     },
     status() {
+      this.autoSelect2SubCat4Query();
+    },
+    searchText() {
       this.autoSelect2SubCat4Query();
     },
     subCategories() {

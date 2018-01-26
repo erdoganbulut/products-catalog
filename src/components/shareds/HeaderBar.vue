@@ -1,7 +1,7 @@
 <template>
   <header v-bind:class="{'is-nav--open': isNavOpen}">
     <div class="header--inner">
-      <router-link :to="'/' + lang.url + '/'" class="logo">
+      <router-link v-on:click.native="handleClickRouterLink()" :to="'/' + lang.url + '/'" class="logo">
         <img src="../../assets/logo.svg" alt="Logo" class="logo-normal">
         <img src="../../assets/logo-w.svg" alt="Logo" class="logo-nav">
       </router-link>
@@ -76,24 +76,24 @@
             </router-link>
           </li>
           <li class="item-type--social">
-            <a href="/" target="_blank">
+            <a href="https://www.facebook.com/Pasabahce/" target="_blank">
               <svg width="20" height="20">
-                <use xmlns:xlink="https://www.facebook.com/Pasabahce/" xlink:href="#svgIconFacebook"></use>
+                <use xlink:href="#svgIconFacebook"></use>
               </svg>
             </a>
-            <a href="/" target="_blank">
+            <a href="https://twitter.com/pasabahce" target="_blank">
               <svg width="22" height="18">
-                <use xmlns:xlink="https://twitter.com/pasabahce" xlink:href="#svgIconTwitter"></use>
+                <use xlink:href="#svgIconTwitter"></use>
               </svg>
             </a>
-            <a href="/" target="_blank">
+            <a href="https://www.youtube.com/channel/UCv92-wt46VpQlsjcOo9NNog" target="_blank">
               <svg width="22" height="16">
-                <use xmlns:xlink="https://www.youtube.com/channel/UCv92-wt46VpQlsjcOo9NNog" xlink:href="#svgIconYoutube"></use>
+                <use xlink:href="#svgIconYoutube"></use>
               </svg>
             </a>
-            <a href="/" target="_blank">
+            <a href="https://www.instagram.com/pasabahce/" target="_blank">
               <svg width="20" height="20">
-                <use xmlns:xlink="https://www.instagram.com/pasabahce/" xlink:href="#svgIconInstagram"></use>
+                <use xlink:href="#svgIconInstagram"></use>
               </svg>
             </a>
           </li>
