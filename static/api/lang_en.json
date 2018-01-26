@@ -28,7 +28,7 @@
   "filtre_sonuc_yok": "There are no products that meet the criteria you are looking for.",
   "see_product": "See Products",
   "menu_profil": "PROFILE",
-  "menu_hakkimizda": "ABOUT US",
+  "menu_hakkimizda": "GROUP PROFILE",
   "menu_iletisim": "CONTACT",
   "menu_hepsini_gor": "SEE ALL",
   "shortlist_ad": "SHORTLIST NAME",
@@ -66,8 +66,8 @@
   "menu_logout": "Log out",
   "menu_login": "Log in",
   "breadcrumb_sign_in": "Log In",
-  "about_title": "HAKKIMIZDA",
-  "about_content": "<p>​Paşabahçe 80 yıllık köklü geçmişe sahip pazar lideri olmanın ötesinde Türkiye’nin duygusal bağ kurduğu, kalite ve güvenin simgesi olarak değer verdiği bir “love mark” olmayı başarmış bir markadır. Özgün tasarımları, kategori ve ürün çeşitliliği sayesinde Paşabahçe, sektörünün trend belirleyen lider markası konumundadır. Paşabahçe, evlerin ve ofislerin her köşesinde, hayatın her anında sağlıklı, çevreci, sürekli yeniliğe dayalı özel çözümlerle tüketicilerin hayatını kolaylaştırıyor, güzelleştiriyor.</p><p><b>Vizyon:</b> Camda ve faaliyet alanlarında öncü bir geleceğe oynarken iş ortaklarıyla yaratıcı çözümler üreten, teknoloji ve markalarıyla fark yaratan, bireye ve çevreye saygılı bir dünya şirketi olmak.</p><p><b>Misyon:</b> Kaliteli ve konfor yaratan ürünleriyle yaşama değer katan; insana, doğaya, yasaya saygılı bir şirket olmak. </p>",
-  "contact_title": "İLETİŞİM",
-  "contact_content": "<p><b>ŞİŞECAM GENEL MERKEZİ</b><br>İçmeler Mahallesi, D-100 Karayolu Caddesi, No:44A<br>34947 Tuzla/İSTANBUL<br>Tel: 0850 206 50 50<br>E-posta adresimiz: musterihizmetleri@pasabahce.com<br>Müşteri Hizmetleri: 0850 222 19 35</p>"
+  "about_title": "GROUP PROFILE",
+  "about_content": "<p>​Besides being a market leader with a well-rooted history of 80 years, Paşabahçe is also Turkey’s “love mark” that has established sentimental connections with the whole country, and is regarded as the symbol of quality and trust. Thanks to its original designs and the variety of its categories and products, Paşabahçe is the trendsetter brand of its industry. Paşabahçe makes the life of its customers easier and more beautiful with the healthy, environment-friendly, and innovative special solutions it offers in every corner of their homes and offices, and at every moment of their lives.</p>",
+  "contact_title": "CONTACT",
+  "contact_content": "<p><b>ŞİŞECAM HEADQUARTERS</b><br>İçmeler Mahallesi, D-100 Karayolu Caddesi, No:44A<br>34947 Tuzla/İSTANBUL<br>Tel: 0850 206 50 50<br>E-posta adresimiz: musterihizmetleri@pasabahce.com<br>Müşteri Hizmetleri: 0850 222 19 35</p>"
 }
