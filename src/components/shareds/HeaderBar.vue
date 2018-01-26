@@ -5,14 +5,20 @@
         <img src="../../assets/logo.svg" alt="Logo" class="logo-normal">
         <img src="../../assets/logo-w.svg" alt="Logo" class="logo-nav">
       </router-link>
-      <a href="javascript:;" class="toggle-navigation" v-bind:class="{'active': isNavOpen}" v-on:click="isNavOpen = !isNavOpen">
-        <svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconHamburger"></use>
-        </svg>
-        <svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconClose"></use>
-        </svg>
-      </a>
+      <div class="right-outer">
+        <b-dropdown id="ddown1" text="TR" class="ui-dropdown ui-dropdown--sm">
+          <b-dropdown-item>TR</b-dropdown-item>
+          <b-dropdown-item>EN</b-dropdown-item>
+        </b-dropdown>
+        <a href="javascript:;" class="toggle-navigation" v-bind:class="{'active': isNavOpen}" v-on:click="isNavOpen = !isNavOpen">
+          <svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconHamburger"></use>
+          </svg>
+          <svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconClose"></use>
+          </svg>
+        </a>
+      </div>
     </div>
     <nav>
       <div class="lists-outer" v-bind:class="[`level-${navLevel}`]">
@@ -251,6 +257,11 @@ header {
           transition-delay: 0s;
         }
       }
+    }
+    .right-outer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
     }
     .toggle-navigation {
       display: block;

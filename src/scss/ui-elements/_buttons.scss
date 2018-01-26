@@ -1,0 +1,21 @@
+.ui-dropdown {
+  .dropdown-toggle {
+    font-size: 0.75rem;
+    padding: 0.125rem 0.50rem;
+    border-radius: 0;
+    background: #eee;
+    color: #222222;
+    border: none;
+    &.dropdown-toggle {
+      background: #eee;
+      color: #222222;
+    }
+  }
+  .dropdown-item {
+    font-size: 0.75rem;
+    padding: 0.125rem 0.75rem;
+  }
+  .dropdown-menu {
+    min-width: 5rem;
+  }
+}
