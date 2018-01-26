@@ -55,15 +55,15 @@
         </div>
       </div>
       <div class="filter-item filter-item--horizontal filter-item--other">
-        <h3>DİĞER</h3>
+        <h3>{{ lang.filtre_diger }}</h3>
         <div class="other-item" v-if="inners.length > 0">
-          <h4>İNNER TYPE</h4>
+          <h4>{{ lang.filtre_paket }}</h4>
           <select class="form-control ui-select" v-model="selectedInner">
             <option v-for="(inner, index) in inners" :key="'finner' + index" :value="inner.id">{{ inner.name }}</option>
           </select>
         </div>
         <div class="other-item">
-          <h4>HACİM</h4>
+          <h4>{{ lang.filtre_hacim }}</h4>
           <div class="multiple-form-items">
             <input type="text" class="form-control" v-model="hacimMin">
             <input type="text" class="form-control" v-model="hacimMax">
@@ -75,16 +75,16 @@
           </div>
         </div>
         <div class="other-item">
-          <h4>TEMPER</h4>
+          <h4>{{ lang.filtre_temper }}</h4>
           <div class="multiple-form-items">
             <input id="temperYes" name="temper" v-model="temper" type="radio" value="1" class="form-control">
-            <label for="temperYes">Evet</label>
+            <label for="temperYes">{{ lang.filtre_temper_evet }}</label>
             <input id="temperNo" name="temper" v-model="temper" type="radio" value="0" class="form-control">
-            <label for="temperNo">Hayır</label>
+            <label for="temperNo">{{ lang.filtre_temper_hayir }}</label>
           </div>
         </div>
         <div class="other-item">
-          <h4>STANDART</h4>
+          <h4>{{ lang.filtre_stok }}</h4>
           <div class="multiple-form-items">
             <input id="standartNo" name="standart" v-model="standart" type="radio" value="0" class="form-control">
             <label for="standartNo">0</label>
@@ -93,10 +93,10 @@
           </div>
         </div>
       </div>
-      <a href="javascript:;" v-on:click="isOpenFilterItems = !isOpenFilterItems">({{ products.length }} adet) ürün göster</a>
+      <a href="javascript:;" v-on:click="isOpenFilterItems = !isOpenFilterItems">({{ products.length }} adet) {{ lang.filtre_sonuc }}</a>
     </div>
     <div class="serie-items">
-      <p v-if="products.length < 1">Ürün Yok</p>
+      <p v-if="products.length < 1">{{ lang.filtre_sonuc_yok }}</p>
       <div class="serie-item" v-for="(pSerie, index) in productsGrouped4Series" :key="'pSerie' + index">
         <div class="info-bar">
           <h3>{{ pSerie.name }}</h3>
