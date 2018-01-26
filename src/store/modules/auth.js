@@ -35,6 +35,12 @@ const actions = {
       commit('receiveResponse', Response);
     });
   },
+  logout({ commit }) {
+    commit('receiveUser', 'error');
+    commit('receiveStatus', 'non-request');
+    commit('receiveAccesstoken', '');
+    commit('receiveRefreshtoken', '');
+  },
 };
 
 const state = {

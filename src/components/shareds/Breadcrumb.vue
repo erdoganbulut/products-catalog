@@ -22,6 +22,14 @@
         <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">{{ lang.bread_katalogsecim }}</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">{{ lang.bread_profil }}</li>
       </ol>
+      <ol class="breadcrumb" v-if="$route.meta.page === 'login'">
+        <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">{{ lang.bread_katalogsecim }}</router-link></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ lang.breadcrumb_sign_in }}</li>
+      </ol>
+      <ol class="breadcrumb" v-if="$route.meta.page === 'about'">
+        <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">{{ lang.bread_katalogsecim }}</router-link></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ lang.about_title }}</li>
+      </ol>
     </nav>
   </section>
 </template>
@@ -62,6 +70,10 @@ section.breadcrumb-component {
       border-radius: 0px;
       background: #FAFAFA;
       color: #1A1A1A;
+      padding-left: 35px;
+      .breadcrumb-item {
+        text-transform: uppercase;
+      }
       a {
         color: inherit;
         text-decoration: none;

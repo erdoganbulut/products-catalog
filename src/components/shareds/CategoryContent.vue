@@ -25,20 +25,20 @@
             <input type="radio" name="selectedSubCategoryRadio" :id="'functionCheck' + categoryItem.id" :value="categoryItem.id" v-model="subCategoriesCheckeds">
             <label :for="'functionCheck' + categoryItem.id">
               <img :src="categoryItem.photo" alt="">
-              <span>{{ categoryItem.name }}</span>
             </label>
+            <span>{{ categoryItem.name }}</span>
           </div>
         </div>
       </div>
       <div class="filter-item filter-item--horizontal filter-item--functions" v-if="functions.length > 0">
         <h3>{{ lang.filtre_fonksiyonlar }}</h3>
         <div class="filter--inner-items">
-          <div class="filter--inner-item" v-for="functionItem in functions" :key="'func' + functionItem.id">
+          <div class="filter--inner-item filter--inner-item-functions" v-for="functionItem in functions" :key="'func' + functionItem.id">
             <input type="checkbox" :id="'functionCheck' + functionItem.id" :value="functionItem.id" v-model="functionsCheckeds">
             <label :for="'functionCheck' + functionItem.id">
               <img :src="functionItem.photo" alt="">
-              <span>{{ functionItem.name }}</span>
             </label>
+            <span>{{ functionItem.name }}</span>
           </div>
         </div>
       </div>
@@ -49,8 +49,8 @@
             <input type="checkbox" :id="'functionCheck' + serieItem.id" :value="serieItem.id" v-model="seriesCheckeds">
             <label :for="'functionCheck' + serieItem.id">
               <img :src="serieItem.photo" alt="">
-              <span>{{ serieItem.name }}</span>
             </label>
+            <span>{{ serieItem.name }}</span>
           </div>
         </div>
       </div>
@@ -76,27 +76,42 @@
         </div>
         <div class="other-item">
           <h4>{{ lang.filtre_temper }}</h4>
-          <div class="multiple-form-items">
-            <input id="temperYes" name="temper" v-model="temper" type="radio" value="1" class="form-control">
-            <label for="temperYes">{{ lang.filtre_temper_evet }}</label>
-            <input id="temperNo" name="temper" v-model="temper" type="radio" value="0" class="form-control">
-            <label for="temperNo">{{ lang.filtre_temper_hayir }}</label>
+          <div class="multiple-form-items is--temper">
+            <div>
+              <input id="temperYes" name="temper" v-model="temper" type="radio" value="1" class="form-control">
+              <label for="temperYes">{{ lang.filtre_temper_evet }}</label>
+            </div>
+            <div>
+              <input id="temperNo" name="temper" v-model="temper" type="radio" value="0" class="form-control">
+              <label for="temperNo" class="is--no">{{ lang.filtre_temper_hayir }}</label>
+            </div>
           </div>
         </div>
         <div class="other-item">
           <h4>{{ lang.filtre_stok }}</h4>
-          <div class="multiple-form-items">
-            <input id="standartNo" name="standart" v-model="standart" type="radio" value="0" class="form-control">
-            <label for="standartNo">0</label>
-            <input id="standartYes" name="standart" v-model="standart" type="radio" value="1" class="form-control">
-            <label for="standartYes">1</label>
+          <div class="multiple-form-items is--standart">
+            <div>
+              <input id="standartNo" name="limited" v-model="limited" type="checkbox" class="form-control">
+              <label for="standartNo"><img src="../../assets/limited.png" alt=""></label>
+            </div>
+            <div>
+              <input id="standartYes" name="standart" v-model="standart" type="checkbox" class="form-control">
+              <label for="standartYes"><img src="../../assets/standart.png" alt=""></label>
+            </div>
           </div>
         </div>
       </div>
-      <a href="javascript:;" v-on:click="isOpenFilterItems = !isOpenFilterItems">({{ products.length }} adet) {{ lang.filtre_sonuc }}</a>
+      <div class="filter-item">
+        <a href="javascript:;" class="btn view-products-btn" v-on:click="isOpenFilterItems = !isOpenFilterItems">({{ products.length }} {{ products.length > 1 ? lang.adetler : lang.adet }}) {{ lang.filtre_sonuc }}</a>
+      </div>
     </div>
     <div class="serie-items">
       <p v-if="products.length < 1">{{ lang.filtre_sonuc_yok }}</p>
+      <div class="serie-item" v-if="selectedSubCatName !== ''">
+        <div class="info-bar" style="background: #222;">
+          <h3 v-html="selectedSubCatName"></h3>
+        </div>
+      </div>
       <div class="serie-item" v-for="(pSerie, index) in productsGrouped4Series" :key="'pSerie' + index">
         <div class="info-bar">
           <h3>{{ pSerie.name }}</h3>
@@ -135,9 +150,11 @@ export default {
       hacimMax: '',
       hacimType: 'cc',
       temper: '',
-      standart: '',
+      standart: true,
+      limited: true,
       pageQuery: '',
       firstLoadedSubCats: false,
+      selectedSubCatName: '',
     };
   },
   computed: {
@@ -202,6 +219,7 @@ export default {
       }
     },
     filterProducts() {
+      this.fillSelectedSubCatName();
       const filter = {
         subCategory: this.subCategoriesCheckeds,
         functions: this.functionsCheckeds,
@@ -212,6 +230,7 @@ export default {
         hacimType: this.hacimType,
         temper: this.temper,
         standart: this.standart,
+        limited: this.limited,
       };
       this.receiveProductsFilter(filter);
     },
@@ -225,10 +244,14 @@ export default {
     },
     autoSelect2SubCat4Query() {
       if (this.subCategoriesStatus === 'done' && this.status === 'done') {
-        this.subCategoriesCheckeds = this.pageQuery.sub;
+        if (!window.$lodash.isEmpty(this.$route.query)) this.subCategoriesCheckeds = this.pageQuery.sub;
         this.firstLoadedSubCats = true;
         this.filterProducts();
       }
+    },
+    fillSelectedSubCatName() {
+      const selectedSubCatIndex = window.$lodash.findIndex(this.subCategories, { id: parseInt(this.subCategoriesCheckeds, 10) });
+      this.selectedSubCatName = typeof this.subCategories[selectedSubCatIndex] !== 'undefined' ? this.subCategories[selectedSubCatIndex].name : '';
     },
   },
   mounted() {
@@ -282,6 +305,9 @@ export default {
       this.filterProducts();
     },
     standart() {
+      this.filterProducts();
+    },
+    limited() {
       this.filterProducts();
     },
     status() {
@@ -344,6 +370,17 @@ section.category-content-component {
     bottom: 0;
     background: #222;
     overflow: auto;
+    .view-products-btn {
+      display: block;
+      background: #C31B2E;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.75rem;
+      margin-bottom: 20px;
+      &:hover {
+        background: darken(#C31B2E, 10%);
+      }
+    }
     .filter--title-bar {
       position: relative;
       padding: 12px;
@@ -383,6 +420,87 @@ section.category-content-component {
         padding-bottom: 12px;
         border-bottom: solid 1px #fff;
       }
+      &.filter-item--other {
+        display: flex;
+        flex-wrap: wrap;
+        h3 {
+          width: 100%;
+        }
+        .other-item {
+          width: 400px;
+          max-width: 100%;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          @media (min-width: 768px) {
+            margin-right: 20px;
+          }
+          h4 {
+            font-size: 0.75rem;
+            font-weight: 300;
+          }
+          .multiple-form-items {
+            display: flex;
+            > * {
+              min-width: 0px;
+              flex-grow: 1;
+              flex-basis: 0;
+              margin-right: 10px;
+              &:last-child {
+                margin-right: 0;
+              }
+            }
+            &.is--temper {
+              > * {
+                margin: 0;
+              }
+              input[type="radio"] {
+                display: none;
+                & ~ label {
+                  width: 100%;
+                  background: #fff;
+                  border: solid 1px #CED1D2;
+                  color: #9B9B9B;
+                  padding: 6px;
+                  text-align: center;
+                }
+                &:checked {
+                  & ~ label {
+                    background: rgba(67, 170, 139, 0.3);
+                    border-color: #43AA8B;
+                    color: #2A9D8F;
+                    &.is--no {
+                      background: rgba(67, 30, 34, 0.6);
+                      border-color: #431E22;
+                      color: #C31B2E;
+                    }
+                  }
+                }
+              }
+            }
+            &.is--standart {
+              > * {
+                flex-grow: 0;
+                flex-basis: auto;
+              }
+              input[type="checkbox"] {
+                display: none;
+                & ~ label {
+                  opacity: 0.4;
+                  img {
+                    display: block;
+                    height: 25px;
+                  }
+                }
+                &:checked {
+                  & ~ label {
+                    opacity: 1;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
       &.filter-item--functions,
       &.filter-item--categories,
       &.filter-item--series {
@@ -396,13 +514,20 @@ section.category-content-component {
             max-width: 150px;
             position: relative;
             margin-right: 10px;
+            &.filter--inner-item-functions {
+              border: solid 1px #fff;
+            }
           }
           input {
             display: none;
             &:checked {
               + label {
                 &:after {
-                  background: transparent;
+                  background: #fff;
+                  background-image: url('../../assets/selected.svg');
+                  background-size: 20px 20px;
+                  background-repeat: no-repeat;
+                  background-position: center;
                 }
               }
             }
@@ -410,28 +535,31 @@ section.category-content-component {
           label {
             display: block;
             position: relative;
-            height: 100%;
             margin-bottom: 0;
             &:after {
               display: block;
               content: '';
               position: absolute;
               top: 0;
-              left: 0;
+              left: auto;
+              width: 30px;
+              height: 30px;
               right: 0;
-              bottom: 0;
-              background: rgba(0, 0, 0, 0.5);
+              bottom: auto;
             }
             img {
               display: block;
               width: 100%;
             }
-            span {
-              display: block;
-              width: 100%;
-              white-space: pre-wrap;
-              font-size: 0.75rem;
-            }
+          }
+          span {
+            display: block;
+            width: 100%;
+            white-space: pre-wrap;
+            font-size: 0.75rem;
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
           }
         }
       }
@@ -461,6 +589,9 @@ section.category-content-component {
           color: inherit;
           text-decoration: none;
           border-bottom: solid 1px #D8D8D8;
+          @media (min-width: 992px) {
+            border-right: solid 1px #D8D8D8;
+          }
           &.is-more-items-text {
             font-size: 24px;
             text-align: center;

@@ -25,9 +25,29 @@
           <li class="item-type--title">
             <span>MENU</span>
           </li>
-          <li>
+          <li v-if="accesstoken !== ''">
             <router-link :to="'/' + lang.url" v-on:click.native="handleClickRouterLink()">
               <span>{{ lang.menu_profil }}</span>
+            </router-link>
+            <span class="item--icon">
+              <svg width="26" height="26">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconProfile"></use>
+              </svg>
+            </span>
+          </li>
+          <li v-if="accesstoken !== ''">
+            <a href="javascript:;" v-on:click="handleClickRouterLink(); logout();">
+              <span>{{ lang.menu_logout }}</span>
+            </a>
+            <span class="item--icon">
+              <svg width="26" height="26">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svgIconProfile"></use>
+              </svg>
+            </span>
+          </li>
+          <li v-if="accesstoken === ''">
+            <router-link :to="`/${lang.url}/login`" v-on:click.native="handleClickRouterLink()">
+              <span>{{ lang.menu_login }}</span>
             </router-link>
             <span class="item--icon">
               <svg width="26" height="26">
@@ -164,11 +184,13 @@ export default {
       langListStatus: 'lang/langListStatus',
       menu4Api: 'menu/menu',
       menuStatus: 'menu/status',
+      accesstoken: 'auth/accesstoken',
     }),
   },
   methods: {
     ...mapActions({
       getMenu: 'menu/getMenu',
+      logout: 'auth/logout',
     }),
     rightToMenu(level, content) {
       this.navLevel += 1;

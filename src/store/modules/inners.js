@@ -11,8 +11,8 @@ const actions = {
   getInners({ commit, rootState }, subCategoryId) {
     Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/${rootState.lang.lang.url}/${subCategoryId}/innertypes`).then((response) => {
       const Response = response;
-      commit('receiveInnersAll', Response.body);
-      commit('receiveInners', Response.body);
+      commit('receiveInnersAll', window.$lodash.orderBy(Response.body, ['name']));
+      commit('receiveInners', window.$lodash.orderBy(Response.body, ['name']));
       commit('receiveStatus', 'done');
       commit('receiveResponse', Response);
     }, (response) => {

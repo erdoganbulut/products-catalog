@@ -8,6 +8,8 @@ import Login from '@/components/Login';
 import User from '@/components/User';
 import ListAdd from '@/components/ListAdd';
 import ListUpdate from '@/components/ListUpdate';
+import About from '@/components/About';
+import Contact from '@/components/Contact';
 
 Vue.use(Router);
 
@@ -80,6 +82,22 @@ export default new Router({
       component: ListUpdate,
       meta: {
         page: 'ListUpdate',
+      },
+    },
+    {
+      path: '/:lang/about',
+      name: 'About',
+      component: About,
+      meta: {
+        page: 'about',
+      },
+    },
+    {
+      path: '/:lang/contact',
+      name: 'Contact',
+      component: Contact,
+      meta: {
+        page: 'contact',
       },
     },
   ],

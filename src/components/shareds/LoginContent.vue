@@ -2,11 +2,23 @@
   <section class="login-content-component">
     <div class="container">
       <form v-on:submit.prevent="onSubmit">
-        <input type="email" class="form-control" v-model="tokenparams.username" :placeholder="lang.login_email">
-        <input type="password" class="form-control" v-model="tokenparams.password"
-        :placeholder="lang.login_password">
-        <button type="submit" class="btn btn-primary">{{ lang.login_sign_in }}</button>
-        <p v-if="error !== ''">{{ error }}</p>
+        <div class="form-item">
+          <p>Üyelik özelliği sadece Paşabahçe çalışanlarının erişimine açıktır.</p>
+        </div>
+        <div class="form-item">
+          <label for="inputemail">e-mail</label>
+          <input id="inputemail" type="email" class="form-control" v-model="tokenparams.username" :placeholder="lang.login_email">
+        </div>
+        <div class="form-item">
+          <label for="inputpassword">şifre</label>
+          <input id="inputpassword" type="password" class="form-control" v-model="tokenparams.password" :placeholder="lang.login_password">
+        </div>
+        <div class="form-item">
+          <button type="submit" class="btn">{{ lang.login_sign_in }}</button>
+        </div>
+        <div class="form-item">
+          <p v-if="error !== ''">{{ error }}</p>
+        </div>
       </form>
     </div>
   </section>
@@ -67,6 +79,37 @@ export default {
 @import '../../scss/shareds';
 
 section.login-content-component {
-
+  .form-item {
+    padding: 10px 0;
+    font-size: 0.75rem;
+    input {
+      font-size: 0.75rem;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      border-radius: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    label {
+      font-weight: 300;
+      color: #B40023;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      background: #C31B2E;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.75rem;
+      margin-bottom: 20px;
+      &:hover {
+        background: darken(#C31B2E, 10%);
+      }
+    }
+    p {
+      margin: 0;
+    }
+  }
 }
 </style>

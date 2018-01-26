@@ -1,7 +1,7 @@
 <template>
   <section class="user-content-component">
     <div class="container">
-      {{ lang.profil_welcome }}lang. {{ user.name }}
+      {{ lang.profil_welcome }} {{ user.name }}
       <div v-for="(list, index) in lists" :key="'listitem' + index">{{ list.name }} <a href="javascript:;" v-on:click="handleDuplicate(index)">{{ lang.shortlist_cogalt }}</a><router-link :to="`/${lang.url}/list/update/${index}`">{{ lang.shortlist_duzenle }}</router-link></div>
       <p><router-link :to="`/${lang.url}/list/add`">{{ lang.shortlist_yeni_liste }}</router-link></p>
     </div>

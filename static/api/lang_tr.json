@@ -59,5 +59,15 @@
   "product_maxwidth": "Maks. Genişlik",
   "product_share": "PAYLAŞ",
   "product_create_list": "YENİ SHORTLIST",
-  "profil_welcome": "HOŞGELDİN"
+  "profil_welcome": "HOŞGELDİN",
+  "adet": "adet",
+  "adetler": "adet",
+  "shorlist_select_text": "Seçiniz",
+  "menu_logout": "Çıkış Yap",
+  "menu_login": "Giriş Yap",
+  "breadcrumb_sign_in": "Giriş Yap",
+  "about_title": "HAKKIMIZDA",
+  "about_content": "<p>​Paşabahçe 80 yıllık köklü geçmişe sahip pazar lideri olmanın ötesinde Türkiye’nin duygusal bağ kurduğu, kalite ve güvenin simgesi olarak değer verdiği bir “love mark” olmayı başarmış bir markadır. Özgün tasarımları, kategori ve ürün çeşitliliği sayesinde Paşabahçe, sektörünün trend belirleyen lider markası konumundadır. Paşabahçe, evlerin ve ofislerin her köşesinde, hayatın her anında sağlıklı, çevreci, sürekli yeniliğe dayalı özel çözümlerle tüketicilerin hayatını kolaylaştırıyor, güzelleştiriyor.</p><p><b>Vizyon:</b> Camda ve faaliyet alanlarında öncü bir geleceğe oynarken iş ortaklarıyla yaratıcı çözümler üreten, teknoloji ve markalarıyla fark yaratan, bireye ve çevreye saygılı bir dünya şirketi olmak.</p><p><b>Misyon:</b> Kaliteli ve konfor yaratan ürünleriyle yaşama değer katan; insana, doğaya, yasaya saygılı bir şirket olmak. </p>",
+  "contact_title": "İLETİŞİM",
+  "contact_content": "<p><b>ŞİŞECAM GENEL MERKEZİ</b><br>İçmeler Mahallesi, D-100 Karayolu Caddesi, No:44A<br>34947 Tuzla/İSTANBUL<br>Tel: 0850 206 50 50<br>E-posta adresimiz: musterihizmetleri@pasabahce.com<br>Müşteri Hizmetleri: 0850 222 19 35</p>"
 }

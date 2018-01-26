@@ -1,6 +1,5 @@
 <template>
   <section class="category-list-component">
-    <div class="container">
       <div class="category-items">
         <div class="category-item" v-for="category in categories" :key="'cat' + category.id">
           <router-link :to="'/' + lang.url + '/catalog/' + $route.params.catalog + '/category/' + category.url" class="category-item-inner">
@@ -14,7 +13,6 @@
           </router-link>
         </div>
       </div>
-    </div>
   </section>
 </template>
 
@@ -85,6 +83,7 @@ section.category-list-component {
       padding: 1px 0;
       @media (min-width: 768px) {
         width: 50%;
+        padding: 0;
       }
       .category-item-inner {
         display: block;

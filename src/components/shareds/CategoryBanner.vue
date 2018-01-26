@@ -1,5 +1,5 @@
 <template>
-  <section class="category-banner-component" v-if="selectedCategory !== ''">
+  <section class="category-banner-component" v-if="selectedCategory !== ''" :style="`background-image: url(${selectedCategory.photo})`">
     <img :src="selectedCategory.photo" alt="">
     <div class="overlay">
       <h1 v-html="selectedCategory.name"></h1>
@@ -76,6 +76,15 @@ export default {
 
 section.category-banner-component {
   position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  @media (max-width: 767px) {
+    background-image: none !important;
+  }
+  @media (min-width: 768px) {
+    height: 200px;
+  }
   .overlay {
     position: absolute;
     top: 0;
@@ -98,6 +107,9 @@ section.category-banner-component {
     display: block;
     width: 100%;
     height: auto;
+    @media (min-width: 768px) {
+      display: none;
+    }
   }
 }
 </style>

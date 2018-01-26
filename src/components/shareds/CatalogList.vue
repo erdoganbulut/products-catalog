@@ -62,6 +62,7 @@ section.catalog-list-component {
       padding: 1px 0;
       @media (min-width: 768px) {
         width: 50%;
+        padding: 0;
       }
       .catalog-item-inner {
         display: block;

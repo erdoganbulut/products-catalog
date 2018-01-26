@@ -53,10 +53,24 @@ const filterProducts = (arr, filter) => {
       return o.tempered.toString() === Filter.temper.toString();
     });
   }
-  if (Filter.standart !== '') {
-    Arr = window.$lodash.filter(Arr, (o) => {
-      return o.standard.toString() === Filter.standart.toString();
-    });
+  if (Filter.standart !== '' && Filter.limited !== '') {
+    if (Filter.standart && Filter.limited) {
+      Arr = window.$lodash.filter(Arr, (o) => {
+        return o.standard.toString().length > -1;
+      });
+    } else if (!Filter.standart && Filter.limited) {
+      Arr = window.$lodash.filter(Arr, (o) => {
+        return o.standard.toString() === '0';
+      });
+    } else if (Filter.standart && !Filter.limited) {
+      Arr = window.$lodash.filter(Arr, (o) => {
+        return o.standard.toString() === '1';
+      });
+    } else {
+      Arr = window.$lodash.filter(Arr, (o) => {
+        return o.standard.toString().length > -1;
+      });
+    }
   }
 
   return Arr;

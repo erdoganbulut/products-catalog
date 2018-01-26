@@ -1,3 +1,23 @@
 body {
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
+section.static-page-component {
+  .page--image {
+    margin-top: 30px;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+  .page--content {
+    margin-top: 30px;
+    h1 {
+      color: #C31B2E;
+      font-weight: 300;
+      font-size: 2rem;
+    }
+    b {
+      font-weight: 500;
+    }
+  }
+}
