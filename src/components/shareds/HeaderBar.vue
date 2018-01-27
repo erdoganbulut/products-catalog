@@ -66,12 +66,12 @@
             </span>
           </li>
           <li>
-            <router-link :to="'/' + lang.url" v-on:click.native="handleClickRouterLink()">
+            <router-link :to="'/' + lang.url + '/about'" v-on:click.native="handleClickRouterLink()">
               <span>{{ lang.menu_hakkimizda }}</span>
             </router-link>
           </li>
           <li>
-            <router-link :to="'/' + lang.url" v-on:click.native="handleClickRouterLink()">
+            <router-link :to="'/' + lang.url + '/contact'" v-on:click.native="handleClickRouterLink()">
               <span>{{ lang.menu_iletisim }}</span>
             </router-link>
           </li>
