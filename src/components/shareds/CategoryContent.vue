@@ -81,6 +81,20 @@
           </div>
         </div>
         <div class="other-item">
+          <h4>{{ lang.filtre_basediameter }}</h4>
+          <div class="multiple-form-items">
+            <input type="text" class="form-control" placeholder="mm" v-model="tabanCapiMin">
+            <input type="text" class="form-control" placeholder="mm" v-model="tabanCapiMax">
+          </div>
+        </div>
+        <div class="other-item">
+          <h4>{{ lang.filtre_filterheight }}</h4>
+          <div class="multiple-form-items">
+            <input type="text" class="form-control" placeholder="mm" v-model="filterHeightMin">
+            <input type="text" class="form-control" placeholder="mm" v-model="filterHeightMax">
+          </div>
+        </div>
+        <div class="other-item">
           <h4>{{ lang.filtre_temper }}</h4>
           <div class="multiple-form-items is--temper">
             <div>
@@ -163,6 +177,10 @@ export default {
       firstLoadedSubCats: false,
       selectedSubCatName: '',
       searchText: '',
+      tabanCapiMin: '',
+      tabanCapiMax: '',
+      filterHeightMin: '',
+      filterHeightMax: '',
     };
   },
   computed: {
@@ -256,6 +274,10 @@ export default {
         standart: this.standart,
         limited: this.limited,
         searchText: this.searchText,
+        tabanCapiMin: this.tabanCapiMin,
+        tabanCapiMax: this.tabanCapiMax,
+        filterHeightMin: this.filterHeightMin,
+        filterHeightMax: this.filterHeightMax,
       };
       this.receiveProductsFilter(filter);
     },
@@ -351,6 +373,18 @@ export default {
     },
     searchText() {
       this.autoSelect2SubCat4Query();
+    },
+    tabanCapiMin() {
+      this.filterProducts();
+    },
+    tabanCapiMax() {
+      this.filterProducts();
+    },
+    filterHeightMin() {
+      this.filterProducts();
+    },
+    filterHeightMax() {
+      this.filterProducts();
     },
     subCategories() {
       this.autoSelect2SubCat4Query();

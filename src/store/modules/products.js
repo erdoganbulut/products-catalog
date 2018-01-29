@@ -106,6 +106,26 @@ const filterProducts = (arr, filter) => {
       });
     }
   }
+  if (Filter.tabanCapiMin !== '') {
+    Arr = window.$lodash.filter(Arr, (o) => {
+      return o.base[0] >= Filter.tabanCapiMin;
+    });
+  }
+  if (Filter.tabanCapiMax !== '') {
+    Arr = window.$lodash.filter(Arr, (o) => {
+      return o.volume[0] <= Filter.tabanCapiMax;
+    });
+  }
+  if (Filter.filterHeightMin !== '') {
+    Arr = window.$lodash.filter(Arr, (o) => {
+      return o.height[0] >= Filter.filterHeightMin;
+    });
+  }
+  if (Filter.filterHeightMax !== '') {
+    Arr = window.$lodash.filter(Arr, (o) => {
+      return o.height[0] <= Filter.filterHeightMax;
+    });
+  }
 
   return Arr;
 };
