@@ -31,7 +31,7 @@ section.preloader-component {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   top: 0;
   left: 0;
   right: 0;
