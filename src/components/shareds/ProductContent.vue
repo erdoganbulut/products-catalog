@@ -8,7 +8,7 @@
         <div class="product-top-info">
           <h1>
             <span class="product-serie-name">{{ product.series.name }}</span>
-            <span class="product-code">{{ product.sku }}</span> -
+            <span class="product-code">{{ product.pattern }}</span> -
             <span class="product-name">{{ product.name }}</span>
           </h1>
           <div class="package-info">
