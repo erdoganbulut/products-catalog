@@ -126,7 +126,7 @@
           <router-link v-for="product in pSerie.items.slice(0, pSerie.max)" :key="product.id" :to="'/' + lang.url + '/product/' + product.slug" class="product-item">
             <span class="product-item--inner">
               <img :src="product.photo" alt="">
-              <span class="product-item--info"><span v-html="product.sku"></span><br><span v-html="product.name"></span></span>
+              <span class="product-item--info"><span v-html="product.pattern"></span><br><span v-html="product.name"></span></span>
             </span>
           </router-link>
           <a class="product-item is-more-items-text" href="javascript:;" v-if="pSerie.items.length > pSerie.max" v-on:click="pSerie.max = pSerie.items.length"><span>+{{ pSerie.items.length - pSerie.max }}<br>{{ lang.products_product }}</span></a>
@@ -269,7 +269,7 @@ export default {
     } else {
       this.pageQuery = this.$route.query;
     }
-    this.resetFunctions();
+    this. ();
     this.resetSeries();
     if (this.catalogStatus !== 'done') this.getCatalog();
     else this.getCategoriesIsDoneCatalog();
