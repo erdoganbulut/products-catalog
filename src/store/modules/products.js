@@ -62,22 +62,47 @@ const filterProducts = (arr, filter) => {
       return o.tempered.toString() === Filter.temper.toString();
     });
   }
-  if (Filter.standart !== '' && Filter.limited !== '') {
+  if (Filter.standart !== null && Filter.standart !== '' && Filter.limited !== '') {
+    console.log('burada');
     if (Filter.standart && Filter.limited) {
       Arr = window.$lodash.filter(Arr, (o) => {
-        return o.standard.toString().length > -1;
+        let fVal = true;
+        if (o.standard === null) {
+          fVal = true;
+        } else {
+          fVal = true;
+        }
+        return fVal;
       });
     } else if (!Filter.standart && Filter.limited) {
       Arr = window.$lodash.filter(Arr, (o) => {
-        return o.standard.toString() === '0';
+        let fVal = true;
+        if (o.standard === null) {
+          fVal = false;
+        } else {
+          fVal = o.standard.toString() === '0';
+        }
+        return fVal;
       });
     } else if (Filter.standart && !Filter.limited) {
       Arr = window.$lodash.filter(Arr, (o) => {
-        return o.standard.toString() === '1';
+        let fVal = true;
+        if (o.standard === null) {
+          fVal = false;
+        } else {
+          fVal = o.standard.toString() === '1';
+        }
+        return fVal;
       });
     } else {
       Arr = window.$lodash.filter(Arr, (o) => {
-        return o.standard.toString().length > -1;
+        let fVal = true;
+        if (o.standard === null) {
+          fVal = true;
+        } else {
+          fVal = true;
+        }
+        return fVal;
       });
     }
   }
