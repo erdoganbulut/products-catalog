@@ -183,6 +183,10 @@ export default {
   },
   methods: {
     ...mapMutations({
+      receiveResetFunctions: 'functions/receiveReset',
+      receiveResetSubCategories: 'subCategories/receiveReset',
+      receiveResetSeries: 'series/receiveReset',
+      receiveResetInners: 'inners/receiveReset',
       receiveFunctions: 'functions/receiveFunctions',
       receiveStatusCategories: 'categories/receiveStatus',
       receiveProductsFilter: 'products/receiveProductsFilter',
@@ -263,6 +267,10 @@ export default {
     },
   },
   mounted() {
+    this.receiveResetFunctions();
+    this.receiveResetSubCategories();
+    this.receiveResetSeries();
+    this.receiveResetInners();
     if (window.$lodash.isEmpty(this.$route.query)) {
       this.pageQuery = '';
       this.firstLoadedSubCats = true;

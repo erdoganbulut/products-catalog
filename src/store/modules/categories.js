@@ -38,6 +38,11 @@ const mutations = {
   receiveResponse(State, response) {
     state.response = response;
   },
+  receiveReset(State) {
+    state.categories = {};
+    state.status = 'non-request';
+    state.response = {};
+  },
 };
 
 export default {
