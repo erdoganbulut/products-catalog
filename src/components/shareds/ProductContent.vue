@@ -127,6 +127,7 @@ export default {
       getLists: 'list/getLists',
       addList: 'list/addList',
       updateList: 'list/updateList',
+      setPreloader: 'preloader/setPreloader',
     }),
     checkShowPreloaderSettings() {
       if (this.productStatus === 'on-request') {
@@ -185,6 +186,16 @@ export default {
       console.log(this.preloader);
       this.checkShowPreloaderSettings();
     },
+    '$route' (to, from) {
+      if (to.params.productslug !== from.params.productslug) {
+        this.setPreloader(true);
+        if (this.accesstoken.length > 0) this.getLists(this.accesstoken);
+        const params = {
+          slug: this.$route.params.productslug,
+        };
+        this.getProduct(params);
+      }
+    }
   },
 };
 </script>
