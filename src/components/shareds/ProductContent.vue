@@ -183,7 +183,6 @@ export default {
       this.checkShowPreloaderSettings();
     },
     preloader() {
-      console.log(this.preloader);
       this.checkShowPreloaderSettings();
     },
     '$route' (to, from) {

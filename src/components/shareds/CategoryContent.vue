@@ -356,9 +356,7 @@ export default {
       this.autoSelect2SubCat4Query();
     },
     '$route' (to, from) {
-      console.log('route değişti')
       if (to.params.catalog !== from.params.catalog || to.params.category !== from.params.category || this.$route.query !== this.$route.query) {
-        console.log('route değişti2')
         this.isCategories = false;
         this.setPreloader(true);
         this.receiveResetFunctions();

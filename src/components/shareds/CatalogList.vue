@@ -52,7 +52,6 @@ export default {
     this.checkShowPreloaderSettings();
   },
   mounted() {
-    console.log(this.preloader);
     this.getCatalog();
   },
   watch: {
