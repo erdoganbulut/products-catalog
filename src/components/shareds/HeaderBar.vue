@@ -423,6 +423,7 @@ header {
       ul {
         background: rgba(34, 34, 34, 1);
         min-height: 100vh;
+        min-height: calc(100vh - 64px);
         display: block;
         width: 100%;
         flex-shrink: 0;
