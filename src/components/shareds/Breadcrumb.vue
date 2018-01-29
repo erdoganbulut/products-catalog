@@ -15,7 +15,9 @@
       </ol>
       <ol class="breadcrumb" v-if="$route.meta.page === 'product'">
         <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">{{ lang.bread_katalogsecim }}</router-link></li>
-        <li class="breadcrumb-item"><a href="javascript:;" v-if="typeof product.series !== 'undefined'">{{ product.series.name }}</a></li>
+        <li class="breadcrumb-item"><router-link :to="`/${lang.url}/catalog/${product.breadcrumb.catalog.url}`">{{ product.breadcrumb.catalog.name }}</router-link></li>
+        <li class="breadcrumb-item"><router-link :to="`/${lang.url}/catalog/${product.breadcrumb.catalog.url}/category/${product.breadcrumb.category.url}`">{{ product.breadcrumb.category.name }}</router-link></li>
+        <li class="breadcrumb-item"><router-link :to="`/${lang.url}/catalog/${product.breadcrumb.catalog.url}/category/${product.breadcrumb.category.url}?sub=${product.breadcrumb.subcategory.id}`">{{ product.breadcrumb.category.name }}</router-link></li>
         <li class="breadcrumb-item active" aria-current="page" v-if="typeof product.name !== 'undefined'">{{ product.name }}</li>
       </ol>
       <ol class="breadcrumb" v-if="$route.meta.page === 'user'">
