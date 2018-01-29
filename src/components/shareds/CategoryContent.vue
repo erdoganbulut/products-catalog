@@ -28,8 +28,8 @@
         <h3>{{ lang.filtre_kategoriler }}</h3>
         <div class="filter--inner-items">
           <div class="filter--inner-item" v-for="categoryItem in subCategories" :key="'fsubcat' + categoryItem.id">
-            <input type="radio" name="selectedSubCategoryRadio" :id="'functionCheck' + categoryItem.id" :value="categoryItem.id" v-model="subCategoriesCheckeds">
-            <label :for="'functionCheck' + categoryItem.id">
+            <input type="radio" name="selectedSubCategoryRadio" :id="'categoriesRadio' + categoryItem.id" :value="categoryItem.id" v-model="subCategoriesCheckeds">
+            <label :for="'categoriesRadio' + categoryItem.id">
               <img :src="categoryItem.photo" alt="">
             </label>
             <span>{{ categoryItem.name }}</span>
