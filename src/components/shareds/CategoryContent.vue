@@ -269,7 +269,7 @@ export default {
     } else {
       this.pageQuery = this.$route.query;
     }
-    this. ();
+    this.resetFunctions();
     this.resetSeries();
     if (this.catalogStatus !== 'done') this.getCatalog();
     else this.getCategoriesIsDoneCatalog();
