@@ -10,6 +10,7 @@ import moduleProductDetail from './modules/productDetail';
 import moduleAuth from './modules/auth';
 import moduleList from './modules/list';
 import moduleInners from './modules/inners';
+import modulePreloader from './modules/preloader';
 
 export default {
   modules: {
@@ -25,5 +26,6 @@ export default {
     auth: moduleAuth,
     list: moduleList,
     inners: moduleInners,
+    preloader: modulePreloader,
   },
 };

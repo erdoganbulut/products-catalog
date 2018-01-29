@@ -137,6 +137,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import { mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
@@ -179,6 +180,7 @@ export default {
       functions: 'functions/functions',
       series: 'series/series',
       inners: 'inners/inners',
+      preloader: 'preloader/preloader',
     }),
   },
   methods: {
@@ -201,9 +203,20 @@ export default {
       getProducts: 'products/getProducts',
       getCatalog: 'catalogs/getCatalog',
       getInners: 'inners/getInners',
+      setPreloader: 'preloader/setPreloader',
     }),
     makeFilter() {
 
+    },
+    checkShowPreloaderSettings() {
+      if (this.status === 'on-request') {
+        this.setPreloader(true);
+      } else {
+        const $t_his = this;
+        Vue.nextTick().then(function () {
+          $t_his.setPreloader(false);
+        });
+      }
     },
     getCategoriesIsDoneCatalog() {
       if (!this.isCategories) {
@@ -266,6 +279,9 @@ export default {
       this.selectedSubCatName = typeof this.subCategories[selectedSubCatIndex] !== 'undefined' ? this.subCategories[selectedSubCatIndex].name : '';
     },
   },
+  created() {
+    this.setPreloader(true);
+  },
   mounted() {
     this.receiveResetFunctions();
     this.receiveResetSubCategories();
@@ -327,7 +343,11 @@ export default {
       this.filterProducts();
     },
     status() {
+      this.checkShowPreloaderSettings();
       this.autoSelect2SubCat4Query();
+    },
+    preloader() {
+      this.checkShowPreloaderSettings();
     },
     searchText() {
       this.autoSelect2SubCat4Query();

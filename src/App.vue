@@ -6,6 +6,7 @@
     <breadcrumb v-if="typeof lang.url !== 'undefined'" />
     <router-view v-if="typeof lang.url !== 'undefined'" />
     <footer-bar v-if="typeof lang.url !== 'undefined'" />
+    <preloader />
   </div>
 </template>
 
@@ -15,6 +16,7 @@ import HeaderBar from './components/shareds/HeaderBar';
 import FooterBar from './components/shareds/FooterBar';
 import Breadcrumb from './components/shareds/Breadcrumb';
 import Icons from './components/shareds/Icons';
+import Preloader from './components/shareds/Preloader';
 
 export default {
   name: 'app',
@@ -27,6 +29,7 @@ export default {
     HeaderBar,
     FooterBar,
     Breadcrumb,
+    Preloader,
   },
   computed: {
     ...mapGetters({
@@ -38,7 +41,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      getUser: 'auth/getUser'
+      getUser: 'auth/getUser',
+      setPreloader: 'preloader/setPreloader',
     }),
     setLang() {
       if (typeof this.$route.params.lang !== 'undefined') this.$store.dispatch('lang/setLang', this.$route.params.lang);
@@ -53,6 +57,9 @@ export default {
         this.$router.push(`${activeLangListItem.url}`);
       }
     },
+  },
+  created() {
+    this.setPreloader(true);
   },
   mounted() {
     if (this.accesstoken.length > 0) this.getUser(this.accesstoken);
@@ -78,6 +85,13 @@ export default {
     },
     accesstoken() {
       if (this.accesstoken.length > 0) this.getUser(this.accesstoken);
+    },
+    lang() {
+      if (typeof this.lang.url === 'undefined') {
+        this.setPreloader(true);
+      } else {
+        this.setPreloader(false);
+      }
     },
   },
 };

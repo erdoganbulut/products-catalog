@@ -41,6 +41,7 @@ export default {
     ...mapActions({
       getCategories: 'categories/getCategories',
       getCatalog: 'catalogs/getCatalog',
+      setPreloader: 'preloader/setPreloader',
     }),
     getCategoriesIsDoneCatalog() {
       if (!this.isCategories) {
@@ -54,6 +55,9 @@ export default {
       }
     },
   },
+  created() {
+    this.setPreloader(true);
+  },
   mounted() {
     if (this.catalogStatus !== 'done') this.getCatalog();
     else this.getCategoriesIsDoneCatalog();
@@ -61,6 +65,13 @@ export default {
   watch: {
     catalogStatus() {
       this.getCategoriesIsDoneCatalog();
+    },
+    status() {
+      if (this.status !== 'on-request') {
+        this.setPreloader(false);
+      } else {
+        this.setPreloader(true);
+      }
     },
   },
 };

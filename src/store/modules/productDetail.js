@@ -8,6 +8,7 @@ const getters = {
 
 const actions = {
   getProduct({ commit }, params) {
+    commit('receiveStatus', 'on-request');
     Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/tr/details/${params.slug}`).then((response) => {
       const Response = response;
       commit('receiveProduct', Response.body);

@@ -118,6 +118,7 @@ export default {
       lists: 'list/lists',
       listsStatus: 'list/status',
       user: 'auth/user',
+      preloader: 'preloader/preloader',
     }),
   },
   methods: {
@@ -127,6 +128,13 @@ export default {
       addList: 'list/addList',
       updateList: 'list/updateList',
     }),
+    checkShowPreloaderSettings() {
+      if (this.productStatus === 'on-request') {
+        this.setPreloader(true);
+      } else {
+        this.setPreloader(false);
+      }
+    },
     handleAdd2Fav() {
       const params = {
         accesstoken: this.accesstoken,
@@ -156,6 +164,9 @@ export default {
       }
     },
   },
+  created() {
+    this.setPreloader(true);
+  },
   mounted() {
     if (this.accesstoken.length > 0) this.getLists(this.accesstoken);
     const params = {
@@ -166,6 +177,13 @@ export default {
   watch: {
     accesstoken() {
       if (this.accesstoken.length > 0) this.getLists(this.accesstoken);
+    },
+    productStatus() {
+      this.checkShowPreloaderSettings();
+    },
+    preloader() {
+      console.log(this.preloader);
+      this.checkShowPreloaderSettings();
     },
   },
 };

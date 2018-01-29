@@ -32,15 +32,36 @@ export default {
       status: 'catalogs/status',
       response: 'catalogs/response',
       lang: 'lang/lang',
+      preloader: 'preloader/preloader',
     }),
   },
   methods: {
     ...mapActions({
       getCatalog: 'catalogs/getCatalog',
+      setPreloader: 'preloader/setPreloader',
     }),
+    checkShowPreloaderSettings() {
+      if (this.status === 'on-request') {
+        this.setPreloader(true);
+      } else {
+        this.setPreloader(false);
+      }
+    },
+  },
+  created() {
+    this.checkShowPreloaderSettings();
   },
   mounted() {
+    console.log(this.preloader);
     this.getCatalog();
+  },
+  watch: {
+    status() {
+      this.checkShowPreloaderSettings();
+    },
+    preloader() {
+      this.checkShowPreloaderSettings();
+    },
   },
 };
 </script>
