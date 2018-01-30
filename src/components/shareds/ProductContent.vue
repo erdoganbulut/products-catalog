@@ -32,31 +32,31 @@
             <div class="ui-collapse--inner">
               <div class="technical-detail-content">
                 <table>
-                  <tr>
+                  <tr v-if="product.volume !== null && parseInt(product.volume, 10) > 0">
                     <td>{{ lang.product_volume }}:</td>
                     <td>&nbsp;&nbsp;&nbsp;<span v-for="(vol, index) in product.volume" :key="'vol' + index">{{ vol }} / </span> cc.</td>
                   </tr>
-                  <tr>
+                  <tr v-if="product.volume !== null && parseInt(product.volume, 10) > 0">
                     <td>{{ lang.product_volumeUS }}:</td>
                     <td>&nbsp;&nbsp;&nbsp;<span v-for="(vol, index) in product.volume" :key="'volus' + index">{{ parseFloat(vol / 29.5735296875).toFixed(2) }} / </span> US oz.</td>
                   </tr>
-                  <tr>
+                  <tr v-if="product.volume !== null && parseInt(product.volume, 10) > 0">
                     <td>{{ lang.product_volumeUK }}:</td>
                     <td>&nbsp;&nbsp;&nbsp;<span v-for="(vol, index) in product.volume" :key="'voluk' + index">{{ parseFloat(vol / 28.4130625).toFixed(2) }} / </span> oz.</td>
                   </tr>
-                  <tr>
+                  <tr v-if="product.edag[0] !== null && parseInt(product.edag[0], 10) > 0">
                     <td>{{ lang.product_yukseklik }}:</td>
                     <td>&nbsp;&nbsp;&nbsp;{{ product.height[0] }} mm.</td>
                   </tr>
-                  <tr>
+                  <tr v-if="product.edag[0] !== null && parseInt(product.edag[0], 10) > 0">
                     <td>{{ lang.product_agiz_capi }}:</td>
                     <td>&nbsp;&nbsp;&nbsp;{{ product.edag[0] }} mm.</td>
                   </tr>
-                  <tr>
+                  <tr v-if="product.base[0] !== null && parseInt(product.base[0], 10) > 0">
                     <td>{{ lang.product_taban_capi }}:</td>
                     <td>&nbsp;&nbsp;&nbsp;{{ product.base[0] }} mm.</td>
                   </tr>
-                  <tr>
+                  <tr v-if="product.width[0] !== null && parseInt(product.width[0], 10) > 0">
                     <td>{{ lang.product_maxwidth }}:</td>
                     <td>&nbsp;&nbsp;&nbsp;{{ product.width[0] }} mm.</td>
                   </tr>
