@@ -94,7 +94,7 @@ section.category-list-component {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    margin: 0 -15px; // container paddings use item padding
+    //margin: 0 -15px; // container paddings use item padding
     //padding: 15px 0;
     .category-item {
       display: block;
