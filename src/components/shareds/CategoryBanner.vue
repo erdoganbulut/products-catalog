@@ -1,6 +1,10 @@
 <template>
   <section class="category-banner-component" v-if="selectedCategory !== ''" :style="`background-image: url(${selectedCategory.photo})`">
-    <img :src="selectedCategory.photo" alt="">
+    <div class="pb-carousel-outer">
+      <div class="pb-carousel--items">
+        <div class="pb-carousel--item" v-for="(carouselItem, index) in carousel" :key="`carouselItem${index}`" :style="`background-image: url(${carouselItem.photo})`" v-bind:class="{'active': carouselItem.isActive }"></div>
+      </div>
+    </div>
     <div class="overlay">
       <h1 v-html="selectedCategory.name"></h1>
     </div>
@@ -17,6 +21,8 @@ export default {
       selectedCatalog: '',
       selectedCategory: '',
       isCategories: false,
+      carousel: [],
+      carouselInterval: '',
     };
   },
   computed: {
@@ -54,6 +60,28 @@ export default {
         }
       }
     },
+    startCarousel() {
+      if (typeof this.selectedCategory.carousel !== 'undefined') {
+        const carousel = [];
+        window.$lodash.forEach(this.selectedCategory.carousel, (val, index) => {
+          carousel.push({ photo: val, isActive: index === 0 });
+        });
+        this.carousel = carousel;
+      }
+      this.carouselInterval = setInterval(() => {
+        if (this.carousel.length > 0) this.nextCarousel();
+      }, 5000);
+    },
+    nextCarousel() {
+      clearInterval(this.carouselInterval);
+      const activeIndex = window.$lodash.findIndex(this.carousel, { isActive: true });
+      const newIndex = activeIndex >= this.carousel.length - 1 ? 0 : activeIndex + 1;
+      this.carousel[activeIndex].isActive = false;
+      this.carousel[newIndex].isActive = true;
+      this.carouselInterval = setInterval(() => {
+        if (this.carousel.length > 0) this.nextCarousel();
+      }, 5000);
+    },
   },
   mounted() {
     if (this.catalogStatus !== 'done') this.getCatalog();
@@ -65,6 +93,7 @@ export default {
     },
     categories() {
       this.getCategoryIsDoneCategories();
+      this.startCarousel();
     },
   },
 };
@@ -109,6 +138,43 @@ section.category-banner-component {
     height: auto;
     @media (min-width: 768px) {
       display: none;
+    }
+  }
+  .pb-carousel-outer {
+    width: 100%;
+    display: block;
+    position: relative;
+    padding-bottom: 56.25%;
+    @media (min-width: 768px) {
+      display: none;
+    }
+    .pb-carousel--items {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      .pb-carousel--item {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.5s;
+        transition-delay: 0.5s;
+        &.active {
+          opacity: 1;
+          visibility: visible;
+          transition-delay: 0s;
+        }
+      }
     }
   }
 }
