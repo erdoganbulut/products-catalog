@@ -1,7 +1,9 @@
 <template>
   <footer>
-    <div class="container">
-      <p>PAŞABAHÇE CAM SANAYİ VE TİCARET A.Ş.</p>
+    <div class="footer--inner">
+      <div class="container">
+        <p>PAŞABAHÇE CAM SANAYİ VE TİCARET A.Ş.</p>
+      </div>
     </div>
   </footer>
 </template>
@@ -30,12 +32,21 @@ export default {
 @import '../../scss/shareds';
 
 footer {
-  background: #000;
-  font-size: 12px;
-  font-weight: $fontWeightMedium;
-  color: #ffffff;
-  text-align: center;
-  padding: 12px;
+  position: relative;
+  height: 44px;
+  .footer--inner {
+    position: fixed;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    font-size: 12px;
+    font-weight: $fontWeightMedium;
+    color: #ffffff;
+    text-align: center;
+    padding: 12px;
+  }
   p {
     line-height: 20px;
     margin: 0;
