@@ -21,4 +21,22 @@
       }
     }
   }
+  .user--collapse-content {
+    .user-list--item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: solid 1px #D8D8D8;
+      a {
+        color: #B40023;
+        font-style: italic;
+        display: inline-block;
+        margin-left: 10px;
+      }
+      &:first-child {
+        padding-top: 0;
+      }
+    }
+  }
 }

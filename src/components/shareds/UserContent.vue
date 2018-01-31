@@ -1,9 +1,33 @@
 <template>
   <section class="user-content-component">
     <div class="container">
-      {{ lang.profil_welcome }} {{ user.name }}
-      <div v-for="(list, index) in lists" :key="'listitem' + index">{{ list.name }} <a href="javascript:;" v-on:click="handleDuplicate(index)">{{ lang.shortlist_cogalt }}</a><router-link :to="`/${lang.url}/list/update/${index}`">{{ lang.shortlist_duzenle }}</router-link></div>
-      <p><router-link :to="`/${lang.url}/list/add`">{{ lang.shortlist_yeni_liste }}</router-link></p>
+      <div class="welcome--area">
+        <span class="welcome--icon">
+          <svg>
+            <use xlink:href="#svgIconProfile" />
+          </svg>
+        </span>
+        <p>{{ lang.profil_welcome }}<br><span>{{ user.name }}</span></p>
+      </div>
+      <div class="collapse--area">
+        <h2>
+          <a v-b-toggle.collapseUserList href="javascript:;">
+            {{ lang.product_technical }}
+            <svg>
+              <use xlink:href="#svgIconMinus" transform="translate(1)" fill="#C31B2E"/>
+            </svg>
+          </a>
+        </h2>
+        <b-collapse class="ui-collapse" id="collapseUserList">
+          <div class="ui-collapse--inner">
+            <div class="user--collapse-content">
+              <div class="user-list--item" v-for="(list, index) in lists" :key="'listitem' + index"><span>{{ list.name }}</span><span><a href="javascript:;" v-on:click="handleDuplicate(index)">{{ lang.shortlist_cogalt }}</a><router-link :to="`/${lang.url}/list/update/${index}`">{{ lang.shortlist_duzenle }}</router-link></span></div>
+            </div>
+          </div>
+        </b-collapse>
+      </div>
+
+      <p><router-link class="user-list--create-btn" :to="`/${lang.url}/list/add`"><span class="user-list--create-icon"><i class="fa fa-plus"></i></span><span class="user-list--create-text">{{ lang.shortlist_yeni_liste }}</span></router-link></p>
     </div>
   </section>
 </template>
@@ -80,6 +104,78 @@ export default {
 @import '../../scss/shareds';
 
 section.user-content-component {
-
+  padding: 30px 0;
+  .welcome--area {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    .welcome--icon {
+      display: block;
+      width: 26px;
+      height: 26px;
+      margin-right: 10px;
+      svg {
+        display: block;
+        width: 30px;
+        height: 30px;
+      }
+    }
+    p {
+      margin: 0;
+      span {
+        color: #B40023;
+      }
+    }
+  }
+  .collapse--area {
+    margin-top: 30px;
+    h2 {
+      font-size: 12px;
+      color: #B40023;
+      margin: 0;
+      a {
+        display: block;
+        position: relative;
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px solid #D8D8D8;
+        padding: 5px 0;
+        svg {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          margin-top: -1px;
+          display: block;
+          height: 2px;
+          width: 10px;
+        }
+      }
+    }
+    .ui-collapse {
+      font-size: 12px;
+    }
+  }
+  .user-list--create-btn {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 15px 0;
+    color: #B40023;
+    text-decoration: none;
+    border-bottom: solid 1px #B40023;
+    margin-top: 30px;
+    font-size: 12px;
+    .user-list--create-icon {
+      display: block;
+      margin-right: 15px;
+      width: 50px;
+      height: 50px;
+      background: #B40023;
+      border-radius: 50%;
+      line-height: 50px;
+      text-align: center;
+      color: #fff;
+    }
+  }
 }
 </style>
