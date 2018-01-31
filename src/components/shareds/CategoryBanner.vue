@@ -2,7 +2,7 @@
   <section class="category-banner-component" v-if="selectedCategory !== ''">
     <div class="pb-carousel-outer">
       <div class="pb-carousel--items">
-        <div class="pb-carousel--item" v-for="(carouselItem, index) in carousel" :key="`carouselItem${index}`" :style="`background-image: url(${carouselItem.photo}); top: -${top}px;`" v-bind:class="{'active': carouselItem.isActive }"></div>
+        <div class="pb-carousel--item" v-for="(carouselItem, index) in carousel" :key="`carouselItem${index}`" :style="`background-image: url(${carouselItem.photo}); top: -${top / 1.25}px;`" v-bind:class="{'active': carouselItem.isActive }"></div>
       </div>
     </div>
     <div class="overlay">
@@ -122,7 +122,7 @@ section.category-banner-component {
     background-image: none !important;
   }
   @media (min-width: 768px) {
-    height: 250px;
+    height: 50vh;
   }
   .overlay {
     position: absolute;
