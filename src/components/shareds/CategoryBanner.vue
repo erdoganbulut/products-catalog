@@ -1,8 +1,9 @@
 <template>
-  <section class="category-banner-component" v-if="selectedCategory !== ''" :style="`background-image: url(${selectedCategory.photo})`">
-    <div class="pb-carousel-outer">
+
+  <section class="category-banner-component" v-if="selectedCategory !== ''" :style="`background-image: url(${selectedCategory.banner})`">
+  <div class="pb-carousel-outer">
       <div class="pb-carousel--items">
-        <div class="pb-carousel--item" v-for="(carouselItem, index) in carousel" :key="`carouselItem${index}`" :style="`background-image: url(${carouselItem.photo})`" v-bind:class="{'active': carouselItem.isActive }"></div>
+        <div class="pb-carousel--item" v-for="(carouselItem, index) in carousel" :key="`carouselItem${index}`" :style="`background-image: url(${carouselItem.photo});`" v-bind:class="{'active': carouselItem.isActive }"></div>
       </div>
     </div>
     <div class="overlay">
@@ -22,7 +23,7 @@ export default {
       selectedCategory: '',
       isCategories: false,
       carousel: [],
-      carouselInterval: '',
+      carouselInterval: ''
     };
   },
   computed: {
@@ -112,7 +113,8 @@ section.category-banner-component {
     background-image: none !important;
   }
   @media (min-width: 768px) {
-    height: 200px;
+    height: 80vh;
+    background-image: none !important;
   }
   .overlay {
     position: absolute;
@@ -120,7 +122,7 @@ section.category-banner-component {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.3);
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
@@ -138,6 +140,7 @@ section.category-banner-component {
     height: auto;
     @media (min-width: 768px) {
       display: none;
+      background-image: none !important;
     }
   }
   .pb-carousel-outer {
@@ -145,9 +148,11 @@ section.category-banner-component {
     display: block;
     position: relative;
     padding-bottom: 56.25%;
+    backface-visibility: hidden;
     @media (min-width: 768px) {
-      display: none;
+      height: 80vh;
     }
+
     .pb-carousel--items {
       display: block;
       position: absolute;
@@ -167,8 +172,15 @@ section.category-banner-component {
         background-position: center;
         opacity: 0;
         visibility: hidden;
-        transition: 0.5s;
+        transition: opacity 0.5s;
         transition-delay: 0.5s;
+        @media (max-width: 767px) {
+          top: 0 !important;
+        }
+        @media (min-width: 768px) {
+          height: 100vh;
+          bottom: auto;
+        }
         &.active {
           opacity: 1;
           visibility: visible;
