@@ -14,3 +14,31 @@
     background: #fff;
   }
 }
+.form-control {
+  border-radius: 2px;
+}
+
+.checkbox--yes-no {
+  display: flex;
+  input {
+    display: none;
+  }
+  label {
+    width: 100%;
+    background: #fff;
+    border: solid 1px #CED1D2;
+    color: #9B9B9B;
+    padding: 6px;
+    text-align: center;
+    &.active {
+      background: rgba(67, 170, 139, 0.3);
+      border-color: #43AA8B;
+      color: #2A9D8F;
+      &.is--no {
+        background: rgba(67, 30, 34, 0.6);
+        border-color: #431E22;
+        color: #C31B2E;
+      }
+    }
+  }
+}

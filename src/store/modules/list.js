@@ -20,11 +20,20 @@ const actions = {
       commit('receiveResponse', Response);
     });
   },
+  async sendEmail({ commit, dispatch }, params) {
+    let apireturn = false;
+    await Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/api/mailList', { id: params.id, email: params.email }, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
+      apireturn = true;
+    }, (response) => {
+      apireturn = false;
+    });
+    return apireturn;
+  },
   addList({ commit, dispatch }, params) {
     Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/api/addList', params.newList, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
       const Response = response;
       dispatch('getLists', params.accesstoken);
-      commit('receiveStatus', 'done');
+      commit('receiveStatus', 'added');
       commit('receiveResponse', Response);
     }, (response) => {
       const Response = response;
@@ -37,7 +46,7 @@ const actions = {
     Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/api/updatelist', params.updateList, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
       const Response = response;
       dispatch('getLists', params.accesstoken);
-      commit('receiveStatus', 'done');
+      commit('receiveStatus', 'updated');
       commit('receiveResponse', Response);
     }, (response) => {
       const Response = response;
@@ -50,7 +59,7 @@ const actions = {
     Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/api/deleteList', params.deleteList, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
       const Response = response;
       dispatch('getLists', params.accesstoken);
-      commit('receiveStatus', 'done');
+      commit('receiveStatus', 'deleted');
       commit('receiveResponse', Response);
     }, (response) => {
       const Response = response;

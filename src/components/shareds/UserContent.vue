@@ -12,7 +12,7 @@
       <div class="collapse--area">
         <h2>
           <a v-b-toggle.collapseUserList href="javascript:;">
-            {{ lang.product_technical }}
+            {{ lang.shortlistler }}
             <svg>
               <use xlink:href="#svgIconMinus" transform="translate(1)" fill="#C31B2E"/>
             </svg>
