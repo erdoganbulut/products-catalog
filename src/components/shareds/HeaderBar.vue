@@ -236,6 +236,11 @@ export default {
   watch: {
     menu4Api() {
       this.fillMenuData();
+      this.navLevel = 0;
+      this.isNavOpen = false;
+    },
+    lang() {
+      this.getMenu();
     },
   },
   mounted() {
