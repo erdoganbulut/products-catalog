@@ -1,8 +1,9 @@
 <template>
-  <section class="category-banner-component" v-if="selectedCategory !== ''">
-    <div class="pb-carousel-outer">
+
+  <section class="category-banner-component" v-if="selectedCategory !== ''" :style="`background-image: url(${selectedCategory.banner})`">
+  <div class="pb-carousel-outer">
       <div class="pb-carousel--items">
-        <div class="pb-carousel--item" v-for="(carouselItem, index) in carousel" :key="`carouselItem${index}`" :style="`background-image: url(${carouselItem.photo}); top: -${top / 1.25}px;`" v-bind:class="{'active': carouselItem.isActive }"></div>
+        <div class="pb-carousel--item" v-for="(carouselItem, index) in carousel" :key="`carouselItem${index}`" :style="`background-image: url(${carouselItem.photo});`" v-bind:class="{'active': carouselItem.isActive }"></div>
       </div>
     </div>
     <div class="overlay">
@@ -22,8 +23,7 @@ export default {
       selectedCategory: '',
       isCategories: false,
       carousel: [],
-      carouselInterval: '',
-      top: 0,
+      carouselInterval: ''
     };
   },
   computed: {
@@ -35,12 +35,6 @@ export default {
       catalogs: 'catalogs/catalogs',
       lang: 'lang/lang',
     }),
-  },
-  created () {
-    window.addEventListener('scroll', this.handleScroll);
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
     ...mapActions({
@@ -89,9 +83,6 @@ export default {
         if (this.carousel.length > 0) this.nextCarousel();
       }, 5000);
     },
-    handleScroll(event) {
-      this.top = window.pageYOffset;
-    },
   },
   mounted() {
     if (this.catalogStatus !== 'done') this.getCatalog();
@@ -122,7 +113,8 @@ section.category-banner-component {
     background-image: none !important;
   }
   @media (min-width: 768px) {
-    height: 50vh;
+    height: 80vh;
+    background-image: none !important;
   }
   .overlay {
     position: absolute;
@@ -130,7 +122,7 @@ section.category-banner-component {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.3);
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
@@ -148,6 +140,7 @@ section.category-banner-component {
     height: auto;
     @media (min-width: 768px) {
       display: none;
+      background-image: none !important;
     }
   }
   .pb-carousel-outer {
@@ -157,9 +150,9 @@ section.category-banner-component {
     padding-bottom: 56.25%;
     backface-visibility: hidden;
     @media (min-width: 768px) {
-      padding-bottom: 0;
-      height: 100%;
+      height: 80vh;
     }
+
     .pb-carousel--items {
       display: block;
       position: absolute;
