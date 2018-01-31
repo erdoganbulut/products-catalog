@@ -77,9 +77,10 @@
           <b-collapse class="ui-collapse" id="collapseSocial">
             <div class="ui-collapse--inner">
               <div class="product-share-content">
-                <a href="javascript:;" class="social-link social-link--facebook"><i class="fa fa-facebook"></i></a>
-                <a href="javascript:;" class="social-link social-link--twitter"><i class="fa fa-twitter"></i></a>
-                <a href="javascript:;" class="social-link social-link-mail"><i class="fa fa-envelope-o"></i></a>
+                <a target="_blank" :href="`https://www.facebook.com/sharer/sharer.php?u=${url}`" class="social-link social-link--facebook"><i class="fa fa-facebook"></i></a>
+                <a target="_blank" :href="`https://twitter.com/home?status=${url}`" class="social-link social-link--twitter"><i class="fa fa-twitter"></i></a>
+                <a href="mailto:" class="social-link social-link-mail"><i class="fa fa-envelope-o"></i></a>
+                <a href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i></a>
               </div>
             </div>
           </b-collapse>
@@ -107,6 +108,7 @@ export default {
     return {
       selectedList: '',
       createListName: '',
+      url: '',
     };
   },
   computed: {
@@ -167,6 +169,7 @@ export default {
   },
   created() {
     this.setPreloader(true);
+    this.url = window.location.href;
   },
   mounted() {
     if (this.accesstoken.length > 0) this.getLists(this.accesstoken);
