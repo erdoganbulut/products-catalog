@@ -9,7 +9,7 @@
     },
     {
       "id": "1",
-      "name": "Turkish",
+      "name": "Türkçe",
       "api": "lang_tr.json",
       "url": "tr",
       "isActive": false
