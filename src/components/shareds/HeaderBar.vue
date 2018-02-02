@@ -26,7 +26,7 @@
             <span>MENU</span>
           </li>
           <li v-if="accesstoken !== ''">
-            <router-link :to="'/' + lang.url" v-on:click.native="handleClickRouterLink()">
+            <router-link :to="`/${lang.url}/user`" v-on:click.native="handleClickRouterLink()">
               <span>{{ lang.menu_profil }}</span>
             </router-link>
             <span class="item--icon">

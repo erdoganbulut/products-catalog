@@ -86,13 +86,17 @@
           </b-collapse>
         </div>
         <div class="add-to-favorite" v-if="typeof user.id !== 'undefined'">
-          <a href="javascript:;" v-on:click="handleAdd2Fav()" class="btn btn-danger btn-block"><i class="fa fa-heart-o"></i> {{ lang.product_add2shortList }}</a>
+          <a href="javascript:;" :disabled="listError === 'on-request'" v-on:click="handleAdd2Fav()" class="btn btn-danger btn-block"><i class="fa fa-heart-o"></i> {{ lang.product_add2shortList }}</a>
           <select class="form-control ui-select" v-model="selectedList">
             <option selected value="" disabled>{{ lang.shorlist_select_text }}</option>
             <option v-if="lists.length > 0" v-for="(list, index) in lists" :key="'listp' + index" :value="index">{{list.name}}</option>
             <option value="-1">{{ lang.product_create_list }}</option>
           </select>
           <input v-model="createListName" v-if="selectedList === '-1'" type="text" placeholder="list name" class="form-control">
+          <p class="response--message" v-if="listError !== ''">
+            <span class="text-success" v-if="listError">Ürün listeye eklendi</span>
+            <span class="text-danger" v-if="!listError">Bir hata oluştu.</span>
+          </p>
         </div>
       </div>
     </div>
@@ -109,6 +113,7 @@ export default {
       selectedList: '',
       createListName: '',
       url: '',
+      listError: '',
     };
   },
   computed: {
@@ -153,17 +158,27 @@ export default {
             {
               product: parseInt(this.product.id, 10),
               quantity: 1,
+              price: this.product.price,
             },
           ],
         };
-        this.addList(params);
+        this.listError = 'on-request';
+        this.addList(params).then((apireturn) => {
+          this.listError = apireturn;
+        });
         this.selectedList = `${this.lists.length}`;
       } else {
         params.updateList = this.lists[parseInt(this.selectedList, 10)];
         params.updateList.currency = "EUR";
         params.updateList.email = "asasa@asasa.com";
-        params.updateList.details.push({ product: parseInt(this.product.id, 10), quantity: 1, });
-        this.updateList(params);
+        params.updateList.details = window.$lodash.forEach(params.updateList.details, (val) => {
+          val.product = val.product.id;
+        });
+        params.updateList.details.push({ product: parseInt(this.product.id, 10), quantity: 1, price: this.product.price });
+        this.listError = 'on-request';
+        this.updateList(params).then((apireturn) => {
+          this.listError = apireturn;
+        });
       }
     },
   },
@@ -296,6 +311,9 @@ section.product-content-component {
     }
     input {
       margin-bottom: 10px;
+      font-size: 0.75rem;
+    }
+    .response--message {
       font-size: 0.75rem;
     }
   }

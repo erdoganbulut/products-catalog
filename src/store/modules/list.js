@@ -29,31 +29,39 @@ const actions = {
     });
     return apireturn;
   },
-  addList({ commit, dispatch }, params) {
-    Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/api/addList', params.newList, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
+  async addList({ commit, dispatch }, params) {
+    let apireturn = false;
+    await Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/api/addList', params.newList, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
+      apireturn = true;
       const Response = response;
       dispatch('getLists', params.accesstoken);
       commit('receiveStatus', 'added');
       commit('receiveResponse', Response);
     }, (response) => {
+      apireturn = false;
       const Response = response;
       dispatch('getLists', params.accesstoken);
       commit('receiveStatus', 'error');
       commit('receiveResponse', Response);
     });
+    return apireturn;
   },
-  updateList({ commit, dispatch }, params) {
-    Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/api/updatelist', params.updateList, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
+  async updateList({ commit, dispatch }, params) {
+    let apireturn = false;
+    await Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/api/updatelist', params.updateList, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
+      apireturn = true;
       const Response = response;
       dispatch('getLists', params.accesstoken);
       commit('receiveStatus', 'updated');
       commit('receiveResponse', Response);
     }, (response) => {
+      apireturn = false;
       const Response = response;
       dispatch('getLists', params.accesstoken);
       commit('receiveStatus', 'error');
       commit('receiveResponse', Response);
     });
+    return apireturn;
   },
   deleteList({ commit, dispatch }, params) {
     Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/api/deleteList', params.deleteList, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {

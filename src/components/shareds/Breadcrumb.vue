@@ -32,6 +32,14 @@
         <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">{{ lang.bread_katalogsecim }}</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">{{ lang.about_title }}</li>
       </ol>
+      <ol class="breadcrumb" v-if="$route.meta.page === 'ListAdd'">
+        <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">{{ lang.bread_katalogsecim }}</router-link></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ lang.shortlist_yeni_liste }}</li>
+      </ol>
+      <ol class="breadcrumb" v-if="$route.meta.page === 'ListUpdate' && typeof list !== 'undefined'">
+        <li class="breadcrumb-item"><router-link :to="'/' + lang.url + '/'">{{ lang.bread_katalogsecim }}</router-link></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ list[$route.params.listindex].name }}</li>
+      </ol>
     </nav>
   </section>
 </template>
@@ -51,6 +59,7 @@ export default {
       langList: 'lang/langList',
       langListStatus: 'lang/langListStatus',
       product: 'product/product',
+      list: 'list/lists',
     }),
   },
 };

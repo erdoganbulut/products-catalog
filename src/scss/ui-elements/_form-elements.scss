@@ -31,14 +31,15 @@
     padding: 6px;
     text-align: center;
     &.active {
+      border-color: rgba(67, 170, 139, 1);
       background: rgba(67, 170, 139, 0.3);
-      border-color: #43AA8B;
-      color: #2A9D8F;
+      color: rgba(67, 170, 139, 1);
       &.is--no {
-        background: rgba(67, 30, 34, 0.6);
-        border-color: #431E22;
-        color: #C31B2E;
+        border-color: rgba(195, 27, 46, 1);
+        background: rgba(195, 27, 46, 0.3);
+        color: rgba(195, 27, 46, 1);
       }
     }
   }
 }
+

@@ -74,5 +74,7 @@
   "contact_content": "<p><b>ŞİŞECAM GENEL MERKEZİ</b><br>İçmeler Mahallesi, D-100 Karayolu Caddesi, No:44A<br>34947 Tuzla/İSTANBUL<br>Tel: 0850 206 50 50<br>E-posta adresimiz: musterihizmetleri@pasabahce.com<br>Müşteri Hizmetleri: 0850 222 19 35</p>",
   "filtre_search": "ARAMA",
   "filtre_basediameter": "TABAN ÇAPI",
-  "filtre_filterheight": "YÜKSEKLİK"
+  "filtre_filterheight": "YÜKSEKLİK",
+  "uyelik_ozelligi": "Üyelik özelliği sadece Paşabahçe çalışanlarının erişimine açıktır.",
+  "auw_delete_sl": "Bu shortlisti silmek istediğinize emin misiniz?"
 }

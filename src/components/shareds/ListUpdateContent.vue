@@ -1,11 +1,21 @@
 <template>
   <section class="list-update-component">
     <div class="container">
+      <div class="popup--delete" v-if="isDeletePopup">
+        <div class="container">
+          <h3>{{ newList.name }}</h3>
+          <p>{{ lang.auw_delete_sl }}</p>
+          <div class="popup--buttons">
+            <button class="btn" v-on:click="isDeletePopup = false">{{ lang.filtre_temper_hayir }}</button>
+            <button class="btn" v-on:click="handleClickDelete">{{ lang.filtre_temper_evet }}</button>
+          </div>
+        </div>
+      </div>
       <div class="delete-email-controls">
-        <button class="btn" v-on:click="handleClickDelete"><i class="fa fa-close"></i></button>
+        <button class="btn" v-on:click="isDeletePopup = true"><i class="fa fa-close"></i></button>
         <button class="btn" v-b-toggle.emailSendCollapse><i class="fa fa-envelope-o"></i></button>
       </div>
-      <b-collapse class="ui-collapse" id="emailSendCollapse">
+      <b-collapse class="ui-collapse collapse--email-send" id="emailSendCollapse">
         <div class="ui-collapse--inner">
           <div class="user-list-add--form-item">
             <label>E-mail Address</label>
@@ -43,7 +53,7 @@
             <option value="lang.shortlist_onay">{{ lang.shortlist_onay }}</option>
           </select>
         </div>
-        <div class="user-list-add--form-item">
+        <div class="user-list-add--form-item" v-if="false">
           <label>{{ lang.shortlist_para_birimi }}</label>
           <select class="form-control" v-model="newList.currency">
             <option>TRY</option>
@@ -71,14 +81,14 @@
                 <div class="product--control">
                   <div class="product--control__item">
                     <label>Fiyat: ₺</label>
-                    <input type="text" class="form-control" value="10" disabled>
+                    <input type="text" class="form-control" v-model="detail.price">
                   </div>
                   <div class="product--control__item">
                     <label>Adet</label>
                     <input type="number" class="form-control" v-model="detail.quantity">
                   </div>
                   <div class="product--control__item">
-                    <button v-on:click="newList.details.splice(index, 1)" class="btn"><i class="fa fa-close"></i></button>
+                    <a v-on:click="newList.details.splice(index, 1)" class="btn"><i class="fa fa-close"></i></a>
                   </div>
                 </div>
               </div>
@@ -89,6 +99,7 @@
           <button class="btn btn-block btn-lg btn--red" type="submit">{{ lang.shortlist_shortlist_guncelle }}</button>
         </div>
         <p class="text--form-eror" v-if="isError"><br>Bir hata oluştu.</p>
+        <p class="text--form-success text-center text-success" v-if="listsStatus === 'updated'"><br>Liste başarıyla güncellendi.</p>
       </form>
     </div>
   </section>
@@ -113,6 +124,7 @@ export default {
       isError: false,
       sendemailaddress: '',
       apireturn: '',
+      isDeletePopup: false,
     };
   },
   computed: {
@@ -152,6 +164,9 @@ export default {
         accesstoken: this.accesstoken,
         updateList: this.newList,
       };
+      params.updateList.details = window.$lodash.forEach(params.updateList.details, (val) => {
+        val.product = val.product.id;
+      });
       this.updateList(params);
     },
     handleClickDelete() {
@@ -187,11 +202,10 @@ export default {
       }
     },
     listsStatus() {
-      if (this.listsStatus === 'updated' || this.listsStatus === 'deleted') {
+      if (this.listsStatus === 'deleted') {
         this.$router.push(`/${this.lang.url}/user`);
         console.log('listsStatus');
-      }
-      else if (this.listsStatus !== 'done') {
+      } else if (this.listsStatus !== 'done' && this.listsStatus !== 'updated') {
         this.isError = true;
       } else {
         this.isError = false;
@@ -206,7 +220,37 @@ export default {
 @import '../../scss/shareds';
 
 section.list-update-component {
+  .popup--delete {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 100px 0;
+    text-align: center;
+    font-size: 0.75rem;
+    h3 {
+      font-size: 0.75rem;
+    }
+    button {
+      font-size: 0.75rem;
+      &:first-child {
+        border-color: rgba(195, 27, 46, 1);
+        background: rgba(195, 27, 46, 0.3);
+        color: rgba(195, 27, 46, 1);
+      }
+      &:last-child {
+        border-color: rgba(67, 170, 139, 1);
+        background: rgba(67, 170, 139, 0.3);
+        color: rgba(67, 170, 139, 1);
+      }
+    }
+  }
   font-size: 12px;
+  .collapse--email-send {
+    margin-bottom: 30px;
+  }
   .delete-email-controls {
     display: flex;
     flex-wrap: wrap;
@@ -230,7 +274,7 @@ section.list-update-component {
   }
   .user-list-add--form-item {
     padding: 5px 0;
-    input, select, label {
+    input, select, label, textarea {
       font-size: 12px;
     }
     .product-list {
@@ -266,7 +310,7 @@ section.list-update-component {
               input {
                 min-width: 0;
               }
-              button {
+              button, a {
                 background: transparent;
                 color: #B40023;
                 border: solid 1px #CED1D2;

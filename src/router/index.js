@@ -73,7 +73,7 @@ export default new Router({
       name: 'ListAdd',
       component: ListAdd,
       meta: {
-        page: 'listadd',
+        page: 'ListAdd',
       },
     },
     {

@@ -49,7 +49,7 @@
   "shortlist_shortlist_guncelle": "UPDATE SHORTLIST",
   "login_email": "E-MAIL",
   "login_password": "PASSWORD",
-  "login_sign_in": "SIGN IN",
+  "login_sign_in": "LOG IN",
   "product_sku_paketleme": "SKU / PACKING",
   "product_technical": "TECHNICAL DETAILS",
   "product_volume": "Volume",
@@ -73,5 +73,7 @@
   "contact_title": "CONTACT",
   "contact_content": "<p><b>ŞİŞECAM HEADQUARTERS</b><br>İçmeler Mahallesi, D-100 Karayolu Caddesi, No:44A<br>34947 Tuzla/İSTANBUL<br>Tel: 0850 206 50 50<br>E-posta adresimiz: musterihizmetleri@pasabahce.com<br>Müşteri Hizmetleri: 0850 222 19 35</p>",
   "filtre_basediameter": "BASE DIAMETER",
-  "filtre_filterheight": "HEIGHT"
+  "filtre_filterheight": "HEIGHT",
+  "uyelik_ozelligi": "The page is only available for Paşabahçe Employees.",
+  "auw_delete_sl": "Are you sure you want to delete this shortlist?"
 }

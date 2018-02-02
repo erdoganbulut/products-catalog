@@ -3,14 +3,14 @@
     <div class="container">
       <form v-on:submit.prevent="onSubmit">
         <div class="form-item">
-          <p>Üyelik özelliği sadece Paşabahçe çalışanlarının erişimine açıktır.</p>
+          <p>{{ lang.uyelik_ozelligi }}</p>
         </div>
         <div class="form-item">
           <label for="inputemail">e-mail</label>
           <input id="inputemail" type="email" class="form-control" v-model="tokenparams.username" :placeholder="lang.login_email">
         </div>
         <div class="form-item">
-          <label for="inputpassword">şifre</label>
+          <label for="inputpassword" class="text-lowercase">{{ lang.login_password }}</label>
           <input id="inputpassword" type="password" class="form-control" v-model="tokenparams.password" :placeholder="lang.login_password">
         </div>
         <div class="form-item">
@@ -79,6 +79,7 @@ export default {
 @import '../../scss/shareds';
 
 section.login-content-component {
+  padding-top: 30px;
   .form-item {
     padding: 10px 0;
     font-size: 0.75rem;

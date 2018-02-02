@@ -18,7 +18,7 @@
             </svg>
           </a>
         </h2>
-        <b-collapse class="ui-collapse" id="collapseUserList">
+        <b-collapse visible="" class="ui-collapse" id="collapseUserList">
           <div class="ui-collapse--inner">
             <div class="user--collapse-content">
               <div class="user-list--item" v-for="(list, index) in lists" :key="'listitem' + index"><span>{{ list.name }}</span><span><a href="javascript:;" v-on:click="handleDuplicate(index)">{{ lang.shortlist_cogalt }}</a><router-link :to="`/${lang.url}/list/update/${index}`">{{ lang.shortlist_duzenle }}</router-link></span></div>
