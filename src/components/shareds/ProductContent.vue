@@ -75,6 +75,11 @@
             </a>
           </h2>
           <b-collapse class="ui-collapse" id="collapseSocial">
+            <meta property="og:url"                :content="url" />
+            <meta property="og:type"               content="article" />
+            <meta property="og:title"              :content="product.name" />
+            <meta property="og:description"        :content="product.description" />
+            <meta property="og:image"              :content="product.photo" />
             <div class="ui-collapse--inner">
               <div class="product-share-content">
                 <a target="_blank" :href="`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`" class="social-link social-link--facebook"><i class="fa fa-facebook"></i></a>
