@@ -11,28 +11,16 @@
           </div>
         </div>
       </div>
-      <div class="delete-email-controls">
-        <button class="btn" v-on:click="isDeletePopup = true"><i class="fa fa-close"></i></button>
-        <button class="btn" v-b-toggle.emailSendCollapse><i class="fa fa-envelope-o"></i></button>
-      </div>
-      <b-collapse class="ui-collapse collapse--email-send" id="emailSendCollapse">
-        <div class="ui-collapse--inner">
-          <div class="user-list-add--form-item">
-            <label>E-mail Address</label>
-            <input class="form-control" type="text" v-model="sendemailaddress">
-          </div>
-        </div>
-        <div class="user-list-add--form-item">
-          <button v-on:click="handleSendEmail()" class="btn btn-block btn-lg btn--red" type="submit">SEND E-MAIL</button>
-        </div>
-        <div class="user-list-add--form-item" v-if="apireturn !== ''">
-          <p>
-            <span v-if="apireturn">E-mail gönderildi.</span>
-            <span v-if="!apireturn">E-mail gönderilirken hata oluştu.</span>
-          </p>
-        </div>
-      </b-collapse>
+
       <form v-on:submit.prevent="handleSubmit">
+        <div class="user-list-add--form-item" v-if="newList.code">
+          <label>{{ lang.shortlist_create }}</label>
+          <p v-if="newList.create">{{ newList.create }}</p>
+        </div>
+        <div class="user-list-add--form-item" v-if="newList.code">
+          <label>{{ lang.shortlist_code }}</label>
+           <p v-if="newList.code">{{ newList.code }}</p>
+        </div>
         <div class="user-list-add--form-item">
           <label>{{ lang.shortlist_ad }}</label>
           <input class="form-control" type="text" v-model="newList.name">
@@ -62,29 +50,51 @@
           </select>
         </div>
         <div class="user-list-add--form-item">
+          <label>{{ lang.shortlist_fiyat_goster }}</label>
           <div class="checkbox--yes-no">
             <input name="showPriceInput" v-model="newList.showprice" type="checkbox" class="form-control">
             <div>
-              <label v-on:click="newList.showprice = true" v-bind:class="{'active': newList.showprice}">{{ lang.shortlist_fiyat_goster }}</label>
+              <label v-on:click="newList.showprice = true" v-bind:class="{'active': newList.showprice}">{{ lang.filtre_temper_evet }}</label>
             </div>
             <div>
-              <label v-on:click="newList.showprice = false" v-bind:class="{'active': !newList.showprice}" class="is--no">{{ lang.shortlist_fiyat_gosterme }}</label>
+              <label v-on:click="newList.showprice = false" v-bind:class="{'active': !newList.showprice}" class="is--no">{{ lang.filtre_temper_hayir }}</label>
             </div>
           </div>
         </div>
+        <div class="delete-email-controls">
+          <button class="btn" v-on:click="isDeletePopup = true"><i class="fa fa-close"></i></button>
+          <button class="btn" v-b-toggle.emailSendCollapse><i class="fa fa-envelope-o"></i></button>
+        </div>
+        <b-collapse class="ui-collapse collapse--email-send" id="emailSendCollapse">
+          <div class="ui-collapse--inner">
+            <div class="user-list-add--form-item">
+              <label>E-mail Address</label>
+              <input class="form-control" type="text" v-model="sendemailaddress">
+            </div>
+          </div>
+          <div class="user-list-add--form-item">
+            <button v-on:click="handleSendEmail()" class="btn btn-block btn-lg btn--red" type="submit">SEND E-MAIL</button>
+          </div>
+          <div class="user-list-add--form-item" v-if="apireturn !== ''">
+            <p>
+              <span v-if="apireturn">E-mail gönderildi.</span>
+              <span v-if="!apireturn">E-mail gönderilirken hata oluştu.</span>
+            </p>
+          </div>
+        </b-collapse>
         <div class="user-list-add--form-item">
           <div class="product-list">
             <div class="product-list--item" v-for="(detail, index) in newList.details" :key="`detail${index}`">
               <img :src="detail.product.photo" alt="">
               <div class="product--content">
-                <h3>{{ detail.product.name }} {{ detail.product.pattern }} - {{ detail.product.sku }}</h3>
+                <h3>{{ detail.product.name }}<br>{{ detail.product.pattern }} - {{ detail.product.sku }}</h3>
                 <div class="product--control">
                   <div class="product--control__item">
-                    <label>Fiyat: ₺</label>
+                    <label>{{ lang.fiyat }}: $</label>
                     <input type="text" class="form-control" v-model="detail.price">
                   </div>
                   <div class="product--control__item">
-                    <label>Adet</label>
+                    <label>{{ lang.sl_adet }}</label>
                     <input type="number" class="form-control" v-model="detail.quantity">
                   </div>
                   <div class="product--control__item">
@@ -95,11 +105,18 @@
             </div>
           </div>
         </div>
+        <p class="sepet--info">
+          <br>
+          {{ lang.sl_listenizde }}:<br>{{ lang.sl_total_of }} {{ totalParca }} {{ lang.sl_parca }}<br>
+          {{ newList.details.length }} {{ lang.sl_urun_b }}<br>
+          <br>
+          {{ lang.sl_listenizin_td }} $ {{ totalPrice }}.
+        </p>
         <div class="user-list-add--form-item">
           <button class="btn btn-block btn-lg btn--red" type="submit">{{ lang.shortlist_shortlist_guncelle }}</button>
         </div>
-        <p class="text--form-eror" v-if="isError"><br>Bir hata oluştu.</p>
-        <p class="text--form-success text-center text-success" v-if="listsStatus === 'updated'"><br>Liste başarıyla güncellendi.</p>
+        <p class="text--form-eror" v-if="isError"><br>{{ lang.sl_error_update }}</p>
+        <p class="text--form-success text-center text-success" v-if="isUpdated"><br>{{ lang.sl_success_update }}</p>
       </form>
     </div>
   </section>
@@ -125,6 +142,7 @@ export default {
       sendemailaddress: '',
       apireturn: '',
       isDeletePopup: false,
+      isUpdated: false,
     };
   },
   computed: {
@@ -136,6 +154,21 @@ export default {
       lists: 'list/lists',
       listsStatus: 'list/status',
     }),
+    totalPrice() {
+      let total = 0;
+      window.$lodash.forEach(this.newList.details, (val) => {
+        const ptotal = parseInt(val.price * val.quantity, 10);
+        total += parseInt(ptotal, 10);
+      });
+      return total;
+    },
+    totalParca() {
+      let total = 0;
+      window.$lodash.forEach(this.newList.details, (val) => {
+        total += parseInt(val.quantity, 10);
+      });
+      return total;
+    },
   },
   methods: {
     ...mapActions({
@@ -167,7 +200,9 @@ export default {
       params.updateList.details = window.$lodash.forEach(params.updateList.details, (val) => {
         val.product = val.product.id;
       });
-      this.updateList(params);
+      this.updateList(params).then((apireturn) => {
+        this.isUpdated = apireturn;
+      });
     },
     handleClickDelete() {
       const params = {
@@ -220,6 +255,7 @@ export default {
 @import '../../scss/shareds';
 
 section.list-update-component {
+  padding-top: 30px;
   .popup--delete {
     position: fixed;
     top: 0;
@@ -254,6 +290,7 @@ section.list-update-component {
   .delete-email-controls {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 10px;
     button {
       display: block;
       flex-grow: 1;
@@ -261,12 +298,12 @@ section.list-update-component {
       background: #222222;
       color: #fff;
       &:first-child {
-        margin-right: 5px;
+        margin-right: 1px;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
       }
       &:last-child {
-        margin-right: 5px;
+        margin-right: 0px;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }
@@ -307,6 +344,9 @@ section.list-update-component {
             align-items: flex-end;
             .product--control__item {
               margin-left: 10px;
+              label {
+                margin-bottom: 4px;
+              }
               input {
                 min-width: 0;
               }

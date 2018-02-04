@@ -12,7 +12,7 @@
             <span class="product-name">{{ product.name }}</span>
           </h1>
           <div class="package-info">
-            <p>{{ lang.product_sku_paketleme }} <span>{{ product.sku }}</span></p>
+            <p><span v-if="typeof user.id !== 'undefined' && product.price > 0">$ {{ product.price }}<br></span>{{ lang.product_sku_paketleme }} <span>{{ product.sku }}</span></p>
             <p class="package-inner-outer-text">{{ product.innercode.code }}-{{ product.outercode.code }}</p>
           </div>
           <div class="product-icons">
@@ -79,20 +79,21 @@
               <div class="product-share-content">
                 <a target="_blank" :href="`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`" class="social-link social-link--facebook"><i class="fa fa-facebook"></i></a>
                 <a target="_blank" :href="`https://twitter.com/home?status=${encodeURIComponent(url)}`" class="social-link social-link--twitter"><i class="fa fa-twitter"></i></a>
-                <a href="mailto:" class="social-link social-link-mail"><i class="fa fa-envelope-o"></i></a>
-                <a href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i></a>
+                <!--<a href="mailto:" class="social-link social-link-mail"><i class="fa fa-envelope-o"></i></a>-->
+                <a :href="`whatsapp://send?text=${lang.whatsapp_text} ${url}`" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i></a>
               </div>
             </div>
           </b-collapse>
         </div>
         <div class="add-to-favorite" v-if="typeof user.id !== 'undefined'">
-          <a href="javascript:;" :disabled="listError === 'on-request'" v-on:click="handleAdd2Fav()" class="btn btn-danger btn-block"><i class="fa fa-heart-o"></i> {{ lang.product_add2shortList }}</a>
+          <h2>{{ lang.product_add2shortList }}</h2>
           <select class="form-control ui-select" v-model="selectedList">
             <option selected value="" disabled>{{ lang.shorlist_select_text }}</option>
             <option v-if="lists.length > 0" v-for="(list, index) in lists" :key="'listp' + index" :value="index">{{list.name}}</option>
             <option value="-1">{{ lang.product_create_list }}</option>
           </select>
           <input v-model="createListName" v-if="selectedList === '-1'" type="text" placeholder="list name" class="form-control">
+          <a href="javascript:;" :disabled="listError === 'on-request'" v-on:click="handleAdd2Fav()" class="btn btn-danger btn-block"><i class="fa fa-heart-o"></i> {{ lang.product_add2shortList }}</a>
           <p class="response--message" v-if="listError !== ''">
             <span class="text-success" v-if="listError">Ürün listeye eklendi</span>
             <span class="text-danger" v-if="!listError">Bir hata oluştu.</span>
@@ -166,6 +167,7 @@ export default {
           currency: 'USD',
           description: '',
           email: 'amg2255@gmail.com',
+          showprice: 0,
           details: [
             {
               product: parseInt(this.product.id, 10),
@@ -285,7 +287,8 @@ section.product-content-component {
     }
   }
   .technical-detail,
-  .product-share {
+  .product-share,
+  .add-to-favorite {
     padding-bottom: 20px;
     h2 {
       font-size: 12px;
@@ -315,6 +318,10 @@ section.product-content-component {
   }
   .add-to-favorite {
     margin-bottom: 10px;
+    margin-top: 20px;
+    h2 {
+      margin-bottom: 10px;
+    }
     a {
       margin-bottom: 10px;
     }

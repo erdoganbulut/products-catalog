@@ -75,5 +75,17 @@
   "filtre_basediameter": "BASE DIAMETER",
   "filtre_filterheight": "HEIGHT",
   "uyelik_ozelligi": "The page is only available for Paşabahçe Employees.",
-  "auw_delete_sl": "Are you sure you want to delete this shortlist?"
+  "auw_delete_sl": "Are you sure you want to delete this shortlist?",
+  "whatsapp_text": "Did you see the latest product catalogue of Paşabahçe?",
+  "fiyat": "PRICE",
+  "sl_adet": "QUANTITY",
+  "sl_listenizde": "In your shortlist there are",
+  "sl_total_of": "",
+  "sl_parca": "pieces and",
+  "sl_urun_b": "unique products",
+  "sl_listenizin_td": "Total value of your shortlist is",
+  "sl_success_update": "Shortlist successfully updated.",
+  "sl_error_update": "An error occured.",
+  "shortlist_code": "CODE OF SHORTLIST",
+  "shortlist_create": "DATE OF CREATION"
 }

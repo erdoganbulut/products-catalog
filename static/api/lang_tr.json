@@ -76,5 +76,17 @@
   "filtre_basediameter": "TABAN ÇAPI",
   "filtre_filterheight": "YÜKSEKLİK",
   "uyelik_ozelligi": "Üyelik özelliği sadece Paşabahçe çalışanlarının erişimine açıktır.",
-  "auw_delete_sl": "Bu shortlisti silmek istediğinize emin misiniz?"
+  "auw_delete_sl": "Bu shortlisti silmek istediğinize emin misiniz?",
+  "whatsapp_text": "Paşabahçe'nin son ürün kataloğunu gördün mü?",
+  "fiyat": "FİYAT",
+  "sl_adet": "ADET",
+  "sl_listenizde": "Listenizde",
+  "sl_total_of": "toplam",
+  "sl_parca": "parça,",
+  "sl_urun_b": "farklı ürün bulunmaktadır",
+  "sl_listenizin_td": "Listenizin toplam değeri",
+  "sl_success_update": "Liste başarıyla güncellendi.",
+  "sl_error_update": "Liste güncellenirken bir hata oluştu.",
+  "shortlist_code": "SHORTLIST KODU",
+  "shortlist_create": "OLUŞTURULMA TARİHİ"
 }

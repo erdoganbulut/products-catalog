@@ -1,6 +1,7 @@
 <template>
   <section class="breadcrumb-component">
     <nav aria-label="breadcrumb">
+      <a v-if="$route.meta.page !== 'start'" href="javascript:" v-on:click="handleBack" class="btn--back"><i class="fa fa-angle-left"></i></a>
       <ol class="breadcrumb" v-if="$route.meta.page === 'start'">
         <li class="breadcrumb-item active" aria-current="page">{{ lang.bread_katalogsecim }}</li>
       </ol>
@@ -62,6 +63,11 @@ export default {
       list: 'list/lists',
     }),
   },
+  methods: {
+    handleBack() {
+      this.$router.go(-1);
+    },
+  },
 };
 </script>
 
@@ -72,6 +78,27 @@ export default {
 section.breadcrumb-component {
   nav {
     margin: 0;
+    position: relative;
+    .btn--back {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      background: #B40023;
+      top: 50%;
+      margin-top: -17.5px;
+      left: 0;
+      width: 35px;
+      min-height: 35px;
+      font-size: 24px;
+      text-decoration: none;
+      color: #fff;
+      text-indent: -3px;
+      @media (min-width: 992px) {
+        display: none;
+      }
+    }
     ol,
     ul {
       margin: 0;
@@ -79,9 +106,9 @@ section.breadcrumb-component {
     .breadcrumb {
       font-size: 12px;
       border-radius: 0px;
-      background: #FAFAFA;
+      background: #eee;
       color: #1A1A1A;
-      padding-left: 35px;
+      padding-left: 50px;
       .breadcrumb-item {
         text-transform: uppercase;
       }
