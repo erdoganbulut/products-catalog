@@ -8,6 +8,9 @@ import Vuex from 'vuex';
 // Vue resource
 import VueResource from 'vue-resource';
 
+// Vue Meta
+import Meta from 'vue-meta';
+
 // Bootstrap and bootstrap-vue
 import BootstrapVue from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -30,6 +33,8 @@ Vue.use(Vuex);
 Vue.use(VueResource);
 
 Vue.use(BootstrapVue);
+
+Vue.use(Meta);
 
 Vue.config.productionTip = false;
 
