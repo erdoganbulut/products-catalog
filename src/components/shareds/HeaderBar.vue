@@ -36,7 +36,7 @@
             </span>
           </li>
           <li v-if="accesstoken !== ''">
-            <a href="javascript:;" v-on:click="handleClickRouterLink(); logout();">
+            <a href="javascript:;" v-on:click="handleClickRouterLink(); logout(); redirectHome();">
               <span>{{ lang.menu_logout }}</span>
             </a>
             <span class="item--icon">
@@ -192,6 +192,9 @@ export default {
       getMenu: 'menu/getMenu',
       logout: 'auth/logout',
     }),
+    redirectHome() {
+      this.$router.push(`/${this.lang.url}`);
+    },
     rightToMenu(level, content) {
       this.navLevel += 1;
       if (level === 2) this.levelTwoContent = content;

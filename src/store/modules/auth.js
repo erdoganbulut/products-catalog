@@ -40,7 +40,6 @@ const actions = {
     commit('receiveStatus', 'non-request');
     commit('receiveAccesstoken', '');
     commit('receiveRefreshtoken', '');
-    window.location.href = "/";
   },
 };
 
