@@ -87,5 +87,7 @@
   "sl_success_update": "Shortlist successfully updated.",
   "sl_error_update": "An error occured.",
   "shortlist_code": "CODE OF SHORTLIST",
-  "shortlist_create": "DATE OF CREATION"
+  "shortlist_create": "DATE OF CREATION",
+  "lang.product_add2shortListok": "Product added to shortlist.",
+  "lang.product_add2shortListnotok": "An error occured."
 }

@@ -6,11 +6,11 @@
           <p>{{ lang.uyelik_ozelligi }}</p>
         </div>
         <div class="form-item">
-          <label for="inputemail">e-mail</label>
+          <label for="inputemail">{{ lang.login_email }}</label>
           <input id="inputemail" type="email" class="form-control" v-model="tokenparams.username" :placeholder="lang.login_email">
         </div>
         <div class="form-item">
-          <label for="inputpassword" class="text-lowercase">{{ lang.login_password }}</label>
+          <label for="inputpassword">{{ lang.login_password }}</label>
           <input id="inputpassword" type="password" class="form-control" v-model="tokenparams.password" :placeholder="lang.login_password">
         </div>
         <div class="form-item">

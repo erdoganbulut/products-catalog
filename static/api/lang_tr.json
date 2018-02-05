@@ -88,5 +88,7 @@
   "sl_success_update": "Liste başarıyla güncellendi.",
   "sl_error_update": "Liste güncellenirken bir hata oluştu.",
   "shortlist_code": "SHORTLIST KODU",
-  "shortlist_create": "OLUŞTURULMA TARİHİ"
+  "shortlist_create": "OLUŞTURULMA TARİHİ",
+  "lang.product_add2shortListok": "Ürün listeye eklendi.",
+  "lang.product_add2shortListnotok": "Bir hata oluştu."
 }

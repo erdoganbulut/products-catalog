@@ -95,8 +95,8 @@
           <input v-model="createListName" v-if="selectedList === '-1'" type="text" placeholder="list name" class="form-control">
           <a href="javascript:;" :disabled="listError === 'on-request'" v-on:click="handleAdd2Fav()" class="btn btn-danger btn-block"><i class="fa fa-heart-o"></i> {{ lang.product_add2shortList }}</a>
           <p class="response--message" v-if="listError !== ''">
-            <span class="text-success" v-if="listError">Ürün listeye eklendi</span>
-            <span class="text-danger" v-if="!listError">Bir hata oluştu.</span>
+            <span class="text-success" v-if="listError">{{ lang.product_add2shortListok }}</span>
+            <span class="text-danger" v-if="!listError">{{ lang.product_add2shortListnotok }}</span>
           </p>
         </div>
       </div>
