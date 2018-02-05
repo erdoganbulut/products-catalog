@@ -238,7 +238,6 @@ export default {
     listsStatus() {
       if (this.listsStatus === 'deleted') {
         this.$router.push(`/${this.lang.url}/user`);
-        console.log('listsStatus');
       } else if (this.listsStatus !== 'done' && this.listsStatus !== 'updated') {
         this.isError = true;
       } else {

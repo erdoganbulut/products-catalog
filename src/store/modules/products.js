@@ -10,7 +10,6 @@ const filterProducts = (arr, filter) => {
       const item = JSON.stringify(val).toUpperCase().toLowerCase();
       if (item.indexOf(Filter.searchText.toUpperCase().toLowerCase()) > -1) newArr.push(val);
     });
-    console.log(newArr);
     Arr = newArr;
   }
   if (Filter.subCategory !== '' && typeof Filter.subCategory !== 'undefined') {
@@ -63,7 +62,6 @@ const filterProducts = (arr, filter) => {
     });
   }
   if (Filter.standart !== null && Filter.standart !== '' && Filter.limited !== '') {
-    console.log('burada');
     if (Filter.standart && Filter.limited) {
       Arr = window.$lodash.filter(Arr, (o) => {
         let fVal = true;
