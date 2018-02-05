@@ -9,7 +9,7 @@ const getters = {
 const actions = {
   getProduct({ commit, rootState }, params) {
     commit('receiveStatus', 'on-request');
-    Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/${rootState.lang.lang.url}/details/${params.slug}`).then((response) => {
+    Vue.http.get(`http://admin.pasabahcecatalogues.com/api/${rootState.lang.lang.url}/details/${params.slug}`).then((response) => {
       const Response = response;
       commit('receiveProduct', Response.body);
       commit('receiveStatus', 'done');

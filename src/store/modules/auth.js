@@ -10,7 +10,7 @@ const getters = {
 
 const actions = {
   getUser({ commit }, accesstoken) {
-    Vue.http.get('http://bline.digital/pasabahce2018/Backend/public/api/user', { headers: { Authorization: `Bearer ${accesstoken}` } }).then((response) => {
+    Vue.http.get('http://admin.pasabahcecatalogues.com/api/user', { headers: { Authorization: `Bearer ${accesstoken}` } }).then((response) => {
       const Response = response;
       commit('receiveUser', Response.body);
     }, () => {
@@ -20,7 +20,7 @@ const actions = {
     });
   },
   getToken({ commit, dispatch }, params) {
-    Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/oauth/token', { grant_type: 'password', client_id: '141', client_secret: 'k3WjnCzMTm4WRKfUs17X3yJxxnIkD24YeWtYMVsE', username: params.username, password: params.password, scope: '' }).then((response) => {
+    Vue.http.post('http://admin.pasabahcecatalogues.com/oauth/token', { grant_type: 'password', client_id: '141', client_secret: 'k3WjnCzMTm4WRKfUs17X3yJxxnIkD24YeWtYMVsE', username: params.username, password: params.password, scope: '' }).then((response) => {
       const Response = response;
       dispatch('getUser', Response.body.access_token);
       commit('receiveAccesstoken', Response.body.access_token);

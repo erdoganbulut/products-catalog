@@ -10,7 +10,7 @@ const getters = {
 const actions = {
   getFunctions({ commit, rootState }, subCategoryId) {
     commit('receiveStatus', 'on-request');
-    Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/${rootState.lang.lang.url}/${subCategoryId}/functions`).then((response) => {
+    Vue.http.get(`http://admin.pasabahcecatalogues.com/api/${rootState.lang.lang.url}/${subCategoryId}/functions`).then((response) => {
       const Response = response;
       commit('receiveFunctionsAll', Response.body);
       commit('receiveFunctions', Response.body);

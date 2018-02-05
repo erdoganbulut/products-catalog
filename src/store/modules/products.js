@@ -140,7 +140,7 @@ const getters = {
 const actions = {
   async getProducts({ commit, rootState }, catId) {
     commit('receiveStatus', 'on-request');
-    await Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/${rootState.lang.lang.url}/${catId}/allproducts`).then((response) => {
+    await Vue.http.get(`http://admin.pasabahcecatalogues.com/api/${rootState.lang.lang.url}/${catId}/allproducts`).then((response) => {
       const Response = response;
       commit('receiveProductsAll', Response.body);
       commit('receiveProducts', Response.body);

@@ -464,6 +464,7 @@ section.category-content-component {
     bottom: 0;
     background: #222;
     overflow: auto;
+    z-index:999;
     .view-products-btn {
       display: block;
       background: #C31B2E;

@@ -10,7 +10,7 @@ const getters = {
 const actions = {
   getInners({ commit, rootState }, subCategoryId) {
     commit('receiveStatus', 'on-request');
-    Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/${rootState.lang.lang.url}/${subCategoryId}/innertypes`).then((response) => {
+    Vue.http.get(`http://admin.pasabahcecatalogues.com/api/${rootState.lang.lang.url}/${subCategoryId}/innertypes`).then((response) => {
       const Response = response;
       commit('receiveInnersAll', window.$lodash.orderBy(Response.body, ['name']));
       commit('receiveInners', window.$lodash.orderBy(Response.body, ['name']));

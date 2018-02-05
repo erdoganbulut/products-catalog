@@ -8,7 +8,7 @@ const getters = {
 
 const actions = {
   getLists({ commit }, accesstoken) {
-    Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/api/userlist', {}, { headers: { Authorization: `Bearer ${accesstoken}` } }).then((response) => {
+    Vue.http.post('http://admin.pasabahcecatalogues.com/api/userlist', {}, { headers: { Authorization: `Bearer ${accesstoken}` } }).then((response) => {
       const Response = response;
       commit('receiveLists', Response.body.lists);
       commit('receiveStatus', 'done');
@@ -22,7 +22,7 @@ const actions = {
   },
   async sendEmail({ commit, dispatch }, params) {
     let apireturn = false;
-    await Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/api/mailList', { id: params.id, email: params.email }, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
+    await Vue.http.post('http://admin.pasabahcecatalogues.com/api/mailList', { id: params.id, email: params.email }, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
       apireturn = true;
     }, (response) => {
       apireturn = false;
@@ -31,7 +31,7 @@ const actions = {
   },
   async addList({ commit, dispatch }, params) {
     let apireturn = false;
-    await Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/api/addList', params.newList, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
+    await Vue.http.post('http://admin.pasabahcecatalogues.com/api/addList', params.newList, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
       apireturn = true;
       const Response = response;
       dispatch('getLists', params.accesstoken);
@@ -48,7 +48,7 @@ const actions = {
   },
   async updateList({ commit, dispatch }, params) {
     let apireturn = false;
-    await Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/api/updatelist', params.updateList, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
+    await Vue.http.post('http://admin.pasabahcecatalogues.com/api/updatelist', params.updateList, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
       apireturn = true;
       const Response = response;
       dispatch('getLists', params.accesstoken);
@@ -64,7 +64,7 @@ const actions = {
     return apireturn;
   },
   deleteList({ commit, dispatch }, params) {
-    Vue.http.post('http://bline.digital/pasabahce2018/Backend/public/api/deleteList', params.deleteList, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
+    Vue.http.post('http://admin.pasabahcecatalogues.com/api/deleteList', params.deleteList, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
       const Response = response;
       dispatch('getLists', params.accesstoken);
       commit('receiveStatus', 'deleted');

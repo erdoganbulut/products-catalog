@@ -8,7 +8,7 @@ const getters = {
 
 const actions = {
   getMenu({ commit, rootState }) {
-    Vue.http.get(`http://bline.digital/pasabahce2018/Backend/public/api/${rootState.lang.lang.url}/menuItems`).then((response) => {
+    Vue.http.get(`http://admin.pasabahcecatalogues.com/api/${rootState.lang.lang.url}/menuItems`).then((response) => {
       const Response = response;
       commit('receiveMenu', Response.body);
       commit('receiveStatus', 'done');
