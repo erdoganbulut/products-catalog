@@ -5,6 +5,9 @@ import Vue from 'vue';
 // Vuex
 import Vuex from 'vuex';
 
+// Vue Analytics
+import VueAnalytics from 'vue-analytics';
+
 // Vue resource
 import VueResource from 'vue-resource';
 
@@ -35,6 +38,10 @@ Vue.use(VueResource);
 Vue.use(BootstrapVue);
 
 Vue.use(Meta);
+
+Vue.use(VueAnalytics, {
+  id: 'UA-113556003-1'
+});
 
 Vue.config.productionTip = false;
 
