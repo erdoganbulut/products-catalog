@@ -17,15 +17,16 @@
         <div class="user-list-add--form-item">
           <label>{{ lang.shortlist_durum }}</label>
           <select class="form-control ui-select" v-model="newList.status">
+            <option value="lang.shortlist_yeni" selected>{{ lang.shortlist_yeni }}</option>
             <option value="lang.shortlist_teklif">{{ lang.shortlist_teklif }}</option>
             <option value="lang.shortlist_donus">{{ lang.shortlist_donus }}</option>
             <option value="lang.shortlist_onay">{{ lang.shortlist_onay }}</option>
           </select>
         </div>
-        <div class="user-list-add--form-item">
+        <div class="user-list-add--form-item" >
           <label>{{ lang.shortlist_para_birimi }}</label>
           <select class="form-control ui-select" v-model="newList.currency">
-            <option>USD</option>
+            <option selected>USD</option>
           </select>
         </div>
         <div class="user-list-add--form-item">
