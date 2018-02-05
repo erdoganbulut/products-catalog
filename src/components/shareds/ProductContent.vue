@@ -77,10 +77,10 @@
           <b-collapse class="ui-collapse" id="collapseSocial">
             <div class="ui-collapse--inner">
               <div class="product-share-content">
-                <a target="_blank" :href="`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`" class="social-link social-link--facebook"><i class="fa fa-facebook"></i></a>
-                <a target="_blank" :href="`https://twitter.com/home?status=${encodeURIComponent(url)}`" class="social-link social-link--twitter"><i class="fa fa-twitter"></i></a>
+                <a target="_blank" :href="`https://www.facebook.com/sharer/sharer.php?u=${masterurl}`" class="social-link social-link--facebook"><i class="fa fa-facebook"></i></a>
+                <a target="_blank" :href="`https://twitter.com/home?status=${masterurl}`" class="social-link social-link--twitter"><i class="fa fa-twitter"></i></a>
                 <!--<a href="mailto:" class="social-link social-link-mail"><i class="fa fa-envelope-o"></i></a>-->
-                <a :href="`whatsapp://send?text=${lang.whatsapp_text} ${url}`" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i></a>
+                <a :href="`whatsapp://send?text=${lang.whatsapp_text} ${masterurl}`" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i></a>
               </div>
             </div>
           </b-collapse>
@@ -106,7 +106,6 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-
 export default {
   name: 'ProductContent',
   metaInfo() {
@@ -166,7 +165,7 @@ export default {
           status: 'waiting for repoend',
           currency: 'USD',
           description: '',
-          email: 'amg2255@gmail.com',
+          email: 'info@pasabahce.com.tr',
           showprice: 0,
           details: [
             {
@@ -184,7 +183,7 @@ export default {
       } else {
         params.updateList = this.lists[parseInt(this.selectedList, 10)];
         params.updateList.currency = "EUR";
-        params.updateList.email = "asasa@asasa.com";
+        params.updateList.email = "info@pasabahce.com.tr";
         params.updateList.details = window.$lodash.forEach(params.updateList.details, (val) => {
           val.product = val.product.id;
         });
@@ -199,6 +198,8 @@ export default {
   created() {
     this.setPreloader(true);
     this.url = window.location.href;
+    this.masterurl =  window.location.host;
+    console.log(this.masterurl);
   },
   mounted() {
     if (this.accesstoken.length > 0) this.getLists(this.accesstoken);

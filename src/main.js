@@ -40,7 +40,8 @@ Vue.use(BootstrapVue);
 Vue.use(Meta);
 
 Vue.use(VueAnalytics, {
-  id: 'UA-113556003-1'
+  id: 'UA-113556003-1',
+  router,
 });
 
 Vue.config.productionTip = false;

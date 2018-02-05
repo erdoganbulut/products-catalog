@@ -25,9 +25,7 @@
         <div class="user-list-add--form-item">
           <label>{{ lang.shortlist_para_birimi }}</label>
           <select class="form-control ui-select" v-model="newList.currency">
-            <option>TRY</option>
             <option>USD</option>
-            <option>EUR</option>
           </select>
         </div>
         <div class="user-list-add--form-item">
@@ -131,8 +129,9 @@ section.user-content-component {
   padding: 30px 0;
   font-size: 12px;
   .user-list-add--form-item {
+
     padding: 5px 0;
-    input, select {
+    input, select , textarea {
       font-size: 12px;
     }
   }

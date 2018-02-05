@@ -44,9 +44,7 @@
         <div class="user-list-add--form-item" v-if="false">
           <label>{{ lang.shortlist_para_birimi }}</label>
           <select class="form-control" v-model="newList.currency">
-            <option>TRY</option>
             <option>USD</option>
-            <option>EUR</option>
           </select>
         </div>
         <div class="user-list-add--form-item">
