@@ -230,9 +230,9 @@ export default {
       if (this.status === 'on-request') {
         this.setPreloader(true);
       } else {
-        const $t_his = this;
-        Vue.nextTick().then(function () {
-          $t_his.setPreloader(false);
+        const innerThis = this;
+        Vue.nextTick().then(() => {
+          innerThis.setPreloader(false);
         });
       }
     },
@@ -291,14 +291,17 @@ export default {
     },
     autoSelect2SubCat4Query() {
       if (this.subCategoriesStatus === 'done' && this.status === 'done') {
-        if (!window.$lodash.isEmpty(this.$route.query)) this.subCategoriesCheckeds = this.pageQuery.sub;
+        if (!window.$lodash.isEmpty(this.$route.query))
+          this.subCategoriesCheckeds = this.pageQuery.sub;
         this.firstLoadedSubCats = true;
         this.filterProducts();
       }
     },
     fillSelectedSubCatName() {
-      const selectedSubCatIndex = window.$lodash.findIndex(this.subCategories, { id: parseInt(this.subCategoriesCheckeds, 10) });
-      this.selectedSubCatName = typeof this.subCategories[selectedSubCatIndex] !== 'undefined' ? this.subCategories[selectedSubCatIndex].name : '';
+      const selectedSubCatIndex = window.$lodash.findIndex(
+        this.subCategories, { id: parseInt(this.subCategoriesCheckeds, 10) });
+      this.selectedSubCatName = typeof this.subCategories[selectedSubCatIndex] !== 'undefined' ?
+        this.subCategories[selectedSubCatIndex].name : '';
     },
   },
   created() {
@@ -390,7 +393,8 @@ export default {
       this.autoSelect2SubCat4Query();
     },
     '$route' (to, from) {
-      if (to.params.catalog !== from.params.catalog || to.params.category !== from.params.category || this.$route.query !== this.$route.query) {
+      if (to.params.catalog !== from.params.catalog || 
+        to.params.category !== from.params.category || this.$route.query !== this.$route.query) {
         this.isCategories = false;
         this.setPreloader(true);
         this.receiveResetFunctions();

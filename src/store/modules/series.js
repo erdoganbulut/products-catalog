@@ -42,9 +42,10 @@ const mutations = {
     state.response = response;
   },
   receiveReset(State) {
-    state.series = {};
-    state.status = 'non-request';
-    state.response = {};
+    const innerState = State;
+    innerState.series = {};
+    innerState.status = 'non-request';
+    innerState.response = {};
   },
 };
 

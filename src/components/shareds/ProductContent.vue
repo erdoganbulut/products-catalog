@@ -106,6 +106,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+
 export default {
   name: 'ProductContent',
   metaInfo() {
@@ -182,11 +183,13 @@ export default {
         this.selectedList = `${this.lists.length}`;
       } else {
         params.updateList = this.lists[parseInt(this.selectedList, 10)];
-        params.updateList.currency = "EUR";
-        params.updateList.email = "info@pasabahce.com.tr";
-        params.updateList.details = window.$lodash.forEach(params.updateList.details, (val) => {
-          val.product = val.product.id;
-        });
+        params.updateList.currency = 'EUR';
+        params.updateList.email = 'info@pasabahce.com.tr';
+        params.updateList.details = window.$lodash.forEach(
+          params.updateList.details, (val) => {
+            const Val = val;
+            Val.product = Val.product.id;
+          });
         params.updateList.details.push({ product: parseInt(this.product.id, 10), quantity: 1, price: this.product.price });
         this.listError = 'on-request';
         this.updateList(params).then((apireturn) => {
@@ -199,7 +202,6 @@ export default {
     this.setPreloader(true);
     this.url = window.location.href;
     this.masterurl =  window.location.host;
-    console.log(this.masterurl);
   },
   mounted() {
     if (this.accesstoken.length > 0) this.getLists(this.accesstoken);
@@ -218,7 +220,7 @@ export default {
     preloader() {
       this.checkShowPreloaderSettings();
     },
-    '$route' (to, from) {
+    '$route'(to, from) {
       if (to.params.productslug !== from.params.productslug) {
         this.setPreloader(true);
         if (this.accesstoken.length > 0) this.getLists(this.accesstoken);
@@ -227,7 +229,7 @@ export default {
         };
         this.getProduct(params);
       }
-    }
+    },
   },
 };
 </script>

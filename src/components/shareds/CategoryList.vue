@@ -73,14 +73,14 @@ export default {
         this.setPreloader(true);
       }
     },
-    '$route' (to, from) {
+    '$route'(to, from) {
       if (to.params.catalog !== from.params.catalog) {
         this.setPreloader(true);
         this.isCategories = false;
         if (this.catalogStatus !== 'done') this.getCatalog();
         else this.getCategoriesIsDoneCatalog();
       }
-    }
+    },
   },
 };
 </script>

@@ -29,7 +29,7 @@ export default {
       lang: 'lang/lang',
       langList: 'lang/langList',
       langListStatus: 'lang/langListStatus',
-    })
+    }),
   },
   components: {
   },

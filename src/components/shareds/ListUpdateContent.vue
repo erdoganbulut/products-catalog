@@ -197,7 +197,8 @@ export default {
         updateList: this.newList,
       };
       params.updateList.details = window.$lodash.forEach(params.updateList.details, (val) => {
-        val.product = val.product.id;
+        const Val = val;
+        Val.product = Val.product.id;
       });
       this.updateList(params).then((apireturn) => {
         this.isUpdated = apireturn;
@@ -222,7 +223,7 @@ export default {
     authStatus() {
       if (this.authStatus === 'done') {
         this.$router.push('/en');
-      } else if(this.authStatus === 'error') {
+      } else if (this.authStatus === 'error') {
         this.error = this.authResponse.body.message;
       } else {
         this.error = '';

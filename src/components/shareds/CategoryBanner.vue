@@ -23,7 +23,7 @@ export default {
       selectedCategory: '',
       isCategories: false,
       carousel: [],
-      carouselInterval: ''
+      carouselInterval: '',
     };
   },
   computed: {

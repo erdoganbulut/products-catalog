@@ -16,19 +16,14 @@ const filterProducts = (arr, filter) => {
     Arr = window.$lodash.filter(Arr, { category: parseInt(Filter.subCategory, 10) });
   }
   if (Filter.functions.length > 0) {
-    Arr = window.$lodash.filter(Arr, (o) => {
-      return Filter.functions.indexOf(o.functions.id) > -1;
-    });
+    Arr = window.$lodash.filter(Arr, o => Filter.functions.indexOf(o.functions.id) > -1);
   }
   if (Filter.series.length > 0) {
-    Arr = window.$lodash.filter(Arr, (o) => {
-      return Filter.series.indexOf(o.series.id) > -1;
-    });
+    Arr = window.$lodash.filter(Arr, o => Filter.series.indexOf(o.series.id) > -1);
   }
   if (Filter.selectedInner !== '') {
-    Arr = window.$lodash.filter(Arr, (o) => {
-      return o.innercode.id.toString() === Filter.selectedInner.toString();
-    });
+    Arr = window.$lodash.filter(
+      Arr, o => o.innercode.id.toString() === Filter.selectedInner.toString());
   }
   if (Filter.hacimMin !== '') {
     let hacim = '';
@@ -39,9 +34,7 @@ const filterProducts = (arr, filter) => {
     } else {
       hacim = Filter.hacimMin;
     }
-    Arr = window.$lodash.filter(Arr, (o) => {
-      return o.volume[0] >= hacim;
-    });
+    Arr = window.$lodash.filter(Arr, o => o.volume[0] >= hacim);
   }
   if (Filter.hacimMax !== '') {
     let hacim = '';
@@ -52,14 +45,10 @@ const filterProducts = (arr, filter) => {
     } else {
       hacim = Filter.hacimMax;
     }
-    Arr = window.$lodash.filter(Arr, (o) => {
-      return o.volume[0] <= hacim;
-    });
+    Arr = window.$lodash.filter(Arr, o => o.volume[0] <= hacim);
   }
   if (Filter.temper !== '') {
-    Arr = window.$lodash.filter(Arr, (o) => {
-      return o.tempered.toString() === Filter.temper.toString();
-    });
+    Arr = window.$lodash.filter(Arr, o => o.tempered.toString() === Filter.temper.toString());
   }
   if (Filter.standart !== null && Filter.standart !== '' && Filter.limited !== '') {
     if (Filter.standart && Filter.limited) {
@@ -105,24 +94,16 @@ const filterProducts = (arr, filter) => {
     }
   }
   if (Filter.tabanCapiMin !== '') {
-    Arr = window.$lodash.filter(Arr, (o) => {
-      return o.base[0] >= Filter.tabanCapiMin;
-    });
+    Arr = window.$lodash.filter(Arr, o => o.base[0] >= Filter.tabanCapiMin);
   }
   if (Filter.tabanCapiMax !== '') {
-    Arr = window.$lodash.filter(Arr, (o) => {
-      return o.volume[0] <= Filter.tabanCapiMax;
-    });
+    Arr = window.$lodash.filter(Arr, o => o.volume[0] <= Filter.tabanCapiMax);
   }
   if (Filter.filterHeightMin !== '') {
-    Arr = window.$lodash.filter(Arr, (o) => {
-      return o.height[0] >= Filter.filterHeightMin;
-    });
+    Arr = window.$lodash.filter(Arr, o => o.height[0] >= Filter.filterHeightMin);
   }
   if (Filter.filterHeightMax !== '') {
-    Arr = window.$lodash.filter(Arr, (o) => {
-      return o.height[0] <= Filter.filterHeightMax;
-    });
+    Arr = window.$lodash.filter(Arr, o => o.height[0] <= Filter.filterHeightMax);
   }
 
   return Arr;

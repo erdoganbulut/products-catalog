@@ -112,7 +112,7 @@ export default {
     authStatus() {
       if (this.authStatus === 'done') {
         this.$router.push('/en');
-      } else if(this.authStatus === 'error') {
+      } else if (this.authStatus === 'error') {
         this.error = this.authResponse.body.message;
       } else {
         this.error = '';

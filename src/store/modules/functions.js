@@ -50,10 +50,11 @@ const mutations = {
     state.response = response;
   },
   receiveReset(State) {
-    state.functions = {};
-    state.functionsAll = {};
-    state.status = 'non-request';
-    state.response = {};
+    const innerState = State;
+    innerState.functions = {};
+    innerState.functionsAll = {};
+    innerState.status = 'non-request';
+    innerState.response = {};
   },
 };
 

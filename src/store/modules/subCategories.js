@@ -11,7 +11,6 @@ const actions = {
     commit('receiveStatus', 'on-request');
     Vue.http.get(`http://admin.pasabahcecatalogues.com/api/${rootState.lang.lang.url}/${categoryId}/subCategories`).then((response) => {
       const Response = response;
-      if (typeof val !== 'undefined') Response.body = window.$lodash.filter(JSON.parse(JSON.stringify(Response.body)), { categorieId: parseInt(val, 10) });
       commit('receiveSubCategories', Response.body);
       commit('receiveStatus', 'done');
       commit('receiveResponse', Response);
@@ -41,9 +40,10 @@ const mutations = {
     state.response = response;
   },
   receiveReset(State) {
-    state.subCategories = {};
-    state.status = 'non-request';
-    state.response = {};
+    const innerState = State;
+    innerState.subCategories = {};
+    innerState.status = 'non-request';
+    innerState.response = {};
   },
 };
 

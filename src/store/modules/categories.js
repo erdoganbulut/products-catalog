@@ -40,9 +40,10 @@ const mutations = {
     state.response = response;
   },
   receiveReset(State) {
-    state.categories = {};
-    state.status = 'non-request';
-    state.response = {};
+    const innerState = State;
+    innerState.categories = {};
+    innerState.status = 'non-request';
+    innerState.response = {};
   },
 };
 

@@ -22,9 +22,9 @@ const actions = {
   },
   async sendEmail({ commit, dispatch }, params) {
     let apireturn = false;
-    await Vue.http.post('http://admin.pasabahcecatalogues.com/api/mailList', { id: params.id, email: params.email }, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then((response) => {
+    await Vue.http.post('http://admin.pasabahcecatalogues.com/api/mailList', { id: params.id, email: params.email }, { headers: { Authorization: `Bearer ${params.accesstoken}` } }).then(() => {
       apireturn = true;
-    }, (response) => {
+    }, () => {
       apireturn = false;
     });
     return apireturn;
